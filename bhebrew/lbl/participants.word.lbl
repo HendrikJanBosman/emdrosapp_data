@@ -1,0 +1,25 @@
+//#PRef_png
+SELECT ALL OBJECTS WHERE
+[word 
+    NOT nu in (NA, unknown)
+]
+GO
+
+//#PRef_sfx
+SELECT ALL OBJECTS WHERE
+[word NOT prs_ps in (NA, unknown) ]
+GO
+
+//#PRef_lex
+SELECT ALL OBJECTS WHERE
+[word lexical_labels HAS personal]
+GO
+
+//#PRef
+SELECT ALL OBJECTS WHERE
+[word
+    participants_labels HAS PRef_png OR
+    participants_labels HAS PRef_sfx OR
+    participants_labels HAS PRef_lex
+]
+GO

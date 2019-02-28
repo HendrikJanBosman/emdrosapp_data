@@ -1,0 +1,42 @@
+//#stressed
+
+SELECT ALL OBJECTS WHERE
+[word 
+    graphical_labels HAS accent
+    AND NOT graphical_labels HAS postconnected
+    AND NOT graphical_labels HAS maqqef
+]
+GO
+
+//SELECT ALL OBJECTS WHERE
+//[word focus
+    //graphical_labels HAS postconnected
+    //AND graphical_labels HAS accent
+//]
+//[word
+    //graphical_labels HAS postconnected
+    //AND NOT graphical_labels HAS accent
+//]*
+//[word
+    //NOT graphical_labels HAS postconnected
+    //AND NOT graphical_labels HAS maqqef
+    //AND NOT graphical_labels HAS accent 
+    //AND st <> c  // construct state -> no stress
+//]
+//GO
+
+// ketiv and qere
+SELECT ALL OBJECTS WHERE 
+[word 
+    graphical_labels HAS K_Q AND 
+    not graphical_labels HAS postconnected
+    AND not graphical_labels HAS maqqef
+]
+GO
+
+
+
+//#unstressed
+
+SELECT ALL OBJECTS WHERE [word not prosodic_labels HAS stressed] GO
+

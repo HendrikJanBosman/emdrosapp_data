@@ -1,0 +1,449 @@
+//////// NOUN ENDINGS /////////////
+
+//#_o
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND stripped_surface ~ "o$"]
+GO
+
+//#_on
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND stripped_surface ~ "on$"]
+GO
+
+//#_oj
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND stripped_surface ~ "oj$"]
+GO
+
+//#_ojn
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND stripped_surface ~ "ojn$"]
+GO
+
+//#_u_nominal
+SELECT ALL OBJECTS WHERE
+[word lexical_labels HAS pronoun AND stripped_surface ~ "u$"]
+GO
+
+//#_un
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND stripped_surface ~ "un$"]
+GO
+
+//#_uj
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND stripped_surface ~ "uj$"]
+GO
+
+//#_ujn
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND stripped_surface ~ "ujn$"]
+GO
+
+//#_es
+SELECT ALL OBJECTS WHERE
+[word stripped_surface ~ "es$"]
+GO
+
+//////// ADJECTIVE ENDINGS ////////
+
+//#_a
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND stripped_surface ~ "a$"]
+GO
+
+//#_an
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND stripped_surface ~ "an$"]
+GO
+
+//#_aj
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND stripped_surface ~ "aj$"]
+GO
+
+//#_ajn
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND stripped_surface ~ "ajn$"]
+GO
+
+//////// ADVERBIAL ENDING ////////
+
+//#_e
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND stripped_surface ~ "e$"]
+GO
+
+//#_al
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND stripped_surface ~ "al$"]
+GO
+
+//#_am
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND stripped_surface ~ "am$"]
+GO
+
+//#_el
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND stripped_surface ~ "el$"]
+GO
+
+//#_om
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND stripped_surface ~ "om$"]
+GO
+
+//#_en
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND stripped_surface ~ "en$"]
+GO
+
+//////// INFINITIVE ENDING /////////
+
+//#_i
+SELECT ALL OBJECTS WHERE
+[word 
+    NOT (lexical_labels HAS pronoun OR lexical_labels HAS no_morphology) 
+    AND stripped_surface ~ "i$"
+]
+GO
+
+//////// VERBAL ENDINGS /////
+
+//#_as
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND stripped_surface ~ "as$"]
+GO
+
+//#_is
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND stripped_surface ~ "is$"]
+GO
+
+//#_os
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND stripped_surface ~ "os$"]
+GO
+
+//#_u
+SELECT ALL OBJECTS WHERE
+[word 
+    NOT (lexical_labels HAS no_morphology OR lexical_labels HAS pronoun)
+    AND stripped_surface ~ "u$"
+]
+GO
+
+//#_us
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND stripped_surface ~ "us$" ]
+GO
+
+///// THE ENDING FOR UNDEFINED PART OF SPEECH
+
+//#_au
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND stripped_surface ~ "aŭ$" ]
+GO
+
+
+///// VERBAL INFIXES ////////
+
+//#_int_
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND 
+    stripped_surface ~ ".inta[j]?[n]?$"
+]
+GO
+
+//#_it_
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND 
+    stripped_surface ~ ".ita[j]?[n]?$"
+]
+GO
+
+//#_ont_
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND 
+    stripped_surface ~ ".onta[j]?[n]?$"
+]
+GO
+
+//#_ot_
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND 
+    stripped_surface ~ ".ota[j]?[n]?$"
+]
+GO
+
+//#_ant_
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND 
+    stripped_surface ~ ".anta[j]?[n]?$"
+]
+GO
+
+//#_at_
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND 
+    stripped_surface ~ ".ata[j]?[n]?$"
+]
+GO
+
+
+/////// VARIOUS VERBAL INFIXES /////
+//#_igx_
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND 
+    stripped_surface ~ ".igx."
+]
+GO
+
+//#_ig_
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND 
+    stripped_surface ~ ".ig[^x]."
+]
+GO
+
+/////// NOMINAL INFIXES WITH SYNTACTIC RELEVANCE
+//#_in_
+SELECT ALL OBJECTS WHERE
+[word NOT lexical_labels HAS no_morphology AND 
+    stripped_surface ~ ".in[oa][j]?[n]?$"
+]
+GO
+
+/////// GRAMMATICAL / FUNCTIONAL ANALYSIS //////
+
+/////// VERBS
+
+//#vt := present;
+SELECT ALL OBJECTS WHERE
+[word 
+    morphological_labels HAS _as OR 
+    morphological_labels HAS _at_ OR
+    morphological_labels HAS _ant_
+]
+GO
+
+//#vt := past;
+SELECT ALL OBJECTS WHERE
+[word 
+    morphological_labels HAS _is OR 
+    morphological_labels HAS _it_ OR
+    morphological_labels HAS _int_
+]
+GO
+
+
+//#vt := future;
+SELECT ALL OBJECTS WHERE
+[word 
+    morphological_labels HAS _os OR 
+    morphological_labels HAS _ot_ OR 
+    morphological_labels HAS _ont_
+]
+GO
+
+//#vm := indic;
+SELECT ALL OBJECTS WHERE
+[word 
+    morphological_labels HAS _as OR 
+    morphological_labels HAS _is OR
+    morphological_labels HAS _os
+]
+GO
+
+//#vm := juss;
+SELECT ALL OBJECTS WHERE
+[word 
+    morphological_labels HAS _u
+]
+GO
+
+//#vm := cond;
+SELECT ALL OBJECTS WHERE
+[word 
+    morphological_labels HAS _us
+]
+GO
+
+//#vm := infin;
+SELECT ALL OBJECTS WHERE
+[word 
+    morphological_labels HAS _i
+]
+GO
+
+//#vm := ptc;
+SELECT ALL OBJECTS WHERE
+[word 
+    morphological_labels HAS _ant_ OR
+    morphological_labels HAS _at_ OR
+    morphological_labels HAS _int_ OR
+    morphological_labels HAS _it_ OR
+    morphological_labels HAS _ont_ OR
+    morphological_labels HAS _ot_
+]
+GO
+
+
+//#mode := act;
+SELECT ALL OBJECTS WHERE
+[word 
+    morphological_labels HAS _ant_ OR
+    morphological_labels HAS _int_ OR
+    morphological_labels HAS _ont_ 
+]
+GO
+
+//#mode := pass;
+SELECT ALL OBJECTS WHERE
+[word 
+    morphological_labels HAS _at_ OR
+    morphological_labels HAS _it_ OR
+    morphological_labels HAS _ot_ 
+]
+GO
+
+
+/////// NOMINA ////////////////
+
+//#case := nom;
+SELECT ALL OBJECTS WHERE
+[word 
+    morphological_labels HAS _o OR
+    morphological_labels HAS _a OR
+    morphological_labels HAS _u_nominal
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[word 
+    (psp = pron_pers OR 
+     psp = pron_poss)
+    AND
+    NOT stripped_surface ~ "n$"
+]
+GO
+
+//#case := gen;
+SELECT ALL OBJECTS WHERE
+[word morphological_labels HAS _es]
+GO
+
+//#case := acc;
+SELECT ALL OBJECTS WHERE
+[word 
+    morphological_labels HAS _on OR
+    morphological_labels HAS _an OR
+    morphological_labels HAS _un 
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[word 
+    (psp = pron_pers OR 
+     psp = pron_poss)
+    AND
+    stripped_surface ~ "n$"
+]
+GO
+
+//#nu := sg;
+SELECT ALL OBJECTS WHERE
+[word
+    morphological_labels HAS _o OR
+    morphological_labels HAS _on OR
+    morphological_labels HAS _a OR
+    morphological_labels HAS _an OR
+    morphological_labels HAS _u_nominal OR
+    morphological_labels HAS _un
+]
+GO
+
+//#nu := pl;
+SELECT ALL OBJECTS WHERE
+[word
+    morphological_labels HAS _oj OR
+    morphological_labels HAS _ojn OR
+    morphological_labels HAS _aj OR
+    morphological_labels HAS _ajn OR
+    morphological_labels HAS _uj OR
+    morphological_labels HAS _ujn
+]
+GO
+
+/////// PARTS OF SPEECH ////////
+
+//#psp := verb;
+SELECT ALL OBJECTS WHERE
+[word vm in (indic, juss, cond, infin, ptc) ]
+GO
+
+//#psp := noun;
+SELECT ALL OBJECTS WHERE
+[word
+    morphological_labels HAS _o OR
+    morphological_labels HAS _on OR
+    morphological_labels HAS _oj OR
+    morphological_labels HAS _ojn
+]
+GO
+
+//#psp := adject;
+SELECT ALL OBJECTS WHERE
+[word
+    morphological_labels HAS _a OR
+    morphological_labels HAS _an OR
+    morphological_labels HAS _aj OR
+    morphological_labels HAS _ajn
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[word
+    vm = ptc
+]
+GO
+
+//#psp := adverb;
+SELECT ALL OBJECTS WHERE
+[word
+    morphological_labels HAS _e OR
+    morphological_labels HAS _al OR
+    morphological_labels HAS _am OR
+    morphological_labels HAS _el OR
+    morphological_labels HAS _om OR
+    morphological_labels HAS _en
+]
+GO
+
+//#psp := undef;
+SELECT ALL OBJECTS WHERE
+[word
+    morphological_labels HAS _au
+]
+GO
+
+
+///// MISC THAT NEEDS THE INFO ABOVE ////
+
+//#gn := f;
+SELECT ALL OBJECTS WHERE
+[word psp = noun and morphological_labels HAS _in_]
+GO
+
+//#gn := undef;
+SELECT ALL OBJECTS WHERE
+[word 
+    not morphological_labels HAS _in_ AND 
+    (morphological_labels HAS _oj OR
+     morphological_labels HAS _ojn OR
+     morphological_labels HAS _aj OR
+     morphological_labels HAS _ajn)
+]
+GO
+

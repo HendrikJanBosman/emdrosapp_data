@@ -1,0 +1,367 @@
+//#no_of_feet := 0;
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    NOTEXIST [wordcluster no_of_feet > 0]
+]
+GO
+
+//#no_of_feet := 1;
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [wordcluster first and last no_of_feet = 1]
+]
+GO
+
+//#no_of_feet := 2;
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [wordcluster first and last no_of_feet = 2]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [wordcluster first no_of_feet = 1]
+    !
+    [wordcluster last no_of_feet = 1]
+]
+GO
+
+//#no_of_feet := 3;
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [wordcluster first no_of_feet = 1]
+    !
+    [wordcluster no_of_feet = 1]
+    !
+    [wordcluster last  no_of_feet = 1]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [wordcluster first no_of_feet = 2]
+    !
+    [wordcluster last  no_of_feet = 1]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [wordcluster first no_of_feet = 1]
+    !
+    [wordcluster last  no_of_feet = 2]
+]
+GO
+
+
+//#no_of_feet := 4;
+
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [wordcluster first no_of_feet = 2]
+    !
+    [wordcluster last  no_of_feet = 2]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [wordcluster first no_of_feet = 1]
+    !
+    [wordcluster no_of_feet = 1] * {2}
+    !
+    [wordcluster last  no_of_feet = 1]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [wordcluster first no_of_feet = 2]
+    !
+    [wordcluster no_of_feet = 1] 
+    !
+    [wordcluster last  no_of_feet = 1]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [wordcluster first no_of_feet = 1]
+    !
+    [wordcluster no_of_feet = 1] 
+    !
+    [wordcluster last  no_of_feet = 2]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [wordcluster first no_of_feet = 1]
+    !
+    [wordcluster no_of_feet = 2] 
+    !
+    [wordcluster last  no_of_feet = 1]
+]
+GO
+
+
+//#first_in_verseline
+
+SELECT ALL OBJECTS WHERE
+[verseline 
+    [clause_atom FOCUS first]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[colon as c1 prosodic_labels HAS A_colon 
+    [clause_atom FOCUS OVERLAP (SUBSTRATE)
+	first_monad = c1.first_monad
+    ]
+]
+GO
+
+
+//#in_A_colon
+SELECT ALL OBJECTS WHERE
+[colon as c1 prosodic_labels HAS A_colon
+    [clause_atom FOCUS OVERLAP (SUBSTRATE)
+	first_monad >= c1.first_monad
+    ]
+]
+GO
+
+//#start_of_A_colon
+SELECT ALL OBJECTS WHERE
+[colon as c1 prosodic_labels HAS A_colon
+    [clause_atom FOCUS OVERLAP (SUBSTRATE)
+        first_monad = c1.first_monad
+    ]
+]
+GO
+
+
+
+//#in_B_colon
+SELECT ALL OBJECTS WHERE
+[colon as c1 prosodic_labels HAS B_colon
+    [clause_atom FOCUS OVERLAP (SUBSTRATE)
+	//first_monad >= c1.first_monad
+    ]
+]
+GO
+
+//#start_of_B_colon
+SELECT ALL OBJECTS WHERE
+[colon as c1 prosodic_labels HAS B_colon
+    [clause_atom FOCUS OVERLAP (SUBSTRATE)
+        first_monad = c1.first_monad
+    ]
+]
+GO
+
+//#in_C_colon
+SELECT ALL OBJECTS WHERE
+[colon as c1 prosodic_labels HAS C_colon
+    [clause_atom FOCUS OVERLAP (SUBSTRATE)
+        first_monad >= c1.first_monad
+    ]
+]
+GO
+
+
+
+//#start_of_C_colon
+SELECT ALL OBJECTS WHERE
+[colon as c1 prosodic_labels HAS C_colon
+    [clause_atom FOCUS OVERLAP (SUBSTRATE)
+        first_monad = c1.first_monad
+    ]
+]
+GO
+
+
+//#first_in_strophe
+SELECT ALL  OBJECTS WHERE
+[strophe
+    [clause_atom FOCUS first]
+]
+GO
+
+//#last_in_strophe
+SELECT ALL  OBJECTS WHERE
+[strophe
+    [clause_atom FOCUS last]
+]
+GO
+
+//#in_last_verse_of_strophe
+
+SELECT ALL OBJECTS WHERE
+[strophe
+   [verseline LAST
+      [clause_atom FOCUS]
+   ]
+]
+GO
+
+
+//#first_in_higher_unit
+SELECT ALL  OBJECTS WHERE
+[canticle
+    [clause_atom FOCUS first]
+]
+GO
+
+SELECT ALL  OBJECTS WHERE
+[subcanto
+    [clause_atom FOCUS first]
+]
+GO
+
+SELECT ALL  OBJECTS WHERE
+[canto
+    [clause_atom FOCUS first]
+]
+GO
+
+//#last_in_higher_unit
+SELECT ALL  OBJECTS WHERE
+[canticle
+    [verseline last
+	[clause_atom FOCUS first]
+    ]
+]
+GO
+
+SELECT ALL  OBJECTS WHERE
+[canticle
+    [verseline last
+	[clause_atom FOCUS]
+    ]
+]
+GO
+
+SELECT ALL  OBJECTS WHERE
+[subcanto
+    [verseline last
+	[clause_atom FOCUS first]
+    ]
+]
+GO
+
+SELECT ALL  OBJECTS WHERE
+[subcanto
+    [verseline last
+	[clause_atom FOCUS]
+    ]
+]
+GO
+
+SELECT ALL  OBJECTS WHERE
+[canto
+    [verseline last
+	[clause_atom FOCUS first]
+    ]
+]
+GO
+
+SELECT ALL  OBJECTS WHERE
+[canto
+    [verseline last
+	[clause_atom FOCUS]
+    ]
+]
+GO
+
+//#multi_VC_colon_first
+SELECT ALL OBJECTS WHERE
+[colon
+    [clause_atom FOCUS first syntactic_labels HAS VC]
+    [clause_atom syntactic_labels HAS VC] * {1-}
+]
+GO
+
+//#multi_VC_colon_last
+SELECT ALL OBJECTS WHERE
+[colon
+    [clause_atom syntactic_labels HAS VC]
+    ..
+    [clause_atom FOCUS last syntactic_labels HAS VC]
+]
+GO
+
+//#whole_verseline
+SELECT ALL OBJECTS WHERE
+[verseline
+    [clause_atom FOCUS FIRST AND LAST]
+]
+GO
+
+//#colon_spillover
+SELECT ALL OBJECTS WHERE
+[colon as colon1
+    [clause_atom FOCUS OVERLAP(SUBSTRATE)
+	first_monad = colon1.first_monad AND
+	last_monad > colon1.last_monad
+    ]
+]
+GO
+
+//#colon_enjambment
+SELECT ALL OBJECTS WHERE
+[colon as colon1
+    [clause_atom FOCUS OVERLAP(SUBSTRATE)
+	first_monad > colon1.first_monad AND
+	last_monad > colon1.last_monad
+    ]
+]
+GO
+
+//#acrostic
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni and chapter in (1,2,4)
+    [strophe
+	[clause_atom FOCUS first]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni and chapter = 3
+    [verseline
+	[clause_atom FOCUS first]
+    ]
+]
+GO
+
+
+//#closing_wayy_med
+SELECT ALL OBJECTS WHERE
+[strophe
+   [clause_atom FIRST NOT typ in (Way0, WayX)]
+   [clause_atom NOT typ in (Way0, WayX)] *
+   [verseline LAST
+       [clause_atom FOCUS typ in (Way0, WayX)]
+   ]
+]
+GO
+
+
+//#closing_wayy_strict
+SELECT ALL OBJECTS WHERE
+[strophe
+   [clause_atom FIRST NOT typ in (Way0, WayX)]
+   [clause_atom NOT typ in (Way0, WayX)] *
+   [verseline LAST
+	[colon FIRST
+	     [clause_atom FOCUS OVERLAP(SUBSTRATE)
+		typ in (Way0, WayX)
+	     ]
+	]
+   ]
+]
+GO
+

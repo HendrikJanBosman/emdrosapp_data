@@ -1,0 +1,444 @@
+//#lexical_repetition
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom 
+	[word as w1 syntactic_labels HAS cloete_semword]
+    ]
+    ..
+    [clause_atom 
+	[word syntactic_labels HAS cloete_semword AND lex = w1.lex]
+    ]
+]
+GO
+
+//#parallel_Pred_Subj
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom 
+	[phrase function = Subj]
+	..
+	[phrase syntactic_labels has Pred]
+    ]
+    ..
+    [clause_atom 
+	[phrase function = Subj]
+	..
+	[phrase syntactic_labels has Pred]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom 
+	[phrase syntactic_labels has Pred]
+	..
+	[phrase function = Subj]
+    ]
+    ..
+    [clause_atom 
+	[phrase syntactic_labels has Pred]
+	..
+	[phrase function = Subj]
+    ]
+]
+GO
+
+//#chiastic_Pred_Subj
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom 
+	[phrase syntactic_labels has Pred]
+	..
+	[phrase function = Subj]
+    ]
+    ..
+    [clause_atom 
+	[phrase function = Subj]
+	..
+	[phrase syntactic_labels has Pred]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom 
+	[phrase function = Subj]
+	..
+	[phrase syntactic_labels has Pred]
+    ]
+    ..
+    [clause_atom 
+	[phrase syntactic_labels has Pred]
+	..
+	[phrase function = Subj]
+    ]
+]
+GO
+
+
+//#A_colon_B_colon
+SELECT ALL OBJECTS WHERE
+[verseline
+    [clause_atom_pair FOCUS
+	[clause_atom first
+	    prosodic_labels HAS in_A_colon AND NOT prosodic_labels HAS in_B_colon
+	]
+	..
+	[clause_atom 
+	    prosodic_labels HAS in_B_colon
+	]
+    ]
+]
+GO
+
+//#A_colon_C_colon
+SELECT ALL OBJECTS WHERE
+[verseline
+    [clause_atom_pair FOCUS
+	[clause_atom first
+	    prosodic_labels HAS in_A_colon AND NOT prosodic_labels HAS in_C_colon
+	]
+	..
+	[clause_atom 
+	    prosodic_labels HAS in_C_colon
+	]
+    ]
+]
+GO
+
+//#B_colon_C_colon
+SELECT ALL OBJECTS WHERE
+[verseline
+    [clause_atom_pair FOCUS
+	[clause_atom first
+	    prosodic_labels HAS in_B_colon AND NOT prosodic_labels HAS in_C_colon
+	]
+	..
+	[clause_atom 
+	    prosodic_labels HAS in_C_colon
+	]
+    ]
+]
+GO
+
+//#B_colon_A_colon
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom first 
+	prosodic_labels HAS in_B_colon AND NOT prosodic_labels HAS in_A_colon
+    ]
+    ..
+    [clause_atom prosodic_labels HAS in_A_colon]
+]
+GO
+
+//#C_colon_A_colon
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom first 
+	prosodic_labels HAS in_C_colon AND NOT prosodic_labels HAS in_A_colon
+    ]
+    ..
+    [clause_atom prosodic_labels HAS in_A_colon]
+]
+GO
+
+
+
+
+//#new_strophe
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom ]
+    ..
+    [clause_atom prosodic_labels HAS first_in_strophe]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair syntactic_labels HAS preceding_daughter
+    [clause_atom first prosodic_labels HAS first_in_strophe]
+]
+GO
+
+//#strophe_to_strophe
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom prosodic_labels HAS first_in_strophe]
+    ..
+    [clause_atom prosodic_labels HAS first_in_strophe]
+]
+GO
+
+//#end_of_strophe
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom]
+    ..
+    [clause_atom prosodic_labels HAS last_in_strophe]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom first]
+    ..
+    [clause_atom prosodic_labels HAS in_last_verse_of_strophe]
+]
+GO
+
+//#end_to_start_of_strophe
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom prosodic_labels HAS first_in_strophe]
+    ..
+    [clause_atom prosodic_labels HAS in_last_verse_of_strophe]
+]
+GO
+
+
+//#new_verseline
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair 
+    NOT prosodic_labels HAS new_strophe
+    AND NOT prosodic_labels HAS strophe_to_strophe
+    [clause_atom first prosodic_labels HAS first_in_verseline]
+    ..
+    [clause_atom prosodic_labels HAS first_in_verseline]
+]
+GO
+
+//#new_verseline_conc
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair NOT prosodic_labels HAS new_strophe
+    [clause_atom NOT prosodic_labels HAS first_in_verseline]
+    ..
+    [clause_atom prosodic_labels HAS first_in_verseline]
+]
+GO
+
+//#in_same_colon
+SELECT ALL OBJECTS WHERE
+[colon
+    [clause_atom_pair FOCUS NOT syntactic_labels HAS root]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[colon as c1
+    [clause_atom_pair FOCUS OVERLAP (SUBSTRATE) 
+	first_monad >= c1.first_monad AND first_monad <= c1.last_monad
+	[clause_atom last_monad <= c1.last_monad]
+	..
+	[clause_atom 
+	    first_monad <= c1.last_monad
+	    AND last_monad > c1.last_monad
+	]
+    ]
+]
+GO
+
+//#acrostic
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom]
+    ..
+    [clause_atom prosodic_labels HAS acrostic]
+]
+GO
+
+//#multi_verb_colon
+SELECT ALL OBJECTS WHERE
+[colon
+    [clause_atom_pair FOCUS 
+	[clause_atom syntactic_labels HAS VC]
+	..
+	[clause_atom syntactic_labels HAS VC]
+    ]
+]
+GO
+
+
+//#to_multi_clause_colon
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair as cap1
+    [colon OVERLAP (SUBSTRATE) first_monad = cap1.first_monad
+	[clause_atom_pair prosodic_labels HAS in_same_colon
+	    [clause_atom AS ca1 first]
+	]
+    ]
+    !
+    [clause_atom last mother = ca1.self]
+]
+GO
+
+
+//#to_multi_verb_colon
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair as cap1
+    [colon OVERLAP (SUBSTRATE) first_monad = cap1.first_monad
+	[clause_atom_pair prosodic_labels HAS multi_verb_colon
+	    [clause_atom AS ca1 first]
+	]
+    ]
+    !
+    [clause_atom last mother = ca1.self]
+]
+GO
+
+//#diff_colon
+SELECT ALL OBJECTS WHERE
+[colon AS col1
+    [clause_atom_pair FOCUS OVERLAP(SUBSTRATE)
+	[clause_atom first 
+	    first_monad > col1.first_monad // clause 1 is not colon-initial
+	]
+	..
+	[clause_atom last 
+	    first_monad > col1.last_monad // clause2 lies outside the colon
+	]
+    ]
+]
+GO
+
+	
+
+
+////// auxiliary labels for verseline and strophe
+
+//#_same_verseline
+SELECT ALL OBJECTS WHERE
+[verseline
+    [clause_atom_pair FOCUS NOT syntactic_labels HAS root ]
+]
+GO
+
+
+//#_same_strophe
+SELECT ALL OBJECTS WHERE
+[strophe
+    [clause_atom_pair FOCUS NOT syntactic_labels HAS root ]
+]
+GO
+
+// public labels for verseline and strophe
+
+//#in_same_verseline
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    prosodic_labels HAS _same_verseline
+    AND NOT prosodic_labels HAS in_same_colon
+]
+GO
+
+//#in_same_strophe
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    prosodic_labels HAS _same_strophe
+    AND NOT prosodic_labels HAS in_same_colon
+    AND NOT prosodic_labels HAS in_same_verseline
+]
+GO
+
+//#diff_strophe
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair 
+    NOT prosodic_labels HAS _same_strophe
+    AND NOT prosodic_labels HAS new_strophe
+    AND NOT prosodic_labels HAS strophe_to_strophe
+]
+GO
+
+
+//#diff_verseline
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair 
+    prosodic_labels HAS _same_strophe
+    AND (NOT prosodic_labels HAS _same_verseline)
+    AND (NOT prosodic_labels HAS new_verseline)
+]
+GO
+
+//#strophe_first_to_first
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair NOT prosodic_labels HAS _same_strophe
+    [clause_atom prosodic_labels HAS first_in_strophe]
+    ..
+    [clause_atom prosodic_labels HAS first_in_strophe]
+]
+GO
+
+//#strophe_first_to_other
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair NOT prosodic_labels HAS _same_strophe
+    [clause_atom NOT prosodic_labels HAS first_in_strophe]
+    ..
+    [clause_atom prosodic_labels HAS first_in_strophe]
+]
+GO
+
+
+//#strophe_other_to_first
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair NOT prosodic_labels HAS _same_strophe
+    [clause_atom prosodic_labels HAS first_in_strophe]
+    ..
+    [clause_atom NOT prosodic_labels HAS first_in_strophe]
+]
+GO
+
+//#strophe_other_to_other
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair NOT prosodic_labels HAS _same_strophe
+    [clause_atom NOT prosodic_labels HAS first_in_strophe]
+    ..
+    [clause_atom NOT prosodic_labels HAS first_in_strophe]
+]
+GO
+
+
+//#qatal_yiqtol_verseline
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair prosodic_labels HAS A_colon_B_colon
+    [clause_atom [word vt=perf] ]
+    ..
+    [clause_atom [word vt=impf] ]
+]
+GO
+
+//#yiqtol_qatal_verseline
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair prosodic_labels HAS A_colon_B_colon
+    [clause_atom [word vt=impf] ]
+    ..
+    [clause_atom [word vt=perf] ]
+]
+GO
+
+//#wayy_closure_med
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom LAST prosodic_labels HAS closing_wayy_med]
+]
+GO
+
+
+//#wayy_closure_strict
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom LAST prosodic_labels HAS closing_wayy_strict]
+]
+GO
+
+//#whole_verseline
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom LAST prosodic_labels HAS whole_verseline]
+]
+GO

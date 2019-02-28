@@ -1,0 +1,54 @@
+//#PRef_verb_Pred
+SELECT ALL OBJECTS WHERE
+[phrase syntactic_labels HAS verb_Pred]
+GO
+
+//#PRef_nom_Pred
+SELECT ALL OBJECTS WHERE
+[phrase syntactic_labels HAS nom_Pred]
+GO
+
+//#PRef_Subj
+SELECT ALL OBJECTS WHERE
+[phrase function = Subj]
+GO
+
+//#PRef_Subj_sfx
+SELECT ALL OBJECTS WHERE
+[phrase function in (PreS, ExsS, IntS, ModS, NCoS, PrcS)]
+GO
+
+//#PRef_Objc
+SELECT ALL OBJECTS WHERE
+[phrase function = Objc]
+GO
+
+//#PRef_Objc_sfx
+SELECT ALL OBJECTS WHERE
+[phrase function in (PreO, PtcO) ]
+GO
+
+//#PRef_Voct
+SELECT ALL OBJECTS WHERE
+[phrase function = Voct]
+GO
+
+//#PRef
+SELECT ALL OBJECTS WHERE
+[phrase
+    participants_labels HAS PRef_verb_Pred OR
+    participants_labels HAS PRef_nom_Pred OR
+    participants_labels HAS PRef_Subj OR
+    participants_labels HAS PRef_Subj_sfx OR
+    participants_labels HAS PRef_Objc OR
+    participants_labels HAS PRef_Objc_sfx OR
+    participants_labels HAS PRef_Voct
+]
+GO
+
+//#PRef_other
+SELECT ALL OBJECTS WHERE
+[phrase not participants_labels HAS PRef
+    [word participants_labels HAS PRef]
+]
+GO

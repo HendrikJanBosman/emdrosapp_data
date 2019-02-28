@@ -1,0 +1,160 @@
+//#initial := "a";
+select all objects where [word graphemes ~ "^a"] go
+
+//#initial := "b";
+select all objects where [word graphemes ~ "^b"] go
+
+//#initial := "c";
+select all objects where [word graphemes ~ "^c"] go
+
+//#initial := "d";
+select all objects where [word graphemes ~ "^d"] go
+
+//#initial := "e";
+select all objects where [word graphemes ~ "^e"] go
+
+//#initial := "f";
+select all objects where [word graphemes ~ "^f"] go
+
+//#initial := "g";
+select all objects where [word graphemes ~ "^g"] go
+
+//#initial := "h";
+select all objects where [word graphemes ~ "^h"] go
+
+//#initial := "i";
+select all objects where [word graphemes ~ "^i"] go
+
+//#initial := "j";
+select all objects where [word graphemes ~ "^j"] go
+
+//#initial := "k";
+select all objects where [word graphemes ~ "^k"] go
+
+//#initial := "l";
+select all objects where [word graphemes ~ "^l"] go
+
+//#initial := "m";
+select all objects where [word graphemes ~ "^m"] go
+
+//#initial := "n";
+select all objects where [word graphemes ~ "^n"] go
+
+//#initial := "o";
+select all objects where [word graphemes ~ "^o"] go
+
+//#initial := "p";
+select all objects where [word graphemes ~ "^p"] go
+
+//#initial := "q";
+select all objects where [word graphemes ~ "^q"] go
+
+//#initial := "r";
+select all objects where [word graphemes ~ "^r"] go
+
+//#initial := "s";
+select all objects where [word graphemes ~ "^s"] go
+
+//#initial := "t";
+select all objects where [word graphemes ~ "^t"] go
+
+//#initial := "u";
+select all objects where [word graphemes ~ "^u"] go
+
+//#initial := "v";
+select all objects where [word graphemes ~ "^v"] go
+
+//#initial := "w";
+select all objects where [word graphemes ~ "^w"] go
+
+//#initial := "x";
+select all objects where [word graphemes ~ "^x"] go
+
+//#initial := "y";
+select all objects where [word graphemes ~ "^y"] go
+
+//#initial := "z";
+select all objects where [word graphemes ~ "^z"] go
+
+//#initial := "æ";
+select all objects where [word graphemes ~ "^æ"] go
+
+//#initial := "þ";
+select all objects where [word graphemes ~ "^þ"] go
+
+//#initial := "ð";
+select all objects where [word graphemes ~ "^ð"] go
+
+
+//#initial_capital
+
+select all objects where
+[word ascii_txt ~ "^[A-Z][A-Z]*[a-z]"  ]
+go
+
+select all objects where
+[word surface = "A" ]
+go
+
+//#initial_vowel
+select all objects where
+[word 
+    initial = "a" or
+    initial = "e" or
+    initial = "i" or
+    initial = "o" or
+    initial = "u" or
+    initial = "æ"
+] go
+
+
+
+//#quot_open
+select all objects where
+[word surface ~ "^[^A-Za-zðþæÐÞÆ]*‘" ]
+go
+
+//#quot_close
+select all objects where
+[word surface ~ "’$" ]
+go
+
+
+
+//#uncertain_chars
+select all objects where
+[word surface ~ "[\]\[]"]
+go
+
+//#added_chars
+select all objects where
+[word surface ~ "[\)\(]"]
+go
+
+//#unknown_chars
+select all objects where
+[word surface ~ "\.\."]
+go
+
+//#roman_numeral
+select all objects where
+[word surface ~ "^[IVXLCDM]+$"]
+go
+
+//#emended
+select all objects where
+[word 
+    surface ~ "†"
+    or graphical_labels has added_chars
+]
+go
+
+//#textual_issue
+select all objects where
+[word
+    graphical_labels has uncertain_chars or
+    graphical_labels has unknown_chars or
+    graphical_labels has emended
+]
+go
+

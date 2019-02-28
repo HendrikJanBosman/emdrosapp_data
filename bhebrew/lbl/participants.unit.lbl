@@ -1,0 +1,354 @@
+//#PRef
+SELECT ALL OBJECTS WHERE
+[unit
+   [p_ref FIRST AND LAST]
+]
+GO
+
+//#Q
+SELECT ALL OBJECTS WHERE
+[unit 
+    NOTEXIST [clause NOT domain ~ "Q$"]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[unit
+    [unit AS u1 
+	[clause_atom LAST [word lexical_labels HAS quotation_verb] ] 
+    ]
+    [unit FOCUS mother = u1.self]
+]
+GO
+
+//#direct_speech_calculated
+SELECT ALL OBJECTS WHERE
+[unit NOT participants_labels HAS Q]
+![unit FOCUS participants_labels HAS Q]
+![unit NOT participants_labels HAS Q]
+GO
+
+SELECT ALL OBJECTS WHERE
+[chapter 
+    [unit FOCUS FIRST participants_labels HAS Q]
+    ![unit NOT participants_labels HAS Q]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[chapter 
+    [unit NOT participants_labels HAS Q]
+    ![unit FOCUS LAST participants_labels HAS Q]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[chapter 
+    [unit FOCUS FIRST AND LAST participants_labels HAS Q]
+]
+GO
+
+/////////////////// FORCED DOMAINS /////////////////////////
+//#direct_speech
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 1
+    [unit focus
+        [clause_atom first number = 1]
+        ..
+        [clause_atom last number = 56]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 1
+    [unit focus
+        [clause_atom first number = 44]
+        ..
+        [clause_atom last number = 47]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 1
+    [unit focus
+	[clause_atom first number = 51]
+	[clause_atom last number = 52]
+    ]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 1 
+    [unit focus
+        [clause_atom first number = 57]
+	..
+	[clause_atom last number = 60]
+    ]
+]
+GO
+
+
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 1
+    [unit focus
+        [clause_atom first number = 61]
+	..
+	[clause_atom last number = 127]
+    ]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 1
+    [unit focus
+        [clause_atom first number = 91]
+	..
+	[clause_atom last number = 94]
+    ]
+]
+GO
+
+
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 2
+    [unit focus
+        [clause_atom first number = 128]
+	..
+	[clause_atom last number = 175]
+    ]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 2
+    [unit focus
+        [clause_atom first number = 180]
+	..
+	[clause_atom last number = 181]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 2
+    [unit focus
+        [clause_atom first number = 199]
+	..
+	[clause_atom last number = 202]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 2
+    [unit focus
+        [clause_atom first number = 206]
+	..
+	[clause_atom last number = 211]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 2
+    [unit focus
+        [clause_atom first number = 176]
+	..
+	[clause_atom last number = 183]
+    ]
+]
+GO
+
+
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 2
+    [unit focus
+        [clause_atom first number = 184]
+	..
+	[clause_atom last number = 229]
+    ]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 2
+    [unit focus
+        [clause_atom first number = 207]
+	..
+        [clause_atom last number = 211]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 2
+    [unit focus
+        [clause_atom first number = 230]
+	..
+	[clause_atom last number = 245]
+    ]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+
+[chapter book = Threni AND chapter = 3
+    [unit focus
+        [clause_atom first number = 246]
+	..
+	[clause_atom last number = 386]
+    ]
+]
+GO
+
+
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 3
+    [unit focus
+        [clause_atom first number = 329]
+	..
+	[clause_atom last number = 341]
+    ]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 3
+    [unit focus
+        [clause_atom first number = 282]
+	..
+	[clause_atom last number = 283]
+    ]
+]
+GO
+
+
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 3
+    [unit focus
+        [clause_atom first number = 294]
+	..
+	[clause_atom last number = 295]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 3
+    [unit focus
+        [clause_atom first number = 295]
+	..
+	[clause_atom last number = 296]
+    ]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 3
+    [unit focus
+        [clause_atom first number = 353]
+        [clause_atom last number = 354]
+    ]
+]
+GO
+
+
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 3
+    [unit focus
+        [clause_atom first number = 362]
+        [clause_atom last number = 363]
+    ]
+]
+GO
+
+
+
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 4
+    [unit focus
+        [clause_atom first number = 387]
+	..
+        [clause_atom last number = 446]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 4
+    [unit focus
+        [clause_atom first number = 431]
+        [clause_atom last number = 432]
+    ]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 4
+    [unit focus
+        [clause_atom first number = 434]
+	..
+        [clause_atom last number = 436]
+    ]
+]
+GO
+
+
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 4
+    [unit focus
+        [clause_atom first number = 447]
+	..
+        [clause_atom last number  = 461]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 4
+    [unit focus
+        [clause_atom first number = 460]
+        [clause_atom last number  = 461]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 4
+    [unit focus
+        [clause_atom first number = 462]
+	..
+        [clause_atom last number  = 475]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter = 5
+    [unit focus
+        [clause_atom first number = 476]
+	..
+        [clause_atom last number  = 529]
+    ]
+]
+GO

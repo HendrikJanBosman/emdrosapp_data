@@ -1,0 +1,188 @@
+//#postconnected
+
+SELECT ALL OBJECTS WHERE
+[word g_suffix = ""]
+GO
+
+
+//#maqqef
+
+SELECT ALL OBJECTS WHERE
+[word g_suffix ~ "\&$"]
+GO
+
+
+
+//#K_Q
+
+SELECT ALL OBJECTS WHERE
+[word g_suffix ~ "\*"]
+GO
+
+//#sof_pasuq
+SELECT ALL OBJECTS WHERE [word g_suffix ~ "00"] GO
+
+
+//#setuma
+
+SELECT ALL OBJECTS WHERE
+[word g_suffix ~ "_S"]
+GO
+
+
+//#petucha
+
+SELECT ALL OBJECTS WHERE
+[word g_suffix ~ "_P"]
+GO
+
+
+//#accent
+
+SELECT ALL OBJECTS WHERE
+[word g_word ~ "[0-9][0-9]"]
+GO
+
+/////////////////////   ACCENTS //////////////////////
+
+//#raphe
+SELECT ALL OBJECTS WHERE
+[word g_word ~ ","]
+GO
+
+//#atnach
+SELECT ALL OBJECTS WHERE [word g_word ~ "92" OR qere ~ "92"] GO
+
+//#azla
+SELECT ALL OBJECTS WHERE [word g_word ~ "63" OR qere ~ "63"] GO
+
+//#darga
+SELECT ALL OBJECTS WHERE [word g_word ~ "94" OR qere ~ "94"] GO
+
+//#dechi
+SELECT ALL OBJECTS WHERE [word g_word ~ "13" OR qere ~ "13"] GO
+
+//#garshayim
+SELECT ALL OBJECTS WHERE [word g_word ~ "62" OR qere ~ "62"] GO
+
+//#geresh
+SELECT ALL OBJECTS WHERE [word g_word ~ "61" OR qere ~ "61"] GO
+
+//#illuy
+SELECT ALL OBJECTS WHERE [word g_word ~ "64" OR qere ~ "64"] GO
+
+//#mehuppach
+SELECT ALL OBJECTS WHERE [word g_word ~ "70" OR qere ~ "70"] GO
+
+//#merecha
+SELECT ALL OBJECTS WHERE [word g_word ~ "71" OR qere ~ "71"] GO
+
+//#merecha_kepula
+SELECT ALL OBJECTS WHERE [word g_word ~ "72" OR qere ~ "72"] GO
+
+//#meteg
+SELECT ALL OBJECTS WHERE [word g_word ~ "45" OR qere ~ "45"] GO	# 75 in MCW
+
+//#meteg_tikon
+SELECT ALL OBJECTS WHERE [word g_word ~ "35" OR qere ~ "35"] GO
+
+//#meteg_yamin
+SELECT ALL OBJECTS WHERE [word g_word ~ "95" OR qere ~ "95"] GO
+
+//#mugrash
+SELECT ALL OBJECTS WHERE [word g_word ~ "11" OR qere ~ "11"] GO
+
+//#munach
+SELECT ALL OBJECTS WHERE [word g_word ~ "74" OR qere ~ "74"] GO
+
+//#ole_weyored
+SELECT ALL OBJECTS WHERE [word g_word ~ "60" OR qere ~ "60"] GO
+
+//#paseq
+SELECT ALL OBJECTS WHERE [word g_word ~ "05" OR qere ~ "05"] GO
+
+//#pashta
+SELECT ALL OBJECTS WHERE [word g_word ~ "03" OR qere ~ "03"] GO
+
+//#pashta_med
+SELECT ALL OBJECTS WHERE [word g_word ~ "33" OR qere ~ "33"] GO
+
+//#pazer
+SELECT ALL OBJECTS WHERE [word g_word ~ "83" OR qere ~ "83"] GO
+
+//#pazer_gadol
+SELECT ALL OBJECTS WHERE [word g_word ~ "84" OR qere ~ "84"] GO
+
+//#rebia
+SELECT ALL OBJECTS WHERE [word g_word ~ "81" OR qere ~ "81"] GO
+
+//#segolta
+SELECT ALL OBJECTS WHERE [word g_word ~ "01" OR qere ~ "01"] GO
+
+//#shalshelet
+SELECT ALL OBJECTS WHERE [word g_word ~ "65" OR qere ~ "65"] GO
+
+//#silluq
+SELECT ALL OBJECTS WHERE [word g_word ~ "75" OR qere ~ "75"] GO
+
+//#silluq_yamin
+SELECT ALL OBJECTS WHERE [word g_word ~ "25" OR qere ~ "25"] GO	
+
+SELECT ALL OBJECTS WHERE [word g_word ~ "95" OR qere ~ "95"] GO  // in MCW
+
+//#sinnor
+SELECT ALL OBJECTS WHERE [word g_word ~ "02" OR qere ~ "02"] GO
+
+//#sinnorit
+SELECT ALL OBJECTS WHERE [word g_word ~ "82" OR qere ~ "82"] GO
+
+//#tebir
+SELECT ALL OBJECTS WHERE [word g_word ~ "91" OR qere ~ "91"] GO
+
+//#telisha_gedola
+SELECT ALL OBJECTS WHERE [word g_word ~ "14" OR qere ~ "14"] GO
+
+//#telisha_gedola_med
+SELECT ALL OBJECTS WHERE [word g_word ~ "44" OR qere ~ "44"] GO // Once: II Kings 17:24
+
+//#telisha_qetana
+SELECT ALL OBJECTS WHERE [word g_word ~ "04" OR qere ~ "04"] GO
+
+//#telisha_qetana_med
+SELECT ALL OBJECTS WHERE [word g_word ~ "24" OR qere ~ "24"] GO
+
+//#tifcha
+SELECT ALL OBJECTS WHERE [word g_word ~ "73" OR qere ~ "73"] GO
+
+//#yerach
+SELECT ALL OBJECTS WHERE [word g_word ~ "93" OR qere ~ "93"] GO
+
+//#yetib
+SELECT ALL OBJECTS WHERE [word g_word ~ "10" OR qere ~ "10"] GO
+
+//#zaqef_gadol
+SELECT ALL OBJECTS WHERE [word g_word ~ "85" OR qere ~ "85"] GO
+
+//#zaqef_qatan
+SELECT ALL OBJECTS WHERE [word g_word ~ "80" OR qere ~ "80"] GO
+
+//#legarmeh
+SELECT ALL OBJECTS WHERE
+[word graphical_labels HAS munach AND graphical_labels HAS paseq]
+GO
+
+//#puncta_above
+SELECT ALL OBJECTS WHERE [word g_word ~ "52" OR qere ~ "52"] GO
+
+//#puncta_below
+SELECT ALL OBJECTS WHERE [word g_word ~ "53" OR qere ~ "53"] GO
+
+//#large_letter
+SELECT ALL OBJECTS WHERE [word g_word ~ "55" OR qere ~ "55"] GO
+
+//#small_letter
+SELECT ALL OBJECTS WHERE [word g_word ~ "56" OR qere ~ "56"] GO
+
+//#suspended_letter
+SELECT ALL OBJECTS WHERE [word g_word ~ "57" OR qere ~ "57"] GO
+

@@ -1,0 +1,28 @@
+{
+   "fetchinfo" : {
+      "base" : {
+	 "prepend_XML_declaration" : false,
+         "object_types" : {
+	    "verse"  : {
+	       "get" : ["label"],
+	       "start" : "{{ setvar 'label' }}{{ featurenomangle 0 }}{{ setvarend }}"
+	    },
+	    "half_verse" : {
+	       "get" : ["label"],
+	       "start" : "{\\heb {{ setvar 'half_verse' }}{{ featurenomangle 0 }}{{ setvarend }}",
+	       "end"   : "} ({{ emitvar 'label' }}{{ emitvar 'half_verse' }})\\\\\\\\\n"
+	    }, 
+            "word" : {
+                  "get" : ["g_word", "g_suffix"],
+                  "start" : "{{ featurenomangle 0 }}",
+		  "end"   : "{{ featurenomangle 1 }}"
+               },
+         },
+         "priority_list" : [
+	       "half_verse",
+               "word",
+	       "verse",
+            ]
+      }
+   }
+}

@@ -1,0 +1,28 @@
+
+//#alliteration
+select all objects where
+[half_verse
+    [word as w1]
+    ..
+    [word initial = w1.initial]
+]
+go
+
+
+//#alliteration_vowels
+select all objects where
+[half_verse not prosodic_labels has alliteration
+    [word graphical_labels has initial_vowel]
+    ..
+    [word graphical_labels has initial_vowel]
+]
+go
+
+
+//#alliteration_all
+select all objects where
+[half_verse 
+    prosodic_labels has alliteration or
+    prosodic_labels has alliteration_vowels
+]
+go

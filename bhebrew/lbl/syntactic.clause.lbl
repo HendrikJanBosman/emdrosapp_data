@@ -1,0 +1,334 @@
+//#asyn
+
+SELECT ALL OBJECTS WHERE
+[clause
+   [phrase first typ <> CP]
+]
+GO
+
+
+//#W
+
+SELECT ALL OBJECTS WHERE
+[clause 
+   [word first lex = "W"]
+]
+GO
+
+
+//#KJ
+
+SELECT ALL OBJECTS WHERE
+[clause 
+   [word lex = "KJ"]
+]
+GO
+
+
+//#ASHER
+
+SELECT ALL OBJECTS WHERE
+[clause 
+   [word lex = ">CR"]
+]
+GO
+
+
+//#conj
+
+SELECT ALL OBJECTS WHERE
+[clause
+    [word first 
+	pdp = conj AND 
+	not (lex = "W" OR lex = "KJ" or lex = ">CR")
+    ]
+]
+GO
+
+//#verbal_clause
+SELECT ALL OBJECTS WHERE
+[clause
+   [word pdp=verb]
+]
+GO
+
+
+//#verbless
+SELECT ALL OBJECTS WHERE
+[clause NOT syntactic_labels HAS verbal_clause]
+GO
+
+
+//#has_Pred
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase syntactic_labels HAS Pred]
+]
+GO
+
+
+//#fronting
+
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase syntactic_labels HAS poss_fronted ]
+    ..
+    [phrase syntactic_labels HAS verb_Pred]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase function in (PreC, Cmpl, Subj)]
+    ..
+    [phrase syntactic_labels HAS copula]
+]
+GO
+
+//#oblig_fronting
+SELECT ALL OBJECTS WHERE
+[clause syntactic_labels HAS fronting
+    [phrase function = Ques]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause syntactic_labels HAS fronting
+    [phrase function = Modi [word vt=infa]]
+]
+GO
+
+
+
+//#VSO
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase typ = VP and function = Pred]
+    ..
+    [phrase function = Subj]
+    ..
+    [phrase function in (Objc, Cmpl)]
+]
+GO
+
+//#SVO
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase function = Subj]
+    ..
+    [phrase typ = VP and function = Pred]
+    ..
+    [phrase function = Objc]
+]
+GO
+
+//#OSV
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase function = Objc]
+    ..
+    [phrase function = Subj]
+    ..
+    [phrase typ = VP and function = Pred]
+]
+GO
+
+//#SOV
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase function = Subj]
+    ..
+    [phrase function = Objc]
+    ..
+    [phrase typ = VP and function = Pred]
+]
+GO
+
+//#OVS
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase function = Objc]
+    ..
+    [phrase typ = VP and function = Pred]
+    ..
+    [phrase function = Subj]
+]
+GO
+
+//#VOS
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase typ = VP and function in (Pred, PreO)]
+    ..
+    [phrase function in (Objc)]
+    ..
+    [phrase function = Subj]
+]
+GO
+
+//#VSM
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase typ = VP and function = Pred]
+    ..
+    [phrase function = Subj]
+    ..
+    [phrase function = Modi]
+]
+GO
+
+//#SVM
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase function = Subj]
+    ..
+    [phrase typ = VP and function = Pred]
+    ..
+    [phrase function = Modi]
+]
+GO
+
+//#MSV
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase function = Modi]
+    ..
+    [phrase function = Subj]
+    ..
+    [phrase typ = VP and function = Pred]
+]
+GO
+
+//#SMV
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase function = Subj]
+    ..
+    [phrase function = Modi]
+    ..
+    [phrase typ = VP and function = Pred]
+]
+GO
+
+//#MVS
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase function = Modi]
+    ..
+    [phrase typ = VP and function = Pred]
+    ..
+    [phrase function = Subj]
+]
+GO
+
+//#VMS
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase typ = VP and function = Pred]
+    ..
+    [phrase function = Modi]
+    ..
+    [phrase function = Subj]
+]
+GO
+
+//#initial_V
+SELECT ALL OBJECTS WHERE
+[clause 
+    [phrase FIRST typ=VP AND function = Pred]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause 
+    [phrase first function = Conj] 
+    ![phrase typ=VP AND function = Pred]
+]
+GO
+
+//#initial_S
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase FIRST function = Subj]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase FIRST function = Conj]
+    [phrase function = Subj]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause
+    syntactic_labels HAS SVO
+    OR 
+    syntactic_labels HAS SOV
+    OR
+    syntactic_labels HAS SVM
+    OR 
+    syntactic_labels HAS SMV
+]
+GO
+
+//#initial_O
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase FIRST function in (Objc, Cmpl)]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase FIRST function = Conj]
+    [phrase function in (Objc, Cmpl)]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[clause
+    syntactic_labels HAS OSV
+    OR 
+    syntactic_labels HAS OVS
+]
+GO
+
+//#initial_M
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase FIRST function in (Modi, Nega)]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase FIRST function = Conj]
+    [phrase function in (Modi, Nega)]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[clause
+    syntactic_labels HAS MSV
+    OR 
+    syntactic_labels HAS MVS
+]
+GO
+
+//#non_initial_V
+SELECT ALL OBJECTS WHERE
+[clause NOT syntactic_labels HAS initial_V
+    [phrase typ = VP and function = Pred]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause
+    syntactic_labels HAS initial_S OR
+    syntactic_labels HAS initial_O OR
+    syntactic_labels HAS initial_M
+]
+GO

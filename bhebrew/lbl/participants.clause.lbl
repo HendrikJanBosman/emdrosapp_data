@@ -1,0 +1,29 @@
+//#PRef_Subj
+SELECT ALL OBJECTS WHERE
+[clause rela = Subj]
+GO
+
+//#PRef_Cmpl
+SELECT ALL OBJECTS WHERE
+[clause rela in (Objc, Cmpl)]
+GO
+
+//#PRef_Voct
+SELECT ALL OBJECTS WHERE
+[clause typ = Voct]
+GO
+
+//#PRef_CPen
+SELECT ALL OBJECTS WHERE
+[clause typ = CPen]
+GO
+
+//#PRef
+SELECT ALL OBJECTS WHERE
+[clause 
+    participants_labels HAS PRef_Subj OR
+    participants_labels HAS PRef_Cmpl OR
+    participants_labels HAS PRef_Voct OR
+    participants_labels HAS PRef_CPen
+]
+GO

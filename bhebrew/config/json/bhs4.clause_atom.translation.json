@@ -1,0 +1,16 @@
+{
+   "fetchinfo" : {
+      "base" : {
+	 "prepend_XML_declaration" : false,
+         "object_types" : {
+            "clause_atom" : {
+                  "get" : ["translation"],
+                  "start" : "{{ featurenomangle 0 }}",
+               },
+         },
+         "priority_list" : [
+	       "clause_atom",
+            ]
+      }
+   }
+}

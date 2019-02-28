@@ -1,0 +1,667 @@
+//#one_clause
+SELECT ALL OBJECTS WHERE
+[colon 
+    [clause first and last ]
+]
+GO
+
+//#two_clauses
+SELECT ALL OBJECTS WHERE
+[colon 
+    [clause first]
+    ![clause last]
+]
+GO
+
+//#three_clauses
+SELECT ALL OBJECTS WHERE
+[colon 
+    [clause first]
+    ![clause]
+    ![clause last]
+]
+GO
+
+//#four_or_more_clauses
+SELECT ALL OBJECTS WHERE
+[colon 
+    [clause first]
+    ![clause] * {2-}
+    ![clause last]
+]
+GO
+
+//#enjambment_clause
+SELECT ALL OBJECTS WHERE
+[colon
+    not syntactic_labels has one_clause
+    and not syntactic_labels has two_clauses
+    and not syntactic_labels has three_clauses
+    and not syntactic_labels has four_or_more_clauses
+]
+GO
+
+//#one_sentence
+SELECT ALL OBJECTS WHERE
+[colon 
+    [sentence first and last ]
+]
+GO
+
+//#two_sentences
+SELECT ALL OBJECTS WHERE
+[colon 
+    [sentence first]
+    ![sentence last]
+]
+GO
+
+//#three_sentences
+SELECT ALL OBJECTS WHERE
+[colon 
+    [sentence first]
+    ![sentence]
+    ![sentence last]
+]
+GO
+
+//#four_or_more_sentences
+SELECT ALL OBJECTS WHERE
+[colon 
+    [sentence first]
+    ![sentence] * {2-}
+    ![sentence last]
+]
+GO
+
+//#enjambment_sentence
+SELECT ALL OBJECTS WHERE
+[colon
+    not syntactic_labels has one_sentence
+    and not syntactic_labels has two_sentences
+    and not syntactic_labels has three_sentences
+    and not syntactic_labels has four_or_more_sentences
+]
+GO
+
+//#has_verb
+
+SELECT ALL OBJECTS WHERE
+[colon [word pdp = verb] ] GO
+
+
+
+//#no_verb
+
+SELECT ALL OBJECTS WHERE
+[colon
+	NOTEXIST [word pdp=verb]
+]
+GO
+
+
+//#mult_verbs
+
+SELECT ALL OBJECTS WHERE
+[colon
+   [word pdp = verb]
+   ..
+   [word pdp = verb]
+]
+GO
+
+//#has_Subj
+SELECT ALL OBJECTS WHERE
+[colon
+    [phrase function = Subj]
+]
+GO
+
+
+//#has_PreC
+SELECT ALL OBJECTS WHERE
+[colon
+    [phrase function = PreC]
+]
+GO
+
+//#has_Pred
+SELECT ALL OBJECTS WHERE
+[colon 
+    [phrase syntactic_labels HAS Pred] // function in (Pred, PreO, PreC)]
+]
+GO
+
+//#no_Pred
+SELECT ALL OBJECTS WHERE
+[colon NOT syntactic_labels HAS has_Pred]
+GO
+
+
+//#_object_suffix
+
+SELECT ALL OBJECTS WHERE
+[colon [phrase function in (PreO, PtcO)] ]
+GO
+
+//#_two_object_suffixes
+
+SELECT ALL OBJECTS WHERE
+[colon 
+    [phrase function in (PreO, PtcO)] 
+    ..
+    [phrase function in (PreO, PtcO)] 
+]
+GO
+
+
+
+///// LABELS FOR CLOETE'S THEORY
+
+//#_one_semword
+SELECT ALL OBJECTS WHERE
+[colon
+    [word first AND last syntactic_labels HAS cloete_semword]
+]
+GO
+
+SELECT ALL OBJECTS WHERE 
+[colon 
+    [word first NOT syntactic_labels HAS cloete_semword]
+    [word NOT syntactic_labels HAS cloete_semword] * 
+
+	[word last syntactic_labels HAS cloete_semword]
+]
+GO
+
+SELECT ALL OBJECTS WHERE 
+[colon 
+	[word first syntactic_labels HAS cloete_semword]
+
+    [word NOT syntactic_labels HAS cloete_semword] * 
+    [word last NOT syntactic_labels HAS cloete_semword]
+]
+GO
+
+
+//#_two_semwords
+
+SELECT ALL OBJECTS WHERE
+[colon
+    [word first syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] *
+
+    [word last syntactic_labels HAS cloete_semword]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[colon
+    [word first syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] *
+
+    [word syntactic_labels HAS cloete_semword]
+	[word NOT syntactic_labels HAS cloete_semword] * 
+	[word last  NOT syntactic_labels HAS cloete_semword]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[colon 
+	[word first NOT syntactic_labels HAS cloete_semword]
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word last syntactic_labels HAS cloete_semword]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[colon
+    [word first syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+	[word last  NOT syntactic_labels HAS cloete_semword]
+]
+GO
+
+
+//#_three_semwords
+
+SELECT ALL OBJECTS WHERE
+[colon
+    [word first syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word last syntactic_labels HAS cloete_semword]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[colon
+	[word first NOT syntactic_labels HAS cloete_semword]
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+	[word last  NOT syntactic_labels HAS cloete_semword]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[colon
+	[word first NOT syntactic_labels HAS cloete_semword]
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word last syntactic_labels HAS cloete_semword]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[colon
+    [word first syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+	[word last  NOT syntactic_labels HAS cloete_semword]
+]
+GO
+
+//#_four_semwords
+
+SELECT ALL OBJECTS WHERE
+[colon
+    [word first syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word last syntactic_labels HAS cloete_semword]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[colon
+	[word first NOT syntactic_labels HAS cloete_semword]
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+	[word last  NOT syntactic_labels HAS cloete_semword]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[colon
+    [word first syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+	[word last  NOT syntactic_labels HAS cloete_semword]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[colon
+    [word first NOT syntactic_labels HAS cloete_semword]
+    [word NOT syntactic_labels HAS cloete_semword] * 
+
+	[word syntactic_labels HAS cloete_semword]
+
+    [word NOT syntactic_labels HAS cloete_semword] * 
+
+	[word syntactic_labels HAS cloete_semword]
+
+    [word NOT syntactic_labels HAS cloete_semword] * 
+
+	[word syntactic_labels HAS cloete_semword]
+
+    [word NOT syntactic_labels HAS cloete_semword] * 
+
+	[word last syntactic_labels HAS cloete_semword]
+
+]
+GO
+
+
+
+//#_five_semwords
+
+SELECT ALL OBJECTS WHERE
+[colon
+    [word first syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word last syntactic_labels HAS cloete_semword]
+
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[colon
+	[word first NOT syntactic_labels HAS cloete_semword]
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+	[word last  NOT syntactic_labels HAS cloete_semword]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[colon
+    [word first syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+	[word last  NOT syntactic_labels HAS cloete_semword]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[colon
+	[word first NOT syntactic_labels HAS cloete_semword]
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word syntactic_labels HAS cloete_semword]
+
+	[word NOT syntactic_labels HAS cloete_semword] * 
+
+    [word last syntactic_labels HAS cloete_semword]
+
+]
+GO
+
+
+//#cloete_one_unit
+SELECT ALL OBJECTS WHERE
+[colon 
+    syntactic_labels HAS _one_semword
+    AND not syntactic_labels HAS _object_suffix
+]
+GO
+
+//#cloete_two_units
+SELECT ALL OBJECTS WHERE
+[colon 
+    syntactic_labels HAS _two_semwords
+    AND not syntactic_labels HAS _object_suffix
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[colon 
+    syntactic_labels HAS _one_semword AND 
+    syntactic_labels HAS _object_suffix
+]
+GO
+
+
+//#cloete_three_units
+SELECT ALL OBJECTS WHERE
+[colon 
+    syntactic_labels HAS _three_semwords
+    AND not syntactic_labels HAS _object_suffix
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[colon 
+    syntactic_labels HAS _two_semwords AND 
+    syntactic_labels HAS _object_suffix
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[colon 
+    syntactic_labels HAS _one_semword AND 
+    syntactic_labels HAS _two_object_suffixes
+]
+GO
+
+
+//#cloete_four_units
+SELECT ALL OBJECTS WHERE
+[colon 
+    syntactic_labels HAS _four_semwords
+    AND not syntactic_labels HAS _object_suffix
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[colon 
+    syntactic_labels HAS _three_semwords AND 
+    syntactic_labels HAS _object_suffix
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[colon 
+    syntactic_labels HAS _two_semwords AND 
+    syntactic_labels HAS _two_object_suffixes
+]
+GO
+
+//#cloete_five_units
+SELECT ALL OBJECTS WHERE
+[colon 
+    syntactic_labels HAS _five_semwords
+    AND not syntactic_labels HAS _object_suffix
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[colon 
+    syntactic_labels HAS _four_semwords AND 
+    syntactic_labels HAS _object_suffix
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[colon 
+    syntactic_labels HAS _three_semwords AND 
+    syntactic_labels HAS _two_object_suffixes
+]
+GO
+
+//#cloete_other_units
+SELECT ALL OBJECTS WHERE
+[colon
+    not syntactic_labels HAS cloete_one_unit and
+    not syntactic_labels HAS cloete_two_units and
+    not syntactic_labels HAS cloete_three_units and
+    not syntactic_labels HAS cloete_four_units and
+    not syntactic_labels HAS cloete_five_units
+]
+GO
+
+
+///// LABELS FOR LUNN'S THEORY
+
+//#CAN
+SELECT ALL OBJECTS WHERE
+[colon
+    [phrase first typ=VP and function in (Pred, PreO, PreS)]
+]
+GO
+
+// same construction, with ptc
+SELECT ALL OBJECTS WHERE
+[colon
+    [phrase first function = PreC [word vt in (ptca, ptcp) AND pdp=verb] ]
+]
+GO
+
+
+// allow some phrase types before the Pred
+
+SELECT ALL OBJECTS WHERE
+[colon
+    [phrase first function in (Conj,Ques,Modi,Nega,Rela)]
+    [phrase function in (Conj,Ques,Modi)]*
+    [phrase typ=VP and function in (Pred, PreO, PreS)]
+]
+GO
+
+
+// same construction, with ptc
+SELECT ALL OBJECTS WHERE
+[colon
+    [phrase first function in (Conj,Ques,Modi,Nega,Rela)]
+    [phrase function in (Conj,Ques,Modi)]*
+    [phrase function = PreC [word vt in (ptca, ptcp)] ]
+]
+GO
+
+
+//#non_CAN
+SELECT ALL OBJECTS WHERE
+[colon NOT syntactic_labels has CAN
+    [phrase function in (Subj, Objc, Cmpl, Adju, Loca, Time, Frnt)]
+    ..
+    [phrase typ=VP and function in (Pred, PreO, PreS)]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[colon NOT syntactic_labels has CAN
+    [phrase function in (Subj, Objc, Cmpl, Adju, Loca, Time, Frnt)]
+    ..
+    [phrase function = PreC 
+	[word vt in (ptca, ptcp) or pdp = adjv] 
+    ]
+]
+GO
+

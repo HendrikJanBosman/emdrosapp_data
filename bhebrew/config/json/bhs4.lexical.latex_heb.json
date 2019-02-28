@@ -1,0 +1,17 @@
+{
+   "fetchinfo" : {
+      "base" : {
+	 "prepend_XML_declaration" : false,
+         "object_types" : {
+            "word" : {
+                  "get" : ["g_word", "g_suffix"],
+                  "start" : "{\heb {{ featurenomangle 0 }}{{ featurenomangle 1 }}",
+		  "end"   : "}\\\\\\\\\n",
+               },
+         },
+         "priority_list" : [
+               "word",
+            ]
+      }
+   }
+}

@@ -1,0 +1,28 @@
+{
+   "fetchinfo" : {
+      "base" : {
+	 "prepend_XML_declaration" : false,
+         "object_types" : {
+	    "verse"  : {
+	       "get" : ["book", "chapter", "verse"],
+	       "start" : "{{ setvar 'label' }}{{ featurenomangle 0 }} {{ featurenomangle 1 }},{{ featurenomangle 2 }}{{ setvarend }}"
+	    },
+	    "half_verse" : {
+	       "get" : ["half_verse"],
+	       "start" : "{{ setvar 'half_verse' }}{{ featurenomangle 0 }}{{ setvarend }}({{ emitvar 'label' }}{{ emitvar 'half_verse' }}) ",
+	       "end"   : "\n"
+	    }, 
+            "word" : {
+                  "get" : ["g_word", "postconn", "maqqef"],
+                  "start" : "{{ setvar 'postconn' }}{{ featurenomangle 1 }}{{ setvarend }}{{ setvar 'maqqef' }}{{ featurenomangle 2 }}{{ setvarend }}{{ featurenomangle 0 }}",
+		  "end"   : "{{ if varequal 'postconn' 'false' }} {{ endif }}"
+               },
+         },
+         "priority_list" : [
+	       "half_verse",
+               "word",
+	       "verse",
+            ]
+      }
+   }
+}

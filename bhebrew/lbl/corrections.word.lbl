@@ -1,0 +1,14 @@
+
+//#ps:=p3; nu:=sg; gn:=f; 
+SELECT ALL OBJECTS WHERE
+[verse book = Threni AND chapter=3 and verse = 17
+    [word focus 
+	lex = "ZNX[" 
+	AND vt=wayq
+	AND ps = p2
+	AND nu = sg
+	AND gn = m
+    ]
+]
+GO
+

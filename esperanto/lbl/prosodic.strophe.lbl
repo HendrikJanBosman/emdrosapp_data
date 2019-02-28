@@ -1,0 +1,26 @@
+//#couplet
+SELECT ALL OBJECTS WHERE
+[strophe
+    [verseline first]
+    ![verseline last]
+]
+GO
+
+//#triplet
+SELECT ALL OBJECTS WHERE
+[strophe
+    [verseline first]
+    ![verseline]
+    ![verseline last]
+]
+GO
+
+//#quatrain
+SELECT ALL OBJECTS WHERE
+[strophe
+    [verseline first]
+    ![verseline]
+    ![verseline]
+    ![verseline last]
+]
+GO

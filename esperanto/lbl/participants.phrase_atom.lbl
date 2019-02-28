@@ -1,0 +1,6 @@
+//#Objc
+SELECT ALL OBJECTS WHERE
+[phrase_atom 
+    [word syntactic_label HAS case_acc]
+]
+GO

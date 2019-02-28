@@ -1,0 +1,27 @@
+
+{
+   "fetchinfo" : {
+      "base" : {
+	 "prepend_XML_declaration" : false,
+         "object_types" : {
+	    "verse" : {
+		"start" : "{{ setvar 'firstcolon' }}1{{ setvarend }}",
+		"end" : "\n",
+	    },
+	    "half_verse" : {
+		"start" : "{{ if varequal 'firstcolon' '0' }}* {{ endif }}",
+		"end"   : "{{ setvar 'firstcolon' }}0{{ setvarend }}",
+	    },
+            "word" : {
+                  "get" : ["graphemes"],
+                  "start" : "{{ featurenomangle 0 }} ",
+               },
+         },
+         "priority_list" : [
+	       "verse",
+	       "half_verse",
+               "word",
+            ]
+      }
+   }
+}

@@ -1,0 +1,136 @@
+
+
+
+//#monocolon
+
+SELECT ALL OBJECTS WHERE
+[verseline 
+    [colon`A first AND last]
+]
+GO
+
+
+
+//#bicolon
+
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon`A first]
+    [colon`B last]
+]
+GO
+
+
+
+//#tricolon
+
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon`A first]
+    [colon`B]
+    [colon`C last]
+]
+GO
+
+
+
+//#tetracolon
+
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon`A first]
+    [colon`B]
+    [colon`C]
+    [colon`D last]
+]
+GO
+
+
+
+//#parallellism
+
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon
+	[phrase as p1 function in (Subj, Pred, Objc, Adju)]
+	[phrase]*
+	[phrase as p2 function in (Subj, Pred, Objc, Adju)]
+    ]
+    [colon
+	[phrase function = p1.function]
+	[phrase]*
+	[phrase function = p2.function]
+    ]
+]
+GO
+
+
+
+//#chiasmus
+
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon
+	[phrase as p1 function in (Subj, Pred, Objc, Adju)]
+	[phrase]*
+	[phrase as p2 function in (Subj, Pred, Objc, Adju)
+		    AND not function = p1.function]
+    ]
+    [colon
+	[phrase function = p2.function]
+	[phrase]*
+	[phrase function = p1.function]
+    ]
+]
+GO
+
+
+//#long_short
+SELECT ALL OBJECTS WHERE
+[verseline prosodic_labels HAS bicolon
+    [colon as c1]
+    [colon no_of_feet < c1.no_of_feet]
+]
+GO
+
+//#short_long
+SELECT ALL OBJECTS WHERE
+[verseline prosodic_labels HAS bicolon
+    [colon as c1]
+    [colon no_of_feet > c1.no_of_feet]
+]
+GO
+
+
+//#balanced
+
+SELECT ALL OBJECTS WHERE
+[verseline prosodic_labels HAS bicolon
+    [colon as c1]
+    [colon no_of_feet = c1.no_of_feet]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[verseline prosodic_labels HAS tricolon
+    [colon as c1]
+    [colon no_of_feet = c1.no_of_feet]
+    [colon no_of_feet = c1.no_of_feet]
+]
+GO
+
+
+//#strophe_opening
+SELECT ALL OBJECTS WHERE
+[strophe
+    [verseline focus first]
+]
+GO
+
+//#strophe_closure
+SELECT ALL OBJECTS WHERE
+[strophe
+    [verseline focus last]
+]
+GO
+

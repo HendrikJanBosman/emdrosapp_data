@@ -1,0 +1,275 @@
+///////// PROPER NOUNS //////////////////
+
+//#psp := nmpr;
+SELECT ALL OBJECTS WHERE
+[word 
+    stripped_surface ~ "^Jerusalem" OR
+    stripped_surface ~ "^Jehuda" OR
+    stripped_surface ~ "^Jakob" OR
+    stripped_surface ~ "^Cion" OR
+    stripped_surface ~ "^Uc" OR
+    stripped_surface ~ "^Edom" OR
+    stripped_surface ~ "^Sodom"
+]
+GO
+
+///////// PRONOUNS //////////////////////
+
+//#psp := pron_rel;
+SELECT ALL OBJECTS WHERE
+[word
+    graphemes ~ "^kiu" OR
+    graphemes ~ "^ĉiu" OR 
+    graphemes = "kies"
+]
+GO
+
+
+//#psp := pron_pers;
+SELECT ALL OBJECTS WHERE
+[word 
+    graphemes ~ "^mi[n]?$" OR
+    graphemes ~ "^ni[n]?$" OR
+    graphemes ~ "^vi[n]?$" OR
+    graphemes ~ "^li[n]?$" OR
+    graphemes ~ "^ŝi[n]?$" OR
+    graphemes ~ "^ĝi[n]?$" OR
+    graphemes ~ "^ili[n]?$" OR
+    graphemes ~ "^oni[n]?$" OR
+    graphemes ~ "^neniu[n]?$" OR
+    graphemes ~ "^si[n]?$" OR
+    graphemes = "mem"
+]
+GO
+
+
+//#psp := pron_dem;
+SELECT ALL OBJECTS WHERE
+[word
+    graphemes ~ "^tiu[j]?[n]?$" OR
+    graphemes ~ "^tio[j]?[n]?$"
+]
+GO
+
+//#psp := pron_indef;
+SELECT ALL OBJECTS WHERE
+[word
+    graphemes ~ "^iu[j]?[n]?$"
+]
+GO
+
+//#psp := pron_poss;
+SELECT ALL OBJECTS WHERE
+[word
+    graphemes ~ "^mia[j]?[n]?$" OR
+    graphemes ~ "^nia[j]?[n]?$" OR
+    graphemes ~ "^via[j]?[n]?$" OR
+    graphemes ~ "^lia[j]?[n]?$" OR
+    graphemes ~ "^ŝia[j]?[n]?$" OR
+    graphemes ~ "^ĝia[j]?[n]?$" OR
+    graphemes ~ "^ilia[j]?[n]?$" OR
+    graphemes ~ "^onia[j]?[n]?$" OR
+    graphemes ~ "^sia[j]?[n]?$"
+]
+GO
+
+//#pronoun
+SELECT ALL OBJECTS WHERE
+[word
+    psp in (pron_rel, pron_pers, pron_poss)
+]
+GO
+
+
+//#ps := p1;
+SELECT ALL OBJECTS WHERE
+[word lexical_labels HAS pronoun AND
+    graphemes ~ "^mi" OR
+    graphemes ~ "^ni"
+]
+GO
+
+
+//#ps := p2;
+SELECT ALL OBJECTS WHERE
+[word lexical_labels HAS pronoun AND
+    graphemes ~ "^vi" 
+]
+GO
+
+
+//#ps := p3;
+SELECT ALL OBJECTS WHERE
+[word lexical_labels HAS pronoun AND
+    (graphemes ~ "^li" OR
+    graphemes ~ "^ŝi" OR
+    graphemes ~ "^ĝi" OR
+    graphemes ~ "^ili" OR
+    graphemes ~ "^neniu" OR
+    graphemes ~ "^oni")
+]
+GO
+
+//#nu := sg;
+SELECT ALL OBJECTS WHERE
+[word lexical_labels HAS pronoun AND
+    (graphemes ~ "^mi" OR
+    graphemes ~ "^li" OR
+    graphemes ~ "^ŝi" OR
+    graphemes ~ "^ĝi")
+]
+GO
+
+//#nu := pl;
+SELECT ALL OBJECTS WHERE
+[word lexical_labels HAS pronoun AND
+    (graphemes ~ "^ni" OR
+    graphemes ~ "^ili")
+]
+GO
+
+//#nu := unknown;
+SELECT ALL OBJECTS WHERE
+[word lexical_labels HAS pronoun AND
+    (graphemes ~ "^vi" OR
+    graphemes ~ "^oni" OR
+    graphemes ~ "^si" OR
+    graphemes ~ "^neniu[n]?$")
+]
+GO
+
+//#gn := m;
+SELECT ALL OBJECTS WHERE
+[word lexical_labels HAS pronoun AND
+    graphemes ~ "^li"
+]
+GO
+
+//#gn := f;
+SELECT ALL OBJECTS WHERE
+[word lexical_labels HAS pronoun AND
+    graphemes ~ "^ŝi"
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[word
+    graphemes ~ "ino[j]?[n]?"
+]
+GO
+
+//#gn := n;
+SELECT ALL OBJECTS WHERE
+[word lexical_labels HAS pronoun AND
+    graphemes ~ "ĝi"
+]
+GO
+
+//#gn := undef;
+SELECT ALL OBJECTS WHERE
+[word lexical_labels HAS pronoun AND
+    (graphemes ~ "^vi" OR
+    graphemes ~ "^ili" OR
+    graphemes ~ "^oni" OR
+    graphemes ~ "^si" OR
+    graphemes ~ "^neniu[n]?$" OR
+    graphemes = "mem")
+]
+GO
+
+//////////////////// WORDS WITHOUT MORPHOLOGY /////////
+
+//#psp :=def_art;
+SELECT ALL OBJECTS WHERE
+[word 
+    graphemes = "la"
+]
+GO
+
+
+//#psp := prep;
+SELECT ALL OBJECTS WHERE
+[word 
+    graphemes = "de" OR
+    graphemes = "dum" OR
+    graphemes = "da" OR
+    graphemes = "en" OR
+    graphemes = "ol" OR
+    graphemes = "per" OR
+    graphemes = "sub" OR
+    graphemes = "super" OR
+    graphemes = "sur" OR
+    graphemes = "al" OR
+    graphemes = "inter" OR
+    graphemes = "por" OR
+    graphemes = "pri" OR
+    graphemes = "kun"
+]
+GO
+
+
+//#psp := conj;
+SELECT ALL OBJECTS WHERE
+[word 
+    graphemes = "kaj" OR
+    graphemes = "ju" OR
+    graphemes = "des" OR
+    graphemes = "sed" OR
+    graphemes = "ĉar"
+]
+GO
+
+//#psp := inrg;
+SELECT ALL OBJECTS WHERE
+[word 
+    graphemes = "ĉu" 
+]
+GO
+
+//#psp := nega;
+SELECT ALL OBJECTS WHERE
+[word 
+    graphemes = "ne" OR
+    graphemes = "nek"
+]
+GO
+
+//#psp := adverb;
+SELECT ALL OBJECTS WHERE
+[word 
+    graphemes = "eĉ" OR
+    graphemes = "nur" OR
+    graphemes = "jam" OR
+    graphemes = "tiel" OR
+    graphemes = "kiel" OR
+    graphemes = "pli" OR
+    graphemes = "plej" OR
+    graphemes = "malpli" OR
+    graphemes = "malplej" OR
+    graphemes = "plej" OR
+    graphemes = "tre" OR
+    graphemes = "tro" OR
+    graphemes = "ajn" OR
+    graphemes = "ĉi" OR
+    graphemes = "for" OR
+    graphemes = "nun"
+
+]
+GO
+
+//#psp := intj;
+SELECT ALL OBJECTS WHERE
+[word 
+    graphemes = "ho"
+]
+GO
+
+//#no_morphology
+SELECT ALL OBJECTS WHERE
+[word psp in (nmpr, def_art, prep, conj, inrg, nega, adverb, intj)]
+GO
+
+//#mal_
+SELECT ALL OBJECTS WHERE
+[word graphemes ~ "^mal"]
+GO

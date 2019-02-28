@@ -1,0 +1,84 @@
+//#A_colon
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon focus first]
+]
+GO
+
+//#B_colon
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon first]
+    [colon focus]
+]
+GO
+
+//#C_colon
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon first]
+    [colon]
+    [colon focus]
+]
+GO
+
+//#D_colon
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon first]
+    [colon]
+    [colon]
+    [colon focus]
+]
+GO
+
+//#E_colon
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon first]
+    [colon]
+    [colon]
+    [colon]
+    [colon focus]
+]
+GO
+
+//#F_colon
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon first]
+    [colon]
+    [colon]
+    [colon]
+    [colon]
+    [colon focus]
+]
+GO
+
+
+//#X_and_Y
+
+SELECT ALL OBJECTS WHERE
+[colon
+    [word as w1 first]
+    [word lex="W"]
+    [word last pdp = w1.pdp]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[colon
+    [subphrase as p1]
+    [word lex="W"]
+    [subphrase last]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[colon
+    [phrase as p1 first]
+    [word lex="W"]
+    [phrase last typ = p1.typ]
+]
+GO
+

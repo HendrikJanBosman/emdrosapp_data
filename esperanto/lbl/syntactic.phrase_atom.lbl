@@ -1,0 +1,22 @@
+//#NPDet
+SELECT ALL OBJECTS WHERE
+[phrase_atom
+    [word first lexical_label HAS def_art]
+    [word morphological_label HAS subst]
+]
+GO
+
+//#PP
+SELECT ALL OBJECTS WHERE
+[phrase_atom
+    [word first lexical_label HAS prep]
+]
+GO
+
+//#AdjP
+SELECT ALL OBJECTS WHERE
+[phrase_atom
+    [word first lexical_label HAS adverb]
+    [word morphological_label HAS adject]
+]
+GO

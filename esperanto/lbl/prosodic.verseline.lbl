@@ -1,0 +1,16 @@
+//#bicolon
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon first]
+    ![colon last]
+]
+GO
+
+//#tricolon
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon first]
+    ![colon]
+    ![colon last]
+]
+GO

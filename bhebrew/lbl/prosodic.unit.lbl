@@ -1,0 +1,22 @@
+//#colon
+SELECT ALL OBJECTS WHERE
+[unit [colon FIRST AND LAST] ] 
+GO
+
+//#verseline
+SELECT ALL OBJECTS WHERE
+[unit [verseline FIRST AND LAST] ] 
+GO
+
+//#strophe
+SELECT ALL OBJECTS WHERE
+[unit [strophe FIRST AND LAST] ] 
+GO
+
+//#multiple_strophes
+SELECT ALL OBJECTS WHERE
+[unit
+    [strophe FIRST]
+    [strophe LAST] * {1-}
+]
+GO

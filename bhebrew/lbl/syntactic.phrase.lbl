@@ -1,0 +1,99 @@
+//#has_subphr
+SELECT ALL OBJECTS WHERE
+[phrase [subphrase] ]
+GO
+
+//#no_subphr
+SELECT ALL OBJECTS WHERE
+[phrase NOTEXIST [subphrase]]
+GO
+
+
+
+
+//#verb_Pred
+SELECT ALL OBJECTS WHERE
+[phrase function in (PreO, PreS, Pred, PtcO)]
+GO
+
+//#nom_Pred
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    NOTEXIST [phrase syntactic_labels HAS verb_Pred]
+    [phrase focus function in (PrAd, PrcS, PreC, Exst, ExsS)]
+    NOTEXIST [phrase syntactic_labels HAS verb_Pred]
+]
+GO
+
+
+//#Pred
+SELECT ALL OBJECTS WHERE
+[phrase 
+    syntactic_labels HAS verb_Pred OR 
+    syntactic_labels HAS nom_Pred
+]
+GO
+
+
+//#infa_modifier
+SELECT ALL OBJECTS WHERE
+[phrase function = Modi
+    [word vt = infa]
+]
+GO
+
+//#poss_copula
+SELECT ALL OBJECTS WHERE
+[phrase function = Pred
+    [word lex = "HJH["]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[phrase function in (Exst, NCop)]
+GO
+
+
+//#copula
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase focus syntactic_labels HAS poss_copula]
+    ..
+    [phrase function = PreC]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase function = PreC]
+    ..
+    [phrase focus syntactic_labels HAS poss_copula]
+]
+GO
+
+//#copula_cmpl
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase syntactic_labels HAS copula]
+    ..
+    [phrase focus function = PreC]
+]
+OR 
+
+[clause
+    [phrase focus function = PreC]
+    ..
+    [phrase syntactic_labels HAS copula]
+]
+
+GO
+
+//#poss_fronted
+
+SELECT ALL OBJECTS WHERE
+[phrase focus 
+    function in (Subj, Objc, Cmpl, Modi, Adju)
+    AND (NOT typ in (InrP, IPrP)
+    AND NOT syntactic_labels HAS infa_modifier)
+]
+GO

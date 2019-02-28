@@ -1,0 +1,24 @@
+// acrostic poems
+
+SELECT ALL OBJECTS WHERE
+[verse focus book = Psalmi AND chapter = 25 AND verse <> 22 ]
+GO
+
+SELECT ALL OBJECTS WHERE
+[verse focus book = Psalmi AND chapter = 34 AND verse <> 23 ]
+GO
+
+SELECT ALL OBJECTS WHERE
+[verse focus book = Psalmi AND chapter IN (9, 10, 37, 111, 112, 119, 145)]
+GO
+
+SELECT ALL OBJECTS WHERE
+[chapter focus book = Threni AND chapter <= 4 ]
+GO
+
+SELECT ALL OBJECTS WHERE
+[verse focus
+    book = Proverbia AND chapter = 31 AND 
+    verse >= 10 AND verse <= 31
+]
+GO

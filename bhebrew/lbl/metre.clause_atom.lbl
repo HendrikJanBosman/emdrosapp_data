@@ -1,0 +1,105 @@
+//#no_of_feet := 1;
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [wordcluster first and last no_of_feet = 1]
+]
+GO
+
+//#no_of_feet := 2;
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [wordcluster first and last no_of_feet = 2]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [wordcluster first no_of_feet = 1]
+    !
+    [wordcluster last no_of_feet = 1]
+]
+GO
+
+//#no_of_feet := 3;
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [wordcluster first no_of_feet = 1]
+    !
+    [wordcluster no_of_feet = 1]
+    !
+    [wordcluster last  no_of_feet = 1]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [wordcluster first no_of_feet = 2]
+    !
+    [wordcluster last  no_of_feet = 1]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [wordcluster first no_of_feet = 1]
+    !
+    [wordcluster last  no_of_feet = 2]
+]
+GO
+
+
+//#no_of_feet := 4;
+
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [wordcluster first no_of_feet = 2]
+    !
+    [wordcluster last  no_of_feet = 2]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [wordcluster first no_of_feet = 1]
+    !
+    [wordcluster no_of_feet = 1] * {2}
+    !
+    [wordcluster last  no_of_feet = 1]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [wordcluster first no_of_feet = 2]
+    !
+    [wordcluster no_of_feet = 1] 
+    !
+    [wordcluster last  no_of_feet = 1]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [wordcluster first no_of_feet = 1]
+    !
+    [wordcluster no_of_feet = 1] 
+    !
+    [wordcluster last  no_of_feet = 2]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [wordcluster first no_of_feet = 1]
+    !
+    [wordcluster no_of_feet = 2] 
+    !
+    [wordcluster last  no_of_feet = 1]
+]
+GO
+
+//#no_of_feet := -1;
+SELECT ALL OBJECTS WHERE
+[clause_atom no_of_feet < 1 or no_of_feet > 4]
+GO

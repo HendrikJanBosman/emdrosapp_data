@@ -1,0 +1,202 @@
+//#lex := "Beowulf"; ps := undef; nu := sg; gn := masc;
+select all objects in beow where
+[word graphemes ~ "^b[ei]ow"]
+go
+
+//#psp := conj;
+
+select all objects where 
+[word 
+    graphemes = "ond" or
+    graphemes = "þær" or
+    graphemes = "þanon" or
+    graphemes = "þider" or
+    graphemes = "þeah" or
+    graphemes = "þenden" or
+    graphemes = "þonne" or
+    graphemes = "þæs" or
+    graphemes = "þy"
+]
+go
+
+/////// proper names ////////////////////////////
+
+//#psp := nmpr;
+SELECT ALL OBJECTS WHERE
+[sentence as s1
+    [word focus 
+        first_monad > s1.first_monad and  // not the first word of a sentence
+	graphical_labels has initial_capital and 
+	not graphical_labels has quot_open
+    ]
+]
+GO
+
+
+//////// prepositions //////////////////////////
+
+//#psp := prep;
+
+select all objects where 
+[word 
+    graphemes = "æfter" or 
+    graphemes = "ær" or 
+    graphemes = "æt" or 
+    graphemes = "and" or
+    graphemes = "andlang" or
+    graphemes = "beæftan" or
+    graphemes = "be" or
+    graphemes = "bi" or
+    graphemes = "beforan" or
+    graphemes = "begeondan" or
+    graphemes = "behindan" or
+    graphemes = "beinnan" or
+    graphemes = "beneoan" or
+    graphemes ~ "^betweonum" or
+    graphemes ~ "^betweox" or
+    graphemes = "birihte" or
+    graphemes = "bufan" or
+    graphemes = "butan" or
+    graphemes = "eac" or
+    graphemes = "for" or
+    graphemes = "fore" or
+    graphemes = "fram" or
+    graphemes = "gemang" or
+    graphemes = "geond" or
+    graphemes = "in" or
+    graphemes = "innan" or
+    graphemes = "into" or
+    graphemes = "mid" or
+    graphemes = "neah" or
+    graphemes = "nefne" or
+    graphemes = "of" or
+    graphemes = "ofer" or
+    graphemes = "on" or
+    graphemes = "onbutan" or
+    graphemes = "ongeagn" or
+    graphemes = "onuppan" or
+    graphemes = "oþ" or
+    graphemes = "samod" or
+    graphemes = "to" or
+    graphemes = "toeacan" or
+    graphemes = "toforan" or
+    graphemes = "togeagnes" or
+    graphemes = "tomiddes" or
+    graphemes = "toweard" or
+    graphemes = "þurh" or
+    graphemes = "ufenan" or
+    graphemes = "under" or
+    graphemes = "underneoþan" or
+    graphemes = "uppan" or
+    graphemes = "utan" or
+    graphemes = "wið" or
+    graphemes = "wiðæftan" or
+    graphemes = "wiðer" or
+    graphemes = "wiðinnan" or
+    graphemes = "wiðforan" or
+    graphemes = "wiðūtan" or
+    graphemes = "ymb" or
+    graphemes = "ymbe" or
+    graphemes = "ymbutan"
+]
+go
+
+
+//////// personal pronouns ////////////////////////
+
+////// I //////
+//#psp := prps; ps := p1; nu := sg; gn := undef; case := nom;
+SELECT ALL OBJECTS WHERE [word graphemes = "ic" ] GO
+
+//#psp := prps; ps := p1; nu := sg; gn := undef; case := acc;
+SELECT ALL OBJECTS WHERE [word graphemes = "mec"] GO
+
+//#psp := prps; ps := p1; nu := sg; gn := undef; case := undef;
+SELECT ALL OBJECTS WHERE [word graphemes = "me"] GO
+
+//#psp := prps; ps := p1; nu := sg; gn := undef; case := gen;
+SELECT ALL OBJECTS WHERE 
+[word 
+    graphemes = "min" or
+    graphemes = "mine" or
+    graphemes = "minum"
+] GO
+
+
+////// You (sg) //////
+//#psp := prps; ps := p2; nu := sg; gn := undef; case := nom;
+SELECT ALL OBJECTS WHERE [word graphemes = "þu" ] GO
+
+//#psp := prps; ps := p2; nu := sg; gn := undef; case := acc;
+SELECT ALL OBJECTS WHERE [word graphemes = "þec"] GO
+
+//#psp := prps; ps := p2; nu := sg; gn := undef; case := undef;
+SELECT ALL OBJECTS WHERE [word graphemes = "þe"] GO
+
+//#psp := prps; ps := p2; nu := sg; gn := undef; case := gen;
+SELECT ALL OBJECTS WHERE 
+[word 
+    graphemes = "þin" or
+    graphemes = "þine" or
+    graphemes = "þinum"
+] GO
+
+
+////// He //////
+//#psp := prps; ps := p3; nu := sg; gn := masc; case := nom;
+SELECT ALL OBJECTS WHERE [word graphemes = "he"] GO
+
+//#psp := prps; ps := p3; nu := sg; gn := masc; case := acc;
+SELECT ALL OBJECTS WHERE [word graphemes = "hine" ] GO
+
+//#psp := prps; ps := p3; nu := sg; gn := masc; case := acc;
+SELECT ALL OBJECTS WHERE [word graphemes = "him" ] GO
+
+//#psp := prps; ps := p3; nu := sg; gn := undef; case := gen;
+SELECT ALL OBJECTS WHERE [word graphemes = "his" ] GO
+
+//#psp := prps; ps := p3; nu := sg; gn := undef; case := dat;
+SELECT ALL OBJECTS WHERE [word graphemes = "him" ] GO
+
+
+////// It //////
+//#psp := prps; ps := p3; nu := sg; gn := neu; case := nom;
+SELECT ALL OBJECTS WHERE [word graphemes = "hit" ] GO
+
+
+////// She //////
+//#psp := prps; ps := p3; nu := sg; gn := fem; case := nom;
+SELECT ALL OBJECTS WHERE [word graphemes = "heo" ] GO
+
+//#psp := prps; ps := p3; nu := sg; gn := fem; case := gen;
+SELECT ALL OBJECTS WHERE [word graphemes = "hire" ] GO
+
+//#psp := prps; ps := p3; nu := undef; gn := undef; case := undef;
+SELECT ALL OBJECTS WHERE [word graphemes = "hie" ] GO
+
+////// We (pl) //////
+//#psp := prps; ps := p1; nu := pl; gn := undef; case := nom;
+SELECT ALL OBJECTS WHERE [word graphemes = "we" ] GO
+
+//#psp := prps; ps := p1; nu := pl; gn := undef; case := acc;
+SELECT ALL OBJECTS WHERE [word graphemes = "usic" ] GO
+
+//#psp := prps; ps := p1; nu := pl; gn := undef; case := gen;
+SELECT ALL OBJECTS WHERE [word graphemes = "ure" ] GO
+
+//#psp := prps; ps := p1; nu := pl; gn := undef; case := undef;
+SELECT ALL OBJECTS WHERE [word graphemes = "us" ] GO
+
+
+////// We (du) //////
+//#psp := prps; ps := p1; nu := du; gn := undef; case := nom;
+SELECT ALL OBJECTS WHERE [word graphemes = "wit" ] GO
+
+//#psp := prps; ps := p1; nu := du; gn := undef; case := acc;
+SELECT ALL OBJECTS WHERE [word graphemes = "uncit" ] GO
+
+//#psp := prps; ps := p1; nu := du; gn := undef; case := gen;
+SELECT ALL OBJECTS WHERE [word graphemes = "uncer" ] GO
+
+//#psp := prps; ps := p1; nu := du; gn := undef; case := undef;
+SELECT ALL OBJECTS WHERE [word graphemes = "unc" ] GO

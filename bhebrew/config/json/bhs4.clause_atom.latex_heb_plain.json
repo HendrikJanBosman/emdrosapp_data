@@ -1,0 +1,22 @@
+{
+   "fetchinfo" : {
+      "base" : {
+	 "prepend_XML_declaration" : false,
+         "object_types" : {
+            "clause_atom" : {
+	       "start" : "{\heb ",
+	       "end"   : "}"
+            },
+            "word" : {
+                  "get" : ["g_word", "g_suffix"],
+                  "start" : "{{ featurenomangle 0 }}{{ setvar 'suffix' }}{{ featurenomangle 1 }}{{ setvarend }}",
+		  "end"   : "{{ emitvar 'suffix' }}",
+               },
+         },
+         "priority_list" : [
+               "clause_atom",
+               "word",
+            ]
+      }
+   }
+}

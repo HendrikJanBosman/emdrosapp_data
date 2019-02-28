@@ -1,0 +1,70 @@
+// a selection of non-acrostic Hebrew poetry
+
+SELECT ALL OBJECTS WHERE
+
+[book book in (Psalmi, Canticum, Threni, Habakuk)]
+
+OR
+
+[chapter 
+
+    (book = Iob and chapter >= 3 and chapter >= 41)
+
+    OR
+
+    (book = Jesaia and chapter >= 24 and chapter <= 27)
+
+    OR
+
+    (book = Jesaia and chapter >= 40)
+
+    OR 
+
+    (book = Judices and chapter = 5)
+]
+
+OR
+
+[verse
+
+    (book = Genesis and chapter = 49 and verse >= 2 and verse <= 27)
+
+    OR
+
+    (book = Exodus and chapter = 15 and verse <= 19)
+
+    OR
+
+    (book = Deuteronomium and chapter = 32 and verse <= 43)
+
+    OR
+
+    (book = Samuel_II and chapter = 1 and verse <= 43)
+
+    OR
+
+    (book = Samuel_II and chapter = 22 and verse >= 2)
+
+    OR
+
+    (book = Samuel_II and chapter = 23 and verse <= 7)
+
+    OR
+
+    (book = Reges_II and chapter = 19 and verse >= 21 and verse <= 28)
+
+    OR
+
+    (book = Iob and chapter = 42 and verse <= 6)
+
+    OR 
+
+    (book = Jona and chapter = 2 and verse >= 2 and verse <= 9)
+
+    OR 
+
+    (book = Chronica_II and chapter = 16 and verse >= 8 and verse <= 36)
+
+]
+
+GO

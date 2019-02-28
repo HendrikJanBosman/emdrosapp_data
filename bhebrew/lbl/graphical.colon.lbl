@@ -1,0 +1,205 @@
+//#sof_pasuq
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS sof_pasuq] ]
+GO
+
+//#raphe
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS raphe] ]
+GO
+
+//#atnach
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS atnach] ]
+GO
+
+//#azla
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS azla] ]
+GO
+
+//#darga
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS darga] ]
+GO
+
+//#dechi
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS dechi] ]
+GO
+
+//#garshayim
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS garshayim] ]
+GO
+
+//#geresh
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS geresh] ]
+GO
+
+//#illuy
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS illuy] ]
+GO
+
+//#mehuppach
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS mehuppach] ]
+GO
+
+//#merecha
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS merecha] ]
+GO
+
+//#merecha_kepula
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS merecha_kepula] ]
+GO
+
+//#meteg
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS meteg] ]
+GO
+
+//#meteg_tikon
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS meteg_tikon] ]
+GO
+
+//#meteg_yamin
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS meteg_yamin] ]
+GO
+
+//#mugrash
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS mugrash] ]
+GO
+
+//#munach
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS munach] ]
+GO
+
+//#ole_weyored
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS ole_weyored] ]
+GO
+
+//#paseq
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS paseq] ]
+GO
+
+//#pashta
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS pashta] ]
+GO
+
+//#pashta_med
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS pashta_med] ]
+GO
+
+//#pazer
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS pazer] ]
+GO
+
+//#pazer_gadol
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS pazer_gadol] ]
+GO
+
+//#rebia
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS rebia] ]
+GO
+
+//#segolta
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS segolta] ]
+GO
+
+//#shalshelet
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS shalshelet] ]
+GO
+
+//#silluq
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS silluq] ]
+GO
+
+//#silluq_yamin
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS silluq_yamin] ]
+GO
+
+
+//#sinnor
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS sinnor] ]
+GO
+
+//#sinnorit
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS sinnorit] ]
+GO
+
+//#tebir
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS tebir] ]
+GO
+
+//#telisha_gedola
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS telisha_gedola] ]
+GO
+
+//#telisha_gedola_med
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS telisha_gedola_med] ]
+GO
+
+//#telisha_qetana
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS telisha_qetana] ]
+GO
+
+//#telisha_qetana_med
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS telisha_qetana_med] ]
+GO
+
+//#tifcha
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS tifcha] ]
+GO
+
+//#yerach
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS yerach] ]
+GO
+
+//#yetib
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS yetib] ]
+GO
+
+//#zaqef_gadol
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS zaqef_gadol] ]
+GO
+
+//#zaqef_qatan
+SELECT ALL OBJECTS WHERE 
+[colon [word LAST graphical_labels HAS zaqef_qatan] ]
+GO
+
+//#legarmeh
+SELECT ALL OBJECTS WHERE
+[colon [word LAST graphical_labels HAS munach AND graphical_labels HAS paseq] ]
+GO

@@ -1,0 +1,13 @@
+//#asyn
+SELECT ALL OBJECTS WHERE
+[sentence
+    [phrase first typ <> CP]
+]
+GO
+
+//#conj
+SELECT ALL OBJECTS WHERE
+[sentence
+    [phrase first typ = CP]
+]
+GO

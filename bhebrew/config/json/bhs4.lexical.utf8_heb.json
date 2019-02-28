@@ -1,0 +1,17 @@
+{
+   "fetchinfo" : {
+      "base" : {
+	 "prepend_XML_declaration" : false,
+         "object_types" : {
+            "word" : {
+                  "get" : ["g_cons_utf8", "g_suffix_utf8"],
+                  "start" : "{{ featurenomangle 0 }}{{ featurenomangle 1 }}",
+		  "end"   : "\n",
+               },
+         },
+         "priority_list" : [
+               "word",
+            ]
+      }
+   }
+}

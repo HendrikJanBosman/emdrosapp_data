@@ -1,0 +1,29 @@
+// The database of poetic texts presented in \cite[Appendix 2]{Dunn}
+
+SELECT ALL OBJECTS WHERE
+[book book = Psalmi]
+
+OR 
+
+[verse 
+    book = Jesaia AND chapter >= 40
+    AND NOT (chapter = 66 AND verse in (18,19,20,21))
+]
+
+OR
+
+[chapter book = Iob and chapter >= 3 and chapter <= 14]
+
+OR
+
+[chapter book = Proverbia AND chapter <= 9]
+
+OR 
+
+[book book = Canticum]
+
+OR
+
+[chapter book = Numeri and chapter in (23, 24)]
+
+GO

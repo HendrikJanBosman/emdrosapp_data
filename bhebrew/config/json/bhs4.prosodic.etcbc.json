@@ -1,0 +1,32 @@
+
+{
+   "fetchinfo" : {
+      "base" : {
+	 "prepend_XML_declaration" : false,
+         "object_types" : {
+	    "strophe"   : {
+		"start" : "",
+		"end"   : "\n",
+	    },
+	    "verseline" : {
+		"start" : "{{ setvar 'firstcolon' }}1{{ setvarend }}",
+		"end" : "\n",
+	    },
+	    "colon" : {
+		"start" : "{{ if varequal 'firstcolon' '0' }}* {{ endif }}",
+		"end"   : "{{ setvar 'firstcolon' }}0{{ setvarend }}",
+	    },
+            "word" : {
+                  "get" : ["g_word", "g_suffix"],
+                  "start" : "{{ featurenomangle 0 }}{{ featurenomangle 1 }}",
+               },
+         },
+         "priority_list" : [
+	       "strophe",
+	       "verseline",
+	       "colon",
+               "word",
+            ]
+      }
+   }
+}

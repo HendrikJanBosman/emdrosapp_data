@@ -1,0 +1,1420 @@
+
+
+//////////////////////////////////////////////////// 
+// 
+// Create enumerations
+// 
+//////////////////////////////////////////////////// 
+
+// Enumeration word_psp_t
+CREATE ENUMERATION word_psp_t = {
+  DEFAULT NA = 1,
+  adject = 14,
+  advb = 10,
+  adverb = 15,
+  conj = 7,
+  def_art = 5,
+  inrg = 8,
+  intj = 11,
+  nega = 9,
+  nmpr = 16,
+  noun = 13,
+  prep = 6,
+  pron_dem = 17,
+  pron_indef = 18,
+  pron_pers = 3,
+  pron_poss = 4,
+  pron_rel = 2,
+  undef = 19,
+  verb = 12
+}
+GO
+
+// Enumeration word_ps_t
+CREATE ENUMERATION word_ps_t = {
+  DEFAULT NA = 1,
+  p1 = 2,
+  p2 = 3,
+  p3 = 4
+}
+GO
+
+// Enumeration word_nu_t
+CREATE ENUMERATION word_nu_t = {
+  DEFAULT NA = 1,
+  pl = 3,
+  sg = 2,
+  unknown = 4
+}
+GO
+
+// Enumeration word_gn_t
+CREATE ENUMERATION word_gn_t = {
+  DEFAULT NA = 1,
+  f = 3,
+  m = 2,
+  n = 4,
+  undef = 5
+}
+GO
+
+// Enumeration word_vt_t
+CREATE ENUMERATION word_vt_t = {
+  DEFAULT NA = 1,
+  future = 4,
+  past = 3,
+  present = 2
+}
+GO
+
+// Enumeration word_vm_t
+CREATE ENUMERATION word_vm_t = {
+  DEFAULT NA = 1,
+  cond = 4,
+  indic = 2,
+  infin = 5,
+  juss = 3,
+  ptc = 6
+}
+GO
+
+// Enumeration word_mode_t
+CREATE ENUMERATION word_mode_t = {
+  DEFAULT NA = 1,
+  act = 2,
+  pass = 3
+}
+GO
+
+// Enumeration word_case_t
+CREATE ENUMERATION word_case_t = {
+  DEFAULT NA = 1,
+  acc = 4,
+  gen = 3,
+  nom = 2
+}
+GO
+
+// Enumeration graphical_word_label_t
+CREATE ENUMERATION graphical_word_label_t = {
+  DEFAULT capitalized = 1
+}
+GO
+
+// Enumeration lexical_word_label_t
+CREATE ENUMERATION lexical_word_label_t = {
+  mal_ = 3,
+  no_morphology = 2,
+  DEFAULT pronoun = 1
+}
+GO
+
+// Enumeration morphological_word_label_t
+CREATE ENUMERATION morphological_word_label_t = {
+  _a = 10,
+  _aj = 12,
+  _ajn = 13,
+  _al = 15,
+  _am = 16,
+  _an = 11,
+  _ant_ = 31,
+  _as = 21,
+  _at_ = 32,
+  _au = 26,
+  _e = 14,
+  _el = 17,
+  _en = 19,
+  _es = 9,
+  _i = 20,
+  _ig_ = 34,
+  _igx_ = 33,
+  _in_ = 35,
+  _int_ = 27,
+  _is = 22,
+  _it_ = 28,
+  DEFAULT _o = 1,
+  _oj = 3,
+  _ojn = 4,
+  _om = 18,
+  _on = 2,
+  _ont_ = 29,
+  _os = 23,
+  _ot_ = 30,
+  _u = 24,
+  _u_nominal = 5,
+  _uj = 7,
+  _ujn = 8,
+  _un = 6,
+  _us = 25
+}
+GO
+
+// Enumeration prosodic_word_label_t
+CREATE ENUMERATION prosodic_word_label_t = {
+  DEFAULT dummy_label = 1
+}
+GO
+
+// Enumeration prosodic_verseline_label_t
+CREATE ENUMERATION prosodic_verseline_label_t = {
+  DEFAULT bicolon = 1,
+  tricolon = 2
+}
+GO
+
+// Enumeration prosodic_strophe_label_t
+CREATE ENUMERATION prosodic_strophe_label_t = {
+  DEFAULT couplet = 1,
+  quatrain = 3,
+  triplet = 2
+}
+GO
+
+
+
+//////////////////////////////////////////////////// 
+// 
+// Create object types
+// 
+//////////////////////////////////////////////////// 
+
+// Object type colon
+CREATE OBJECT TYPE
+[colon
+  note : string DEFAULT "";
+]
+GO
+
+// Object type verseline
+CREATE OBJECT TYPE
+[verseline
+  note : string DEFAULT "";
+  prosodic_labels : list of prosodic_verseline_label_t;
+]
+GO
+
+// Object type strophe
+CREATE OBJECT TYPE
+[strophe
+  note : string DEFAULT "";
+  prosodic_labels : list of prosodic_strophe_label_t;
+]
+GO
+
+
+
+//////////////////////////////////////////////////// 
+// 
+// Create arbitrary monad sets
+// 
+//////////////////////////////////////////////////// 
+
+CREATE MONAD SET
+lam_1
+WITH MONADS =  { 1-648 } 
+GO
+
+CREATE MONAD SET
+lam_2
+WITH MONADS =  { 649-1373 } 
+GO
+
+CREATE MONAD SET
+lam_3
+WITH MONADS =  { 1374-2120 } 
+GO
+
+CREATE MONAD SET
+lam_4
+WITH MONADS =  { 2121-2611 } 
+GO
+
+CREATE MONAD SET
+lam_5
+WITH MONADS =  { 2612-2882 } 
+GO
+
+
+
+//////////////////////////////////////////////////// 
+// 
+// Create object data
+// 
+//////////////////////////////////////////////////// 
+
+
+
+//////////////////////////////////////////////////// 
+// 
+// Create object data for object type colon
+// 
+//////////////////////////////////////////////////// 
+
+// Drop indexes 
+DROP INDEXES ON OBJECT TYPE[colon] GO
+
+CREATE OBJECT
+FROM MONADS= { 1-5 } 
+WITH ID_D=4614 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 6-9 } 
+WITH ID_D=4617 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 10-14 } 
+WITH ID_D=4623 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 15-17 } 
+WITH ID_D=4627 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 18-21 } 
+WITH ID_D=4633 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 22-23 } 
+WITH ID_D=4636 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 24-29 } 
+WITH ID_D=4645 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 30-36 } 
+WITH ID_D=4648 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 37-40 } 
+WITH ID_D=4654 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 41-44 } 
+WITH ID_D=4657 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 45-49 } 
+WITH ID_D=4663 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 50-52 } 
+WITH ID_D=4666 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 53-56 } 
+WITH ID_D=4675 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 57-60 } 
+WITH ID_D=4678 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 61-65 } 
+WITH ID_D=4681 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 66-69 } 
+WITH ID_D=4684 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 70-74 } 
+WITH ID_D=4693 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 75-77 } 
+WITH ID_D=4696 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 78-83 } 
+WITH ID_D=4705 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 84-88 } 
+WITH ID_D=4708 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 89-92 } 
+WITH ID_D=4711 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 93-95 } 
+WITH ID_D=4714 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 96-98 } 
+WITH ID_D=4723 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 99-105 } 
+WITH ID_D=4726 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 106-109 } 
+WITH ID_D=4735 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 110-113 } 
+WITH ID_D=4738 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 114-120 } 
+WITH ID_D=4744 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 121-126 } 
+WITH ID_D=4747 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 127-131 } 
+WITH ID_D=4753 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 132-135 } 
+WITH ID_D=4756 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 136-141 } 
+WITH ID_D=4783 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 142-144 } 
+WITH ID_D=4787 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 145-149 } 
+WITH ID_D=4768 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 150-153 } 
+WITH ID_D=4771 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 154-157 } 
+WITH ID_D=4796 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 158-160 } 
+WITH ID_D=4799 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 161-168 } 
+WITH ID_D=5934 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 169-170 } 
+WITH ID_D=5937 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 171-172 } 
+WITH ID_D=5941 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 173-179 } 
+WITH ID_D=5945 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 180-189 } 
+WITH ID_D=5960 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 190-193 } 
+WITH ID_D=4820 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 194-197 } 
+WITH ID_D=4829 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 198-202 } 
+WITH ID_D=4832 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 203-205 } 
+WITH ID_D=4841 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 206-210 } 
+WITH ID_D=4844 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 211-217 } 
+WITH ID_D=4853 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 218-222 } 
+WITH ID_D=4856 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 223-226 } 
+WITH ID_D=4863 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 227-230 } 
+WITH ID_D=4866 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 231-239 } 
+WITH ID_D=4875 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 240-245 } 
+WITH ID_D=4878 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 246-249 } 
+WITH ID_D=4881 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 250-254 } 
+WITH ID_D=4884 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 255-259 } 
+WITH ID_D=4893 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 260-264 } 
+WITH ID_D=4896 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 265-269 } 
+WITH ID_D=5996 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 270-273 } 
+WITH ID_D=5999 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 274-279 } 
+WITH ID_D=6005 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 280-281 } 
+WITH ID_D=6008 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 282-289 } 
+WITH ID_D=6014 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 290-292 } 
+WITH ID_D=6017 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 293-296 } 
+WITH ID_D=6026 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 297-299 } 
+WITH ID_D=6029 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 300-305 } 
+WITH ID_D=6040 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 306-309 } 
+WITH ID_D=6043 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 310-314 } 
+WITH ID_D=6049 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 315-318 } 
+WITH ID_D=6052 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 319-325 } 
+WITH ID_D=6061 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 326-328 } 
+WITH ID_D=6064 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 329-335 } 
+WITH ID_D=6070 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 336-338 } 
+WITH ID_D=6073 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 339-345 } 
+WITH ID_D=6079 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 346-352 } 
+WITH ID_D=6082 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 353-360 } 
+WITH ID_D=6091 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 361-365 } 
+WITH ID_D=6094 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 366-371 } 
+WITH ID_D=6100 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 372-374 } 
+WITH ID_D=6103 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 375-377 } 
+WITH ID_D=6109 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 378-384 } 
+WITH ID_D=6112 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 385-393 } 
+WITH ID_D=6130 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 394-395 } 
+WITH ID_D=6133 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 396-399 } 
+WITH ID_D=6139 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 400-403 } 
+WITH ID_D=6142 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 404-410 } 
+WITH ID_D=6148 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 411-416 } 
+WITH ID_D=6151 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 417-422 } 
+WITH ID_D=6160 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 423-428 } 
+WITH ID_D=6163 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 429-434 } 
+WITH ID_D=6169 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 435-438 } 
+WITH ID_D=6172 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 439-444 } 
+WITH ID_D=6178 [colon
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 445-448 } 
+WITH ID_D=6181 [colon
+note:="";
+]
+GO
+
+// Create indexes 
+CREATE INDEXES ON OBJECT TYPE[colon] GO
+
+
+
+//////////////////////////////////////////////////// 
+// 
+// Create object data for object type verseline
+// 
+//////////////////////////////////////////////////// 
+
+// Drop indexes 
+DROP INDEXES ON OBJECT TYPE[verseline] GO
+
+CREATE OBJECT
+FROM MONADS= { 1-9 } 
+WITH ID_D=7301 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 10-17 } 
+WITH ID_D=7304 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 18-23 } 
+WITH ID_D=7307 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 24-36 } 
+WITH ID_D=7310 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 37-44 } 
+WITH ID_D=7313 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 45-52 } 
+WITH ID_D=7316 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 53-60 } 
+WITH ID_D=7319 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 61-69 } 
+WITH ID_D=7322 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 70-77 } 
+WITH ID_D=7325 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 78-88 } 
+WITH ID_D=7328 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 89-95 } 
+WITH ID_D=7341 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 96-105 } 
+WITH ID_D=7344 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 106-113 } 
+WITH ID_D=7350 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 114-126 } 
+WITH ID_D=7353 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 127-135 } 
+WITH ID_D=7356 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 136-144 } 
+WITH ID_D=8319 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 145-153 } 
+WITH ID_D=8322 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 154-160 } 
+WITH ID_D=8325 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 161-170 } 
+WITH ID_D=8328 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 171-179 } 
+WITH ID_D=8334 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 180-193 } 
+WITH ID_D=8337 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 194-202 } 
+WITH ID_D=8340 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 203-210 } 
+WITH ID_D=8343 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 211-222 } 
+WITH ID_D=8346 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 223-230 } 
+WITH ID_D=8349 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 231-245 } 
+WITH ID_D=8352 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 246-254 } 
+WITH ID_D=8355 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 255-264 } 
+WITH ID_D=8358 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 265-273 } 
+WITH ID_D=8361 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 274-281 } 
+WITH ID_D=8364 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 282-292 } 
+WITH ID_D=8367 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 293-299 } 
+WITH ID_D=8370 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 300-309 } 
+WITH ID_D=8373 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 310-318 } 
+WITH ID_D=8376 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 319-328 } 
+WITH ID_D=8379 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 329-338 } 
+WITH ID_D=8382 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 353-365 } 
+WITH ID_D=8385 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 366-374 } 
+WITH ID_D=8388 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 375-384 } 
+WITH ID_D=8391 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 385-395 } 
+WITH ID_D=8394 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 396-403 } 
+WITH ID_D=8397 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 404-416 } 
+WITH ID_D=8400 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 417-428 } 
+WITH ID_D=8403 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 429-438 } 
+WITH ID_D=8406 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 439-448 } 
+WITH ID_D=8409 [verseline
+note:="";
+prosodic_labels:=(bicolon);
+]
+GO
+
+// Create indexes 
+CREATE INDEXES ON OBJECT TYPE[verseline] GO
+
+
+
+//////////////////////////////////////////////////// 
+// 
+// Create object data for object type strophe
+// 
+//////////////////////////////////////////////////// 
+
+// Drop indexes 
+DROP INDEXES ON OBJECT TYPE[strophe] GO
+
+CREATE OBJECT
+FROM MONADS= { 1-23 } 
+WITH ID_D=7331 [strophe
+note:="";
+prosodic_labels:=(triplet);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 24-52 } 
+WITH ID_D=7334 [strophe
+note:="";
+prosodic_labels:=(triplet);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 53-77 } 
+WITH ID_D=7337 [strophe
+note:="";
+prosodic_labels:=(triplet);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 78-105 } 
+WITH ID_D=7347 [strophe
+note:="";
+prosodic_labels:=(triplet);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 106-135 } 
+WITH ID_D=7359 [strophe
+note:="";
+prosodic_labels:=(triplet);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 136-160 } 
+WITH ID_D=8331 [strophe
+note:="";
+prosodic_labels:=(triplet);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 161-202 } 
+WITH ID_D=5969 [strophe
+note:="";
+prosodic_labels:=(quatrain);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 203-230 } 
+WITH ID_D=5981 [strophe
+note:="";
+prosodic_labels:=(triplet);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 231-264 } 
+WITH ID_D=5993 [strophe
+note:="";
+prosodic_labels:=(triplet);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 265-292 } 
+WITH ID_D=6023 [strophe
+note:="";
+prosodic_labels:=(triplet);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 293-318 } 
+WITH ID_D=6058 [strophe
+note:="";
+prosodic_labels:=(triplet);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 319-352 } 
+WITH ID_D=6088 [strophe
+note:="";
+prosodic_labels:=();
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 353-384 } 
+WITH ID_D=6118 [strophe
+note:="";
+prosodic_labels:=(triplet);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 385-416 } 
+WITH ID_D=6157 [strophe
+note:="";
+prosodic_labels:=(triplet);
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 417-448 } 
+WITH ID_D=6187 [strophe
+note:="";
+prosodic_labels:=(triplet);
+]
+GO
+
+// Create indexes 
+CREATE INDEXES ON OBJECT TYPE[strophe] GO
+
+
+
+//////////////////////////////////////////////////// 
+// 
+// VACUUM database
+// 
+//////////////////////////////////////////////////// 
+
+VACUUM DATABASE ANALYZE GO
+

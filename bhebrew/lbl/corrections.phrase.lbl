@@ -1,0 +1,36 @@
+//#function := Objc;
+SELECT ALL OBJECTS WHERE
+[verse book = Threni AND chapter = 3 AND verse = 17
+    [phrase focus function = Cmpl
+	[word lex = "MN"]
+	[word lex = "CLWM/"]
+    ]
+]
+GO
+
+//#function := Subj;
+SELECT ALL OBJECTS WHERE
+[verse book = Threni AND chapter = 3 AND verse = 17
+    [phrase focus function = Objc
+	[word lex = "NPC/"]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[verse book = Threni AND chapter = 2 AND verse = 18
+    [phrase focus function = Objc
+	[word lex = "BT/"]
+	[word lex = "<JN/"]
+    ]
+]
+GO
+
+//#function := PreC;
+SELECT ALL OBJECTS WHERE
+[verse book = Threni AND chapter = 5 AND verse = 3
+    [phrase focus function = Subj
+	[word g_cons = "JTWMJM"]
+    ]
+]
+GO

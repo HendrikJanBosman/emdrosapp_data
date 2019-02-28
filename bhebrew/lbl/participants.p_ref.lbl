@@ -1,0 +1,691 @@
+//#ps := p1;
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase
+    [p_ref obj=subphrase 
+	AND syntactic_labels HAS phrase_head
+        AND ps = p1
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase and syntactic_labels HAS no_subphr
+    [word first and last  ps = p1]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = subphrase
+    [subphrase first and last // syntactic_labels HAS head
+	[word ps = p1]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = word
+    [word ps = p1]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = sfx
+    [word prs_ps = p1]
+]
+GO
+
+
+//#ps := p2;
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase
+    [p_ref obj=subphrase 
+	AND syntactic_labels HAS phrase_head
+        AND ps = p2
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase and syntactic_labels HAS no_subphr
+    [word first and last  ps = p2]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = subphrase
+    [subphrase first and last // syntactic_labels HAS head
+	[word ps = p2]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = word
+    [word ps = p2]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = sfx
+    [word prs_ps = p2]
+]
+GO
+
+
+//#ps := p3;
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase
+    [p_ref obj=subphrase 
+	AND syntactic_labels HAS phrase_head
+        AND ps = p3
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase and syntactic_labels HAS no_subphr
+    [word first and last  ps = p3]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = subphrase
+    [subphrase first and last // syntactic_labels HAS head
+	[word ps = p3]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = word
+    [word ps = p3]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = sfx
+    [word prs_ps = p3]
+]
+GO
+
+
+//#ps := unknown;
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase
+    [p_ref obj=subphrase 
+	AND syntactic_labels HAS phrase_head
+        AND ps = unknown
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase and syntactic_labels HAS no_subphr
+    [word first and last  ps = unknown]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = subphrase
+    [subphrase first and last // syntactic_labels HAS head
+	[word ps = unknown]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = word
+    [word ps = unknown]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = sfx
+    [word prs_ps = unknown]
+]
+GO
+
+
+
+//#ps := NA;
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase
+    [p_ref obj=subphrase 
+	AND syntactic_labels HAS phrase_head
+        AND ps = NA
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase and syntactic_labels HAS no_subphr
+    [word first and last  ps = NA]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = subphrase
+    [subphrase first and last // syntactic_labels HAS head
+	[word ps = NA]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = word
+    [word ps = NA]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = sfx
+    [word prs_ps = NA]
+]
+GO
+
+//#nu := sg;
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase
+    [p_ref obj=subphrase 
+	AND syntactic_labels HAS phrase_head
+        AND nu = sg
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = subphrase
+    [subphrase first and last // syntactic_labels HAS head
+	[word nu = sg]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase 
+    [word first and last  nu = sg ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = word
+    [word nu = sg]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = sfx
+    [word prs_nu = sg]
+]
+GO
+
+
+
+//#nu := pl;
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase
+    [p_ref obj=subphrase 
+	AND syntactic_labels HAS phrase_head
+        AND nu = pl
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase and syntactic_labels HAS no_subphr
+    [word first and last  nu in (du, pl) ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = subphrase
+    [subphrase first and last // syntactic_labels HAS head
+	[word nu in (du, pl)]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = word
+    [word nu in (du, pl)]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = sfx
+    [word prs_nu in (du, pl)]
+]
+GO
+
+//#nu := unknown;
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase
+    [subphrase]
+    [word lex = "W"]
+    [subphrase]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase
+    [p_ref obj=subphrase 
+	AND syntactic_labels HAS phrase_head
+        AND nu = unknown
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase and syntactic_labels HAS no_subphr
+    [word first and last  nu = unknown  ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = subphrase
+    [subphrase first and last // syntactic_labels HAS head
+	[word nu = unknown]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = word
+    [word nu = unknown]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = sfx
+    [word prs_nu = unknown]
+]
+GO
+
+
+//#nu := NA;
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase
+    [p_ref obj=subphrase 
+	AND syntactic_labels HAS phrase_head
+        AND nu = NA
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase and syntactic_labels HAS no_subphr
+    [word first and last  nu = NA  ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = subphrase
+    [subphrase first and last // syntactic_labels HAS head
+	[word nu = NA]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = word
+    [word nu = NA]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = sfx
+    [word prs_nu = NA]
+]
+GO
+
+//#gn := m;
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase
+    [p_ref obj=subphrase 
+	AND syntactic_labels HAS phrase_head
+        AND gn = m
+    ]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase 
+    [word first and last  gn = m ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = subphrase
+    [subphrase first and last // syntactic_labels HAS head
+	[word gn = m]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = word
+    [word gn = m]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = sfx
+    [word prs_gn = m]
+]
+GO
+
+
+//#gn := f;
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase
+    [p_ref obj=subphrase 
+	AND syntactic_labels HAS phrase_head
+        AND gn = f
+    ]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase 
+    [word first and last  gn = f ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = subphrase
+    [subphrase first and last // syntactic_labels HAS head
+	[word gn = f]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = sfx
+    [word prs_gn = f]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = word
+    [word gn = f]
+]
+GO
+
+//#gn := unknown;
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase
+    [p_ref obj=subphrase 
+	AND syntactic_labels HAS phrase_head
+        AND gn = unknown
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase 
+    [word first and last  gn = unknown ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = subphrase
+    [subphrase first and last // syntactic_labels HAS head
+	[word gn = unknown]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = word
+    [word gn = unknown]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = sfx
+    [word prs_gn = unknown]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase
+    [p_ref as pf1 obj = subphrase]
+    ..
+    [word lex = "W"]
+    ..
+    [p_ref obj = subphrase AND gn <> pf1.gn]
+]
+GO
+
+
+//#gn := NA;
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase
+    [p_ref obj=subphrase 
+	AND syntactic_labels HAS phrase_head
+        AND gn = NA
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase 
+    [word first and last  gn = NA ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = subphrase
+    [subphrase first and last // syntactic_labels HAS head
+	[word gn = NA]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = word
+    [word gn = NA]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = sfx
+    [word prs_gn = NA]
+]
+GO
+
+
+//#typ := Subj;
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase
+    [phrase first and last function = Subj]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[phrase function = Subj
+    [p_ref FOCUS syntactic_labels HAS phrase_head]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[phrase function in (IntS, ModS, NCoS, PrcS, PreS)
+    [p_ref FOCUS obj = sfx]
+]
+GO
+
+//#typ := Objc;
+SELECT ALL OBJECTS WHERE
+[p_ref obj = phrase
+    [phrase first and last function = Objc]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[phrase function = Objc
+    [p_ref FOCUS syntactic_labels HAS phrase_head]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[phrase function in (PreO, PtcO)
+    [p_ref FOCUS obj = sfx]
+]
+GO
+
+//#typ := verb_Pred;
+SELECT ALL OBJECTS WHERE
+[phrase syntactic_labels HAS verb_Pred
+    [p_ref FOCUS obj=word [word pdp=verb] ]
+]
+GO
+
+//#typ := nom_Pred;
+SELECT ALL OBJECTS WHERE
+[p_ref obj=phrase
+    [phrase syntactic_labels HAS nom_Pred]
+]
+GO
+
+//#typ := Voct; ps := p2;
+SELECT ALL OBJECTS WHERE
+[p_ref AS p1 obj in (clause, clause_atom)
+    [clause_atom OVERLAP (SUBSTRATE) first_monad = p1.first_monad AND typ = Voct]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom typ = Voct
+    [p_ref FOCUS [word pdp = nmpr]]
+]
+GO
+
+
+//#typ := CPen
+SELECT ALL OBJECTS WHERE
+[p_ref AS p1 obj in(clause, clause_atom)
+    [clause OVERLAP (SUBSTRATE) first_monad = p1.first_monad AND typ = CPen]
+]
+GO
+
+
+//#typ := other;
+SELECT ALL OBJECTS WHERE
+[p_ref NOT typ in (Subj, Objc, verb_Pred, nom_Pred, Voct, CPen)]
+GO
+
+
+//#personal
+SELECT ALL OBJECTS WHERE
+[p_ref obj = word
+    [word lexical_labels HAS personal]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj = subphrase 
+    [word lexical_labels HAS personal]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj=phrase
+    [p_ref participants_labels HAS personal]
+]
+GO
+
+//#nmpr
+SELECT ALL OBJECTS WHERE
+[p_ref
+    [word pdp = nmpr]
+]
+GO
+
+//#prps
+SELECT ALL OBJECTS WHERE
+[p_ref obj = word
+    [word pdp = prps]
+]
+GO
+
+//#internal
+
+// 1st and 2nd pers. pronouns are deictic and require no antecedent
+SELECT ALL OBJECTS WHERE
+[p_ref FOCUS ps in (p1, p2) AND participants_labels HAS prps]
+GO
+
+
+// complete congruence: finite verbs, personal pronouns
+SELECT ALL OBJECTS WHERE
+[clause_atom
+    [p_ref as p1 typ = verb_Pred OR participants_labels HAS prps]
+    ..
+    [p_ref FOCUS ps=p1.ps AND nu=p1.nu AND gn=p1.gn]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom
+    [p_ref as p1 FOCUS ]
+    ..
+    [p_ref (typ = verb_Pred OR participants_labels HAS prps)
+	AND (ps=p1.ps AND nu=p1.nu AND gn=p1.gn)
+    ]
+]
+GO
+
+
+// partial congruence: 1st ps verbs (unknown gn), nominal forms (unknown ps)
+SELECT ALL OBJECTS WHERE
+[clause_atom
+    [p_ref as p1 typ = verb_Pred OR participants_labels HAS prps ]
+    ..
+    [p_ref FOCUS 
+	(ps=p1.ps AND nu=p1.nu and gn=unknown) OR
+	(ps=unknown AND nu=p1.nu AND gn=p1.gn)
+    ]
+]
+GO
+
+// partial congruence, different order (gn unknown)
+SELECT ALL OBJECTS WHERE
+[clause_atom
+    [p_ref as p1 ps<>unknown AND nu<>unknown and gn=unknown]
+    ..
+    [p_ref FOCUS ps=p1.ps AND nu=p1.nu]
+]
+GO
+
+
+// partial congruence, different order (ps unknown)
+SELECT ALL OBJECTS WHERE
+[clause_atom
+    [p_ref as p1 ps=unknown AND nu<>unknown and gn<>unknown]
+    ..
+    [p_ref FOCUS gn=p1.gn AND nu=p1.nu]
+]
+GO
+
+
+//#external
+SELECT ALL OBJECTS WHERE
+[p_ref (obj=sfx OR typ = verb_Pred OR participants_labels HAS prps)
+    AND (NOT participants_labels HAS internal)
+]
+GO

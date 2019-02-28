@@ -1,0 +1,65 @@
+// first clauses in ACROSTIC verselines only
+
+SELECT ALL OBJECTS WHERE
+
+[verse book = Psalmi and chapter = 9 
+                     and verse in (2, 4, 6, 10, 12, 14, 16, 18, 19)
+    [clause focus first overlap(substrate)]
+]
+
+OR
+
+[verse book = Psalmi and chapter = 10 
+                     and verse in (1, 7, 12, 14, 15, 17)
+    [clause focus first overlap(substrate)]
+]
+
+OR
+
+[chapter book = Psalmi and chapter in (25, 119, 145)
+    [verseline
+	[clause focus first overlap(substrate) ]
+    ]
+]
+
+OR
+
+[chapter book = Psalmi and chapter in (34, 37) 
+    [strophe
+	[clause focus first ]
+    ]
+]
+
+OR
+
+[chapter book = Psalmi and chapter in (111, 112) 
+    [colon
+	[clause focus first overlap(substrate) ]
+    ]
+]
+
+OR
+
+[chapter book = Threni and chapter in (1, 2, 4) 
+    [strophe
+	[clause focus first ]
+    ]
+]
+
+OR
+
+[chapter book = Threni and chapter = 3 
+    [verseline
+	[clause focus first overlap(substrate) ]
+    ]
+]
+
+OR
+
+[ verse book = Proverbia and chapter = 31 and verse > 9
+    [ verseline
+	[ clause focus first overlap(substrate) ]
+    ]
+]
+
+GO

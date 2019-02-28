@@ -1,0 +1,21 @@
+//#quotation_verb
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [word 
+	lexical_labels HAS quotation_verb OR
+	lexical_labels HAS poss_quotation_verb
+    ]
+]
+GO
+
+//#vocative
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [phrase function = Voct]
+]
+GO
+
+//#first_person
+SELECT ALL OBJECTS WHERE
+[clause_atom [word ps = p1 OR suffix_person = p2] ]
+GO

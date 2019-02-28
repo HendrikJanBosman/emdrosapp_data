@@ -1,0 +1,21 @@
+SELECT ALL OBJECTS WHERE
+
+[chapter book = Genesis and chapter <= 14] 
+
+OR
+
+[chapter book = Exodus AND chapter <= 2]
+
+OR 
+
+[chapter book = Josua AND chapter <= 3]
+
+OR 
+
+[chapter book = Samuel_I AND chapter >= 5 AND chapter <= 7]
+
+OR
+
+[chapter book = Reges_I AND chapter <= 3]
+
+GO

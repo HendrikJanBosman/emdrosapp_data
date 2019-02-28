@@ -1,0 +1,3 @@
+SELECT ALL OBJECTS WHERE
+[chapter book = Threni AND chapter < 5]
+GO

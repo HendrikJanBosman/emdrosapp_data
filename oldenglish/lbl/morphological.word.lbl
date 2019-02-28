@@ -1,0 +1,17 @@
+
+//////// verbal morphology ///////////////////////
+
+//#ending_don
+select all objects where
+[word graphemes ~ "don$" ]
+go
+
+//#ending_un
+select all objects where
+[word graphemes ~ "un$" ]
+go
+
+//#ending_ra
+select all objects where
+[word graphemes ~ "ra$"]
+go

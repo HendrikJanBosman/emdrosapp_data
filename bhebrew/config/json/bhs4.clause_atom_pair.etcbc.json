@@ -1,0 +1,26 @@
+
+{
+   "fetchinfo" : {
+      "base" : {
+	 "prepend_XML_declaration" : false,
+         "object_types" : {
+	    "clause_atom_pair" : {
+		"start" : "{{ setvar 'firstca' }}1{{ setvarend }}",
+	    },
+	    "clause_atom" : {
+		"start" : "{{ if varequal 'firstca' '1' }}\n...\n{{ endif }}",
+		"end"   : "{{ setvar 'firstca' }}0{{ setvarend }}\n",
+	    },
+            "word" : {
+                  "get" : ["g_word", "g_suffix"],
+                  "start" : "{{ featurenomangle 0 }}{{ featurenomangle 1 }}",
+               },
+         },
+         "priority_list" : [
+	       "clause_atom_pair",
+	       "clause_atom",
+               "word",
+            ]
+      }
+   }
+}

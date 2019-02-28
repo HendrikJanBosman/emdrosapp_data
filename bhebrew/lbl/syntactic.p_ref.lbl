@@ -1,0 +1,24 @@
+//#phrase_head
+SELECT ALL OBJECTS WHERE
+[phrase
+    [p_ref focus first obj=subphrase
+	[subphrase syntactic_labels HAS phrase_head]
+    ] 
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[p_ref obj=phrase]
+GO
+
+//#has_subphr
+SELECT ALL OBJECTS WHERE
+[p_ref obj=phrase
+    [phrase syntactic_labels HAS has_subphr]
+]
+GO
+
+//#no_subphr
+SELECT ALL OBJECTS WHERE
+[p_ref obj=phrase AND NOT syntactic_labels HAS has_subphr]
+GO

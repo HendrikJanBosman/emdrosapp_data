@@ -1,0 +1,27 @@
+
+{
+   "fetchinfo" : {
+      "base" : {
+	 "prepend_XML_declaration" : false,
+         "object_types" : {
+	    "sentence" : {
+		"start" : "{{ setvar 'firstatom' }}1{{ setvarend }}",
+		"end" : "{{ setvar 'firstatom' }}1{{ setvarend }}\\\\\\\\\n",
+	    },
+	    "sentence_atom" : {
+		"start" : "{{ if varequal 'firstatom' '0' }}* {{ endif }}",
+		"end"   : "{{ setvar 'firstatom' }}0{{ setvarend }}",
+	    },
+            "word" : {
+                  "get" : ["latex_txt"],
+                  "start" : "{{ featurenomangle 0 }} ",
+               },
+         },
+         "priority_list" : [
+	       "sentence",
+	       "sentence_atom",
+               "word",
+            ]
+      }
+   }
+}

@@ -1,0 +1,41 @@
+//#single_strophe
+SELECT ALL OBJECTS WHERE
+[canticle
+    [strophe first AND last]
+]
+GO
+
+//#couplet
+SELECT ALL OBJECTS WHERE
+[canticle
+    [strophe first]
+    [strophe last]
+]
+GO
+
+//#triplet
+SELECT ALL OBJECTS WHERE
+[canticle
+    [strophe first]
+    [strophe]
+    [strophe last]
+]
+GO
+
+//#quartet
+SELECT ALL OBJECTS WHERE
+[canticle
+    [strophe first]
+    [strophe] * {2}
+    [strophe last]
+]
+GO
+
+//#quintet_or_larger
+SELECT ALL OBJECTS WHERE
+[canticle
+    [strophe first]
+    [strophe] * {3-}
+    [strophe last]
+]
+GO

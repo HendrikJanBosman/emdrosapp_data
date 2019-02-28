@@ -1,0 +1,22 @@
+//#head
+SELECT ALL OBJECTS WHERE
+[subphrase mother = 0]
+GO
+
+//#phrase_head
+SELECT ALL OBJECTS WHERE
+[phrase
+    [subphrase focus first mother = 0]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[phrase
+    [subphrase first mother <> 0]
+    ![subphrase mother <> 0] *
+    ![subphrase focus mother = 0]
+]
+GO
+
+
+

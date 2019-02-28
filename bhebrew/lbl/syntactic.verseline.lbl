@@ -1,0 +1,309 @@
+
+//#verb_noverb
+
+SELECT ALL OBJECTS WHERE
+[verseline prosodic_labels HAS bicolon
+   [colon syntactic_labels HAS has_verb]
+   [colon syntactic_labels HAS no_verb]
+]
+GO
+
+//#Pred_Pred
+
+SELECT ALL OBJECTS WHERE
+[verseline prosodic_labels has bicolon
+    [colon syntactic_labels HAS has_Pred]
+    [colon syntactic_labels HAS has_Pred]
+]
+GO
+
+//#Pred_no_Pred
+
+SELECT ALL OBJECTS WHERE
+[verseline prosodic_labels has bicolon
+    [colon syntactic_labels HAS has_Pred]
+    [colon syntactic_labels HAS no_Pred]
+]
+GO
+
+//#no_Pred_Pred
+
+SELECT ALL OBJECTS WHERE
+[verseline prosodic_labels has bicolon
+    [colon syntactic_labels HAS no_Pred]
+    [colon syntactic_labels HAS has_Pred]
+]
+GO
+
+//#no_Pred_no_Pred
+
+SELECT ALL OBJECTS WHERE
+[verseline prosodic_labels has bicolon
+    [colon syntactic_labels HAS no_Pred]
+    [colon syntactic_labels HAS no_Pred]
+]
+GO
+
+
+//#Pred_Pred_Pred
+
+SELECT ALL OBJECTS WHERE
+[verseline prosodic_labels has tricolon
+    [colon syntactic_labels HAS has_Pred]
+    [colon syntactic_labels HAS has_Pred]
+    [colon syntactic_labels HAS has_Pred]
+]
+GO
+
+
+//#Pred_Pred_no_Pred
+
+SELECT ALL OBJECTS WHERE
+[verseline prosodic_labels has tricolon
+    [colon syntactic_labels HAS has_Pred]
+    [colon syntactic_labels HAS has_Pred]
+    [colon syntactic_labels HAS no_Pred]
+]
+GO
+
+//#Pred_no_Pred_Pred
+
+SELECT ALL OBJECTS WHERE
+[verseline prosodic_labels has tricolon
+    [colon syntactic_labels HAS has_Pred]
+    [colon syntactic_labels HAS no_Pred]
+    [colon syntactic_labels HAS has_Pred]
+]
+GO
+
+
+//#Pred_no_Pred_no_Pred
+
+SELECT ALL OBJECTS WHERE
+[verseline prosodic_labels has tricolon
+    [colon syntactic_labels HAS has_Pred]
+    [colon syntactic_labels HAS no_Pred]
+    [colon syntactic_labels HAS no_Pred]
+]
+GO
+
+
+//#no_Pred_Pred_Pred
+
+SELECT ALL OBJECTS WHERE
+[verseline prosodic_labels has tricolon
+    [colon syntactic_labels HAS no_Pred]
+    [colon syntactic_labels HAS has_Pred]
+    [colon syntactic_labels HAS has_Pred]
+]
+GO
+
+
+//#no_Pred_Pred_no_Pred
+
+SELECT ALL OBJECTS WHERE
+[verseline prosodic_labels has tricolon
+    [colon syntactic_labels HAS no_Pred]
+    [colon syntactic_labels HAS has_Pred]
+    [colon syntactic_labels HAS no_Pred]
+]
+GO
+
+
+//#no_Pred_no_Pred_Pred
+
+SELECT ALL OBJECTS WHERE
+[verseline prosodic_labels has tricolon
+    [colon syntactic_labels HAS no_Pred]
+    [colon syntactic_labels HAS no_Pred]
+    [colon syntactic_labels HAS has_Pred]
+]
+GO
+
+
+//#no_Pred_no_Pred_no_Pred
+
+SELECT ALL OBJECTS WHERE
+[verseline prosodic_labels has tricolon
+    [colon syntactic_labels HAS no_Pred]
+    [colon syntactic_labels HAS no_Pred]
+    [colon syntactic_labels HAS no_Pred]
+]
+GO
+
+//#noverb_verb
+
+SELECT ALL OBJECTS WHERE
+[verseline
+   [colon syntactic_labels HAS no_verb]
+   [colon syntactic_labels HAS has_verb]
+]
+GO
+
+
+//#verb_verb
+
+SELECT ALL OBJECTS WHERE
+[verseline
+   [colon syntactic_labels HAS has_verb]
+   [colon syntactic_labels HAS has_verb]
+]
+GO
+
+
+//#noverb_noverb
+
+SELECT ALL OBJECTS WHERE
+[verseline
+   [colon syntactic_labels HAS no_verb]
+   [colon syntactic_labels HAS no_verb]
+]
+GO
+
+
+//#multverbs_noverb
+
+SELECT ALL OBJECTS WHERE
+[verseline
+   [colon syntactic_labels HAS mult_verbs]
+   [colon syntactic_labels HAS no_verb]
+]
+GO
+
+///////// CLOETE ///////////
+
+//#cloete_units_two_two
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon syntactic_labels HAS cloete_two_units]
+    [colon syntactic_labels HAS cloete_two_units]
+]
+GO
+
+//#cloete_units_three_two
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon syntactic_labels HAS cloete_three_units]
+    [colon syntactic_labels HAS cloete_two_units]
+]
+GO
+
+//#cloete_units_two_three
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon syntactic_labels HAS cloete_two_units]
+    [colon syntactic_labels HAS cloete_three_units]
+]
+GO
+
+//#cloete_units_three_three
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon syntactic_labels HAS cloete_three_units]
+    [colon syntactic_labels HAS cloete_three_units]
+]
+GO
+
+
+//#cloete_units_four_two
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon syntactic_labels HAS cloete_four_units]
+    [colon syntactic_labels HAS cloete_two_units]
+]
+GO
+
+//#cloete_units_four_three
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon syntactic_labels HAS cloete_four_units]
+    [colon syntactic_labels HAS cloete_three_units]
+]
+GO
+
+//#cloete_units_four_four
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon syntactic_labels HAS cloete_four_units]
+    [colon syntactic_labels HAS cloete_four_units]
+]
+GO
+
+//#cloete_units_two_four
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon syntactic_labels HAS cloete_two_units]
+    [colon syntactic_labels HAS cloete_four_units]
+]
+GO
+
+//#cloete_units_three_four
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon syntactic_labels HAS cloete_three_units]
+    [colon syntactic_labels HAS cloete_four_units]
+]
+GO
+
+//#cloete_units_other
+SELECT ALL OBJECTS WHERE
+[verseline
+     NOT syntactic_labels HAS cloete_units_two_two AND
+     NOT syntactic_labels HAS cloete_units_three_two AND
+     NOT syntactic_labels HAS cloete_units_two_three AND
+     NOT syntactic_labels HAS cloete_units_three_three AND
+     NOT syntactic_labels HAS cloete_units_four_two AND
+     NOT syntactic_labels HAS cloete_units_four_three AND
+     NOT syntactic_labels HAS cloete_units_four_four AND
+     NOT syntactic_labels HAS cloete_units_two_four AND
+     NOT syntactic_labels HAS cloete_units_three_four
+]
+GO
+
+//#CAN_CAN
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon syntactic_labels has CAN]
+    [colon syntactic_labels has CAN]
+]
+GO
+
+//#CAN_non_CAN
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon syntactic_labels has CAN]
+    [colon syntactic_labels has non_CAN]
+]
+GO
+
+//#non_CAN_CAN
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon syntactic_labels has non_CAN]
+    [colon syntactic_labels has CAN]
+]
+GO
+
+//#non_CAN_non_CAN
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon syntactic_labels has non_CAN]
+    [colon syntactic_labels has non_CAN]
+]
+GO
+
+//#qat_yiq
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon [word vt = perf] ]
+    [colon [word vt in (impf, weyq)] ]
+]
+GO
+
+//#yiq_qat
+SELECT ALL OBJECTS WHERE
+[verseline
+    [colon [word vt in (impf, weyq)] ]
+    [colon [word vt = perf] ]
+]
+GO

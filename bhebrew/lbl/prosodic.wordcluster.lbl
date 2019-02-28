@@ -1,0 +1,211 @@
+//#_particle
+SELECT ALL OBJECTS WHERE
+[wordcluster 
+    [word first and last 
+	pdp in (conj,inrg,intj,nega,prep)
+	AND NOT suffix_person <> NA
+    ] 
+]
+GO
+
+//#_complement
+SELECT ALL OBJECTS WHERE
+[phrase function in (Objc, Cmpl, Adju, PreC)
+    [wordcluster focus ]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[wordcluster 
+    [word first 
+	pdp in (conj,inrg,intj,nega,prep)
+	AND NOT suffix_person <> NA
+    ] 
+    [word pdp in (conj,inrg,intj,nega,prep)
+	AND NOT suffix_person <> NA
+    ] * 
+    [word last 
+	pdp in (conj,inrg,intj,nega,prep)
+	AND NOT suffix_person <> NA
+    ] 
+]
+GO
+
+
+//#_no_foot_part
+
+SELECT ALL OBJECTS WHERE
+[clause
+    [wordcluster focus
+	no_of_syllables = 1 AND
+	prosodic_labels HAS _particle
+    ]
+    [wordcluster
+	no_of_stresses > 0
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause
+    [wordcluster focus
+	prosodic_labels HAS _particle
+    ]
+    [wordcluster
+	no_of_stresses >  0 AND 
+	no_of_syllables = 1
+    ]
+]
+GO
+
+//#_no_foot_cstr
+SELECT ALL OBJECTS WHERE
+[phrase
+    [wordcluster focus first no_of_syllables = 1 
+	[word last st = c]
+    ]
+    [wordcluster last no_of_syllables <= 2 ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[phrase
+    [wordcluster first no_of_syllables <= 2
+	[word last st = c]
+    ]
+    [wordcluster focus last no_of_syllables = 1]
+]
+GO
+
+
+//#_no_foot_cmpl
+
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase function = Pred
+	[wordcluster first and last
+	    no_of_syllables <= 2
+	]
+    ]
+    [wordcluster focus 
+	prosodic_labels has _complement and
+	no_of_syllables = 1
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause
+    [phrase function = Pred
+	[wordcluster focus first and last
+	    no_of_syllables = 1
+	]
+    ]
+    [wordcluster
+	prosodic_labels has _complement and
+	no_of_syllables <= 2
+    ]
+]
+GO
+
+//#zero_stresses
+SELECT ALL OBJECTS WHERE
+[wordcluster 
+    (no_of_syllables = 1) AND
+    (no_of_stresses = 0 OR
+     prosodic_labels HAS _no_foot_part OR
+     prosodic_labels HAS _no_foot_cstr OR
+     prosodic_labels HAS _no_foot_cmpl)
+]
+GO
+
+//#one_stress
+SELECT ALL OBJECTS WHERE
+[wordcluster 
+    no_of_stresses >= 1 AND
+    no_of_syllables <= 5 AND
+    NOT prosodic_labels HAS _no_foot_part AND
+    NOT prosodic_labels HAS _no_foot_cstr AND
+    NOT prosodic_labels HAS _no_foot_cmpl
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[wordcluster 
+    no_of_stresses = 0 AND
+    no_of_syllables > 1
+]
+GO
+
+
+//#two_stresses
+SELECT ALL OBJECTS WHERE
+[wordcluster no_of_syllables > 5]
+GO
+
+
+//#no_of_feet := 0;
+SELECT ALL OBJECTS WHERE
+[wordcluster 
+    prosodic_labels HAS zero_stresses
+]
+GO
+
+
+//#no_of_feet := 1;
+SELECT ALL OBJECTS WHERE
+[wordcluster 
+    prosodic_labels HAS one_stress
+]
+GO
+
+
+//#no_of_feet := 2;
+SELECT ALL OBJECTS WHERE
+[wordcluster prosodic_labels HAS two_stresses]
+GO
+
+//#_corr_wc
+
+// part - stressed word - part
+
+SELECT ALL OBJECTS WHERE
+[clause
+    [wordcluster no_of_stresses = 0 AND 
+	(prosodic_labels has _no_foot_part OR
+	prosodic_labels has _no_foot_cstr OR
+	prosodic_labels has _no_foot_cmpl)
+    ]
+    [wordcluster no_of_stresses > 0]
+    [wordcluster focus 
+	no_of_stresses = 0 AND 
+	NOT etcbc_txt ~ "&" AND
+	(prosodic_labels has _no_foot_part OR
+	 prosodic_labels has _no_foot_cstr OR
+	 prosodic_labels has _no_foot_cmpl)
+    ]
+]
+GO
+
+// part - part - stressed
+
+SELECT ALL OBJECTS WHERE
+[clause
+    [wordcluster focus no_of_stresses = 0]
+    [wordcluster no_of_stresses = 0 AND 
+	(prosodic_labels has _no_foot_part OR
+	prosodic_labels has _no_foot_cstr OR
+	prosodic_labels has _no_foot_cmpl)
+    ]
+    [wordcluster no_of_stresses > 0]
+]
+GO
+
+//// CAUTION, DIRTY HACK: the assignment is used for the second time.
+//// it must differ from the first one, therefore, it has a different spacing
+
+//#no_of_feet  :=  1;
+SELECT ALL OBJECTS WHERE
+    [wordcluster prosodic_labels HAS _corr_wc]
+GO

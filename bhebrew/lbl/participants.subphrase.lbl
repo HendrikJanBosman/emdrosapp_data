@@ -1,0 +1,29 @@
+//#PRef_png
+SELECT ALL OBJECTS WHERE
+[subphrase 
+    [word participants_labels HAS PRef_png]
+]
+GO
+
+//#PRef_sfx
+SELECT ALL OBJECTS WHERE
+[subphrase 
+    [word participants_labels HAS PRef_sfx]
+]
+GO
+
+//#PRef_lex
+SELECT ALL OBJECTS WHERE
+[subphrase 
+    [word participants_labels HAS PRef_lex]
+]
+GO
+
+//#PRef
+SELECT ALL OBJECTS WHERE
+[subphrase
+    participants_labels HAS PRef_png OR
+    participants_labels HAS PRef_sfx OR
+    participants_labels HAS PRef_lex 
+]
+GO

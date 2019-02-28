@@ -1,0 +1,281 @@
+//#root
+SELECT ALL OBJECTS WHERE
+[clause_atom mother = 0]
+GO
+
+
+//#conj
+SELECT ALL OBJECTS WHERE
+[clause_atom
+    [phrase first function in (Conj, Rela)]
+]
+GO
+
+//#asyn
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [phrase first not function in (Conj, Rela)]
+]
+GO
+
+//#has_Pred
+SELECT ALL OBJECTS WHERE
+[clause_atom [phrase syntactic_labels HAS Pred] ]
+GO
+
+//#no_Pred
+SELECT ALL OBJECTS WHERE
+[clause_atom NOT syntactic_labels HAS has_Pred]
+GO
+
+//#has_Subj
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [phrase function in (Subj, PreS, PrcS, NCoS, ModS, IntS, ExsS)]
+]
+GO
+
+//#no_Subj
+SELECT ALL OBJECTS WHERE
+[clause_atom NOT syntactic_labels HAS has_Subj]
+GO
+    
+
+//#has_Objc
+SELECT ALL OBJECTS WHERE
+[clause_atom [phrase function in (Objc, PreO, PtcO)] ]
+GO
+
+//#no_Objc
+SELECT ALL OBJECTS WHERE
+[clause_atom NOT syntactic_labels HAS has_Objc]
+GO
+    
+//#has_Copu
+SELECT ALL OBJECTS WHERE
+[clause_atom [phrase syntactic_labels HAS copula] ]
+GO
+
+//#has_Voct
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom as ca1 focus syntactic_labels HAS has_Pred]
+    ..
+    [clause_atom typ = Voct and mother = ca1.self]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [phrase function = Subj
+	[word pdp = prps and ps = p2]
+	..
+	[word pdp = nmpr]
+    ]
+]
+GO
+
+
+//#dep
+SELECT ALL OBJECTS WHERE
+[clause_atom typ in (Defc, Ellp, InfC, Voct, Reop)]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause rela <> NA and rela <> Coor
+    [clause_atom focus first]
+]
+GO
+
+//#coord
+SELECT ALL OBJECTS WHERE
+[clause rela = Coor
+    [clause_atom focus first]
+]
+GO
+
+
+//#sensory_verb
+SELECT ALL OBJECTS WHERE
+[clause_atom
+    [phrase function = Pred
+	[word lexical_labels HAS sensory_verb]
+    ]
+]
+GO
+
+//#transitive_verb
+
+SELECT ALL OBJECTS WHERE
+[clause_atom syntactic_labels HAS sensory_verb]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom
+    [phrase function = Pred
+	[word lexical_labels HAS transitive_verb]
+    ]
+]
+GO
+
+
+//#Objc_missing
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    syntactic_labels HAS transitive_verb
+    AND syntactic_labels HAS no_Objc
+]
+GO
+
+
+//#Subj_clause
+SELECT ALL OBJECTS WHERE
+[clause_atom as ca1
+    [clause OVERLAP (SUBSTRATE) 
+	first_monad = ca1.first_monad
+	AND rela = Subj
+    ]
+]
+GO
+
+//#Objc_clause
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [phrase first and last function = Objc]
+]
+GO
+
+
+//#indep
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    syntactic_labels HAS has_Pred AND
+    (NOT syntactic_labels HAS dep)
+]
+GO
+
+//#defective
+SELECT ALL OBJECTS WHERE
+[clause_atom typ in (Defc, CPen)]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom typ <> Voct AND syntactic_labels HAS no_Pred]
+GO
+
+//#VC
+SELECT ALL OBJECTS WHERE
+[clause_atom [phrase syntactic_labels HAS Pred AND typ = VP ] ] 
+GO
+
+
+//#NC
+SELECT ALL OBJECTS WHERE
+[clause_atom [phrase syntactic_labels HAS Pred AND typ <> VP]]
+GO
+
+//#fronting
+SELECT ALL OBJECTS WHERE
+[clause_atom
+    [phrase function in (Frnt, Subj, Objc, Cmpl)]
+    ..
+    [phrase syntactic_labels HAS Pred]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom syntactic_labels HAS no_Pred
+    [phrase function = Frnt]
+]
+GO
+
+//#no_fronting
+SELECT ALL OBJECTS WHERE
+[clause_atom NOT syntactic_labels HAS fronting
+    [phrase syntactic_labels HAS Pred]
+    ..
+    [phrase function in (Subj, Objc, Cmpl)]
+]
+GO
+
+
+///// MODES ///////
+
+//#interrogative
+SELECT ALL OBJECTS WHERE
+[clause_atom
+    [word pdp in (inrg, prin)]
+]
+GO
+
+//#deictic
+SELECT ALL OBJECTS WHERE
+[clause_atom
+    [word pdp in (prde, prps)]
+]
+GO
+
+//#discursive
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+typ in (Voct, WIm0, WImX, WXIm, WXYq, WYq0,
+	WYqX, WxI0, WxIX, WxY0, WxYX, XImp,
+	XYqt, ZIm0, ZImX, ZYq0, ZYqX, xIm0,
+	xImX, xYq0, xYqX)
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[clause_atom
+    [word syntactic_labels HAS discursive_marker] 
+] 
+GO
+
+
+//#non_discursive
+SELECT ALL OBJECTS WHERE
+[clause_atom (NOT syntactic_labels HAS discursive) 
+    AND typ in (Ptcp, WXQt, 
+	        Way0, WayX, WxQ0, WxQX, XQtl, ZQt0, ZQtX,
+	        xQt0, xQtX)
+]
+GO
+
+
+//#in_non_discursive_speech
+SELECT ALL OBJECTS WHERE
+[clause_atom
+    syntactic_labels HAS root AND
+    syntactic_labels HAS non_discursive
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom FIRST
+    syntactic_labels HAS non_discursive AND
+    syntactic_labels HAS has_Subj
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[strophe 
+    [clause_atom FOCUS FIRST
+	syntactic_labels HAS non_discursive
+    ]
+]
+GO
+
+//#in_discursive_speech
+SELECT ALL OBJECTS WHERE
+[clause_atom syntactic_labels HAS discursive]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom syntactic_labels HAS in_discursive_speech]
+    ..
+    [clause_atom FOCUS not syntactic_labels HAS in_non_discursive_speech]
+]
+GO

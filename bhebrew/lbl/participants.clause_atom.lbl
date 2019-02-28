@@ -1,0 +1,61 @@
+
+//#PRef
+//SELECT ALL OBJECTS WHERE
+//[clause_atom as ca
+    //[clause OVERLAP (SUBSTRATE) first_monad = ca.first_monad AND
+	//(rela in (Subj, Objc, Cmpl) OR typ in (Voct, CPen))
+    //]
+//]
+//GO
+
+//#has_first_ps
+SELECT ALL OBJECTS WHERE
+[clause_atom [p_ref ps = p1] ] 
+GO
+
+//#has_sec_ps
+SELECT ALL OBJECTS WHERE
+[clause_atom [p_ref ps = p2] ] 
+GO
+
+//#has_third_ps
+SELECT ALL OBJECTS WHERE
+[clause_atom [p_ref ps = p3] ] 
+GO
+
+//#expl_Subj
+SELECT ALL OBJECTS WHERE
+[clause_atom [p_ref obj=phrase AND typ=Subj] ] 
+GO
+
+//#indep_Subj
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [p_ref obj=phrase AND typ=Subj
+	NOTEXIST [p_ref obj = sfx]
+    ]
+] 
+GO
+
+//#has_nmpr
+SELECT ALL OBJECTS WHERE
+[clause_atom [p_ref participants_labels HAS nmpr] ] 
+GO
+
+//#has_secondary_participant
+
+SELECT ALL OBJECTS WHERE
+[clause_atom
+    [phrase function = Subj
+	[p_ref obj=sfx]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom 
+    [p_ref obj=sfx AND participants_labels HAS external]
+]
+GO
+
+

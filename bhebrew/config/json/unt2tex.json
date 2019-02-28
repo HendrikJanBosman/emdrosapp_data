@@ -1,0 +1,34 @@
+{
+   "fetchinfo" : {
+      "base" : {
+	 "prepend_XML_declaration" : false,
+         "object_types" : {
+	    "verse"  : {
+	       "get" : ["label"],
+	       "start" : "{{ setvar 'label' }}{{ featurenomangle 0 }}{{ setvarend }}"
+	    },
+            "clause_atom" : {
+	       "get"   : ["dist", "tab"],
+	       "start" : "{{ featurenomangle 0 }} {{ featurenomangle 1 }}{{ emitvar 'label' }} ",
+	       "end"   : "\n"
+            },
+            "word" : {
+                  "get" : ["g_word", "postconn", "maqqef"],
+                  "start" : "{{ setvar 'postconn' }}{{ featurenomangle 1 }}{{ setvarend }}{{ setvar 'maqqef' }}{{ featurenomangle 2 }}{{ setvarend }}{{ featurenomangle 0 }}",
+		  "end"   : "{{ if varequal 'postconn' 'false' }}{{ if varequal 'maqqef' 'false' }} {{ endif }}{{ endif }}"
+               },
+            "phrase" : {
+                  "get" : [ "typ", "function"],
+                  "start" : " [ ",
+                  "end" : "]"
+               },
+         },
+         "priority_list" : [
+               "clause",
+               "phrase",
+               "word",
+	       "verse",
+            ]
+      }
+   }
+}

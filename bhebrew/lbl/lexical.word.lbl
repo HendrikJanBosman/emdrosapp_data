@@ -1,0 +1,122 @@
+//// number, gender and syntactically relevant semantic fields of known lexemes
+
+//#nu := sg; gn := m;
+SELECT ALL OBJECTS WHERE
+[word 
+    lex = "JHWH/" OR 
+    lex = ">DNJ/" OR
+    lex = "XBQWQ/" OR
+    lex = "YR/" OR
+    lex = ">JB/" 
+]
+GO
+
+//#nu := sg; gn := f;
+SELECT ALL OBJECTS WHERE
+[word 
+    lex = "JHWDH/" OR 
+    lex = "YJWN==/" OR
+    lex = "JRWCLM/"
+]
+GO
+
+//#gn := m;
+SELECT ALL OBJECTS WHERE
+[word 
+    lex = "MLK/" OR 
+    lex = "YR/" OR
+    lex = "NBJ>/" OR
+    lex = "KHN/" OR
+    lex = "SR/"
+]
+GO
+
+//#gn := unknown; nu := sg;
+SELECT ALL OBJECTS WHERE
+[word 
+    lex = ">CWR/" 
+]
+GO
+
+//#gn := f;
+SELECT ALL OBJECTS WHERE
+[word
+    lex = "BT/" OR
+    lex = "BTWLH/" OR 
+    lex = ">CH/" OR 
+    lex = "MLKH/" OR
+    lex = "SRH/" OR
+    lex = ">DWM/"
+]
+GO
+
+//#pdp := nmpr;
+SELECT ALL OBJECTS WHERE
+[word lex = ">DNJ/"]
+GO
+
+//#quotation_verb
+
+SELECT ALL OBJECTS WHERE
+[word 
+    lex = ">MR[" OR
+    (lex = "DBR[" AND vs = piel)
+]
+GO
+
+#sensory_verb
+SELECT ALL OBJECTS WHERE
+[word
+       (lex = "R>H[" AND vs = qal) 
+    OR (lex = "NBV[" AND vs = hif)
+    OR (lex = ">MN[" AND vs = hif)
+    OR (lex = "CM<[" AND vs = qal)
+    OR (lex = "JD<[" AND vs = qal)
+    OR (lex = "ZKR[" AND vs = qal)
+]
+GO
+
+//#poss_quotation_verb
+SELECT ALL OBJECTS WHERE
+[word 
+    lex = "Z<Q[" OR lex = "YWH["
+]
+GO
+
+//#transitive_verb
+SELECT ALL OBJECTS WHERE
+[word 
+   lexical_labels HAS sensory_verb
+   OR lex = "RJB["
+   OR lex = "<FH["
+]
+GO
+
+
+//#collective
+SELECT ALL OBJECTS WHERE
+[word lex = "<M/"]
+GO
+
+//#personal
+SELECT ALL OBJECTS WHERE
+[word 
+    lex = "JHWH/" OR 
+    lex = ">DNJ/" OR
+    lex = "BT/" OR
+    lex = "BTWLH/" OR 
+    lex = ">CH/" OR 
+    lex = "MLK/" OR 
+    lex = "MLKH/" OR
+    lex = "NBJ>/" OR
+    lex = "KHN/" OR
+    lex = "YR/" OR
+    lex = "SR/" OR
+    lex = "SRH/"
+]
+GO
+
+//#discursive_marker
+SELECT ALL OBJECTS WHERE
+[word lex = ">WLJ"]
+GO

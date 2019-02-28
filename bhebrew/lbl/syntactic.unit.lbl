@@ -1,0 +1,58 @@
+//#sentence
+SELECT ALL OBJECTS WHERE
+[unit [sentence FIRST AND LAST] ] 
+GO
+
+//#sentence_atom
+SELECT ALL OBJECTS WHERE
+[sentence_atom [unit FOCUS FIRST AND LAST] ] 
+GO
+
+//#clause
+SELECT ALL OBJECTS WHERE
+[unit [clause FIRST AND LAST] ]
+GO
+
+//#clause_atom
+SELECT ALL OBJECTS WHERE
+[unit [clause_atom FIRST AND LAST] ]
+GO
+
+//#asyn
+SELECT ALL OBJECTS WHERE
+[unit [clause FIRST syntactic_labels HAS asyn] ]
+GO
+
+//#conj
+SELECT ALL OBJECTS WHERE
+[unit syntactic_labels HAS clause_atom
+    [clause_atom syntactic_labels HAS conj]
+] 
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[unit 
+    [clause_atom_pair FIRST NOT syntactic_labels HAS preceding_daughter
+	[clause_atom FIRST syntactic_labels HAS conj]
+    ]
+]
+GO
+
+
+//#compound_sentence
+
+SELECT ALL OBJECTS WHERE
+[unit 
+    [unit FIRST 
+	syntactic_labels HAS sentence
+	AND
+	syntactic_labels HAS asyn
+    ]
+    [unit LAST
+	syntactic_labels HAS sentence
+	AND
+	syntactic_labels HAS conj
+    ] * {1-}
+]
+GO

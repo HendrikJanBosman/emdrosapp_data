@@ -1,0 +1,4 @@
+//#direct_speech
+SELECT ALL OBJECTS WHERE
+[domain [clause_atom first domains_labels HAS first_person] ]
+GO

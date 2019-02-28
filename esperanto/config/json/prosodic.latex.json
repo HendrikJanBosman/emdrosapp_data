@@ -1,0 +1,31 @@
+{
+   "fetchinfo" : {
+      "base" : {
+	 "prepend_XML_declaration" : false,
+         "object_types" : {
+	    "strophe" : {
+		"end" : "[2ex]\n\n"
+	    },
+            "verseline" : {
+                "start" : "{{ setvar 'firstcolon' }}1{{ setvarend }}\\noindent",
+                "end" : "\\\\\\\\\n",
+            },
+            "colon" : {
+                "start" : "{{ if varequal 'firstcolon' '0' }}* {{ endif }}",
+                "end"   : "{{ setvar 'firstcolon' }}0{{ setvarend }}",
+            },
+            "word" : {
+                  "get" : ["surface_latex"],
+                  "start" : "{{ featurenomangle 0 }}",
+		  "end"   : " "
+               },
+         },
+         "priority_list" : [
+	       "strophe",
+	       "verseline",
+	       "colon",
+               "word",
+            ]
+      }
+   }
+}

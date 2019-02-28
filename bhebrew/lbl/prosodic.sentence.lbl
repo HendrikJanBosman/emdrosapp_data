@@ -1,0 +1,56 @@
+//#one_colon
+SELECT ALL OBJECTS WHERE
+[sentence 
+    [colon first and last ]
+]
+GO
+
+//#two_cola
+SELECT ALL OBJECTS WHERE
+[sentence 
+    [colon first]
+    ![colon last]
+]
+GO
+
+//#three_cola
+SELECT ALL OBJECTS WHERE
+[sentence 
+    [colon first]
+    ![colon]
+    ![colon last]
+]
+GO
+
+//#four_or_more_cola
+SELECT ALL OBJECTS WHERE
+[sentence 
+    [colon first]
+    ![colon] * {2-}
+    ![colon last]
+]
+GO
+
+//#enjambment
+SELECT ALL OBJECTS WHERE
+[sentence
+    not prosodic_labels has one_colon
+    and not prosodic_labels has two_cola
+    and not prosodic_labels has three_cola
+    and not prosodic_labels has four_or_more_cola
+]
+GO
+
+//#verseline
+SELECT ALL OBJECTS WHERE
+[sentence
+    [verseline FIRST AND LAST]
+]
+GO
+
+//#strophe
+SELECT ALL OBJECTS WHERE
+[sentence
+    [strophe FIRST AND LAST]
+]
+GO

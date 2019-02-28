@@ -1,0 +1,21 @@
+// acrostic poems, only the poems / verselines proper
+
+SELECT ALL OBJECTS WHERE
+
+[verse book = Psalmi and chapter in (9, 10, 25, 34, 37, 111, 112, 119, 145)
+    [verseline focus]
+]
+
+OR 
+
+[verse book = Threni and chapter in (1, 2, 3, 4) 
+    [verseline focus]
+]
+
+OR
+
+[verse book = Proverbia and chapter = 31  and verse >= 10
+    [verseline focus]
+]
+
+GO

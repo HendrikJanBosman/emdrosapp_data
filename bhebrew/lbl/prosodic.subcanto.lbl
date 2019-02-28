@@ -1,0 +1,41 @@
+//#single_canticle
+SELECT ALL OBJECTS WHERE
+[subcanto
+    [canticle first AND last]
+]
+GO
+
+//#couplet
+SELECT ALL OBJECTS WHERE
+[subcanto
+    [canticle first]
+    [canticle last]
+]
+GO
+
+//#triplet
+SELECT ALL OBJECTS WHERE
+[subcanto
+    [canticle first]
+    [canticle]
+    [canticle last]
+]
+GO
+
+//#quartet
+SELECT ALL OBJECTS WHERE
+[subcanto
+    [canticle first]
+    [canticle] * {2}
+    [canticle last]
+]
+GO
+
+//#quintet_or_larger
+SELECT ALL OBJECTS WHERE
+[subcanto
+    [canticle first]
+    [canticle] * {3-}
+    [canticle last]
+]
+GO

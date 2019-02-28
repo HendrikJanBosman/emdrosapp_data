@@ -1,0 +1,6 @@
+//#fronting_at_start
+SELECT ALL OBJECTS WHERE
+[strophe
+  [clause first syntactic_labels HAS fronting]
+]
+GO

@@ -1,0 +1,958 @@
+//#Subj_Subj
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom [p_ref typ = Subj] ]
+    ..
+    [clause_atom [p_ref typ = Subj] ]
+]
+GO
+
+//#Subj_no_Subj
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom [p_ref typ = Subj] ]
+    ..
+    [clause_atom NOTEXIST [p_ref typ = Subj] ]
+]
+GO
+
+//#no_Subj_Subj
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom NOTEXIST [p_ref typ = Subj] ]
+    ..
+    [clause_atom [p_ref typ = Subj] ]
+]
+GO
+
+//#no_Subj_no_Subj
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom NOTEXIST [p_ref typ = Subj] ]
+    ..
+    [clause_atom NOTEXIST [p_ref typ = Subj] ]
+]
+GO
+
+//#new_nmpr_Subj
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom first]
+    ..
+    [clause_atom [p_ref typ=Subj [word pdp=nmpr] ] ]
+]
+GO
+
+
+//#new_nmpr_Objc
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom first]
+    ..
+    [clause_atom [p_ref typ=Objc AND participants_labels HAS nmpr] ]
+]
+GO
+
+
+//#new_nmpr_other
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair 
+    NOT (participants_labels HAS new_nmpr_Subj OR
+         participants_labels HAS new_nmpr_Objc)
+    [clause_atom first]
+    ..
+    [clause_atom [p_ref participants_labels HAS nmpr] ]
+]
+GO
+
+
+//#new_prps
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom first]
+    ..
+    [clause_atom [p_ref participants_labels HAS prps] ]
+]
+GO
+
+
+//#sfx_to_nmpr
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom participants_labels HAS has_nmpr
+	[p_ref AS p_ref1 
+	    typ <> Voct AND
+	    participants_labels HAS nmpr
+	]
+    ]
+    ..
+    [clause_atom NOT participants_labels HAS has_nmpr
+	[p_ref 
+	    participants_labels has external 
+	    AND obj=sfx
+	    AND ps = p3
+	    AND nu = p_ref1.nu
+	    AND gn = p_ref1.gn
+	]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom participants_labels HAS has_nmpr
+	[p_ref AS p_ref1 
+	    typ = Voct AND
+	    participants_labels HAS nmpr
+	]
+    ]
+    ..
+    [clause_atom NOT participants_labels HAS has_nmpr
+	[p_ref 
+	    participants_labels has external 
+	    AND obj=sfx
+	    AND ps = p2
+	    AND nu = p_ref1.nu
+	    AND gn = p_ref1.gn
+	]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair 
+    [clause_atom]
+    [gap 
+	[p_ref AS p_ref1 
+	    typ <> Voct AND 
+	    participants_labels HAS nmpr
+	]
+    ]
+    [clause_atom NOT participants_labels HAS has_nmpr
+	[p_ref 
+	    participants_labels HAS external 
+	    AND obj=sfx 
+	    AND ps = p3
+	    AND gn=p_ref1.gn
+	]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair 
+    [clause_atom]
+    [gap 
+	[p_ref AS p_ref1 
+	    typ = Voct AND 
+	    participants_labels HAS nmpr
+	]
+    ]
+    [clause_atom NOT participants_labels HAS has_nmpr
+	[p_ref 
+	    participants_labels HAS external 
+	    AND obj=sfx 
+	    AND ps = p2
+	    AND gn=p_ref1.gn
+	]
+    ]
+]
+GO
+
+
+//#sfx_to_prps
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom [p_ref AS p_ref1 participants_labels HAS prps] ]
+    ..
+    [clause_atom 
+	[p_ref obj=sfx AND
+	    ps = p_ref1.ps AND
+	    nu = p_ref1.nu AND
+	    gn = p_ref1.gn 
+	]
+    ]
+]
+GO
+
+
+//#_sfx_to_verb
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom 
+	[p_ref AS p_ref1 obj=word AND typ=verb_Pred AND
+	    ps <> unknown AND nu <> unknown AND gn <> unknown
+	]
+    ]
+    ..
+    [clause_atom
+	[p_ref obj=sfx AND
+	    participants_labels HAS external AND
+	    (ps = p_ref1.ps AND
+	     nu = p_ref1.nu AND
+	     gn = p_ref1.gn)
+	]
+    ]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom 
+	[p_ref AS p_ref1 
+	    obj=word 
+	    AND typ=verb_Pred 
+	    AND ps <> unknown 
+	    AND nu <> unknown 
+	    AND gn = unknown
+	]
+    ]
+    ..
+    [clause_atom
+	[p_ref 
+	    obj=sfx 
+	    AND participants_labels HAS external
+	    AND (ps = p_ref1.ps AND nu = p_ref1.nu)
+	]
+    ]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom 
+	[p_ref AS p_ref1 obj=word AND typ=verb_Pred AND
+	    ps = unknown AND nu <> unknown AND gn <> unknown
+	]
+    ]
+    ..
+    [clause_atom
+	[p_ref
+	    obj=sfx
+	    AND participants_labels HAS external
+	    AND (gn = p_ref1.gn AND nu = p_ref1.nu)
+	]
+    ]
+]
+GO
+
+
+//#verb_to_sfx
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom
+	[p_ref AS p_ref1 obj=sfx]
+    ]
+    ..
+    [clause_atom NOT participants_labels HAS expl_Subj
+	[p_ref typ = verb_Pred AND
+	    ((ps = p_ref1.ps AND nu = p_ref1.nu AND gn = p_ref1.gn) OR
+	    (ps = p_ref1.ps AND nu = p_ref1.nu AND gn = unknown) OR
+	    (ps = unknown AND nu = p_ref1.nu AND gn = p_ref1.gn))
+	]
+    ]
+]
+GO
+
+
+//#verb_to_prps
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom
+	[p_ref AS p_ref1 obj=word and participants_labels has prps]
+    ]
+    ..
+    [clause_atom NOT participants_labels HAS expl_Subj
+	[p_ref typ = verb_Pred AND
+	    ((ps = p_ref1.ps AND nu = p_ref1.nu AND gn = p_ref1.gn) OR
+	    (ps = p_ref1.ps AND nu = p_ref1.nu AND gn = unknown) OR
+	    (ps = unknown AND nu = p_ref1.nu AND gn = p_ref1.gn))
+	]
+    ]
+]
+GO
+
+
+//#sfx_to_sfx
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom 
+	[p_ref AS p_ref1 obj=sfx]
+    ]
+    ..
+    [clause_atom
+	[p_ref 
+	    obj=sfx 
+	    AND participants_labels HAS external
+	    AND ps = p_ref1.ps 
+	    AND nu = p_ref1.nu 
+	    AND gn = p_ref1.gn
+	]
+    ]
+]
+GO
+
+
+//#sfx_to_Subj
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom 
+	[p_ref as p_ref1 
+	    obj <> sfx
+	    AND typ = Subj
+	    AND ps in (p3, unknown, NA)
+	]
+    ]
+    ..
+    [clause_atom
+	[p_ref participants_labels HAS external
+	    AND obj=sfx 
+	    AND ps = p3
+	    AND (nu = p_ref1.nu AND NOT nu in (NA, unknown))
+	    AND (gn = p_ref1.gn AND NOT gn in (NA, unknown))
+	]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom 
+	[p_ref as p_ref1 
+	    obj <> sfx
+	    AND typ = Subj
+	    AND ps in (p1, p2)
+	]
+    ]
+    ..
+    [clause_atom
+	[p_ref participants_labels HAS external
+	    AND obj=sfx 
+	    AND ps = p_ref1.ps
+	    AND nu = p_ref1.nu 
+	    AND gn = p_ref1.gn
+	]
+    ]
+]
+GO
+
+
+//#sfx_to_Pred
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair participants_labels HAS _sfx_to_verb]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    NOT participants_labels HAS sfx_to_Subj
+    [clause_atom 
+	[p_ref as p_ref1
+	    obj <> sfx 
+	    AND typ in (verb_Pred, nom_Pred)
+	    AND ps in (p3, NA, unknown)
+	]
+    ]
+    ..
+    [clause_atom 
+	[p_ref 
+	    obj = sfx 
+	    AND participants_labels HAS external
+	    AND ps = p3
+	    AND nu = p_ref1.nu
+	    AND gn = p_ref1.gn
+	]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom 
+	[p_ref as p_ref2 
+	    obj <> sfx 
+	    AND typ in (verb_Pred, nom_Pred)
+	    AND ps in (p1, p2)
+	]
+    ]
+    ..
+    [clause_atom 
+	[p_ref obj = sfx 
+	    AND participants_labels HAS external
+	    AND ps = p_ref2.ps
+	    AND nu = p_ref2.nu
+	    AND gn = p_ref2.gn
+	]
+    ]
+]
+GO
+
+//#sfx_to_Objc
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    NOT participants_labels HAS sfx_to_Subj
+    AND NOT participants_labels HAS sfx_to_Pred
+    [clause_atom 
+	[p_ref as p_ref1 
+	    obj <> sfx
+	    AND typ = Objc
+	    AND ps in (p3, unknown, NA)
+	]
+    ]
+    ..
+    [clause_atom
+	[p_ref participants_labels HAS external
+	    AND obj=sfx 
+	    AND ps = p3
+	    AND (nu = p_ref1.nu AND NOT nu in (NA, unknown))
+	    AND (gn = p_ref1.gn AND NOT gn in (NA, unknown))
+	]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    NOT participants_labels HAS sfx_to_Subj
+    AND NOT participants_labels HAS sfx_to_Pred
+    [clause_atom 
+	[p_ref as p_ref1 
+	    obj <> sfx
+	    AND typ = Objc
+	    AND ps in (p1, p2)
+	]
+    ]
+    ..
+    [clause_atom
+	[p_ref participants_labels HAS external
+	    AND obj=sfx 
+	    AND ps = p_ref1.ps
+	    AND nu = p_ref1.nu 
+	    AND gn = p_ref1.gn
+	]
+    ]
+]
+GO
+
+
+//#sfx_to_other
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    NOT participants_labels HAS sfx_to_Subj
+    AND NOT participants_labels HAS sfx_to_Pred
+    AND NOT participants_labels HAS sfx_to_Objc
+    [clause_atom 
+	[p_ref as p_ref1 
+	    obj <> sfx
+	    AND typ = other
+	    AND ps in (p3, unknown, NA)
+	]
+    ]
+    ..
+    [clause_atom
+	[p_ref participants_labels HAS external
+	    AND obj=sfx 
+	    AND ps = p3
+	    AND (nu = p_ref1.nu AND NOT nu in (NA, unknown))
+	    AND (gn = p_ref1.gn AND NOT gn in (NA, unknown))
+	]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    NOT participants_labels HAS sfx_to_Subj
+    AND NOT participants_labels HAS sfx_to_Pred
+    AND NOT participants_labels HAS sfx_to_Objc
+    [clause_atom 
+	[p_ref as p_ref1 
+	    obj <> sfx
+	    AND typ = other
+	    AND ps in (p1, p2)
+	]
+    ]
+    ..
+    [clause_atom
+	[p_ref participants_labels HAS external
+	    AND obj=sfx 
+	    AND ps = p_ref1.ps
+	    AND nu = p_ref1.nu 
+	    AND gn = p_ref1.gn
+	]
+    ]
+]
+GO
+
+
+//#voca_to_sec_ps
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom [p_ref ps = p2] ]
+    ..
+    [clause_atom [p_ref typ = Voct] ]
+]
+GO
+
+//#sec_ps_to_voca
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom [p_ref typ = Voct] ]
+    ..
+    [clause_atom [p_ref ps = p2] ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom typ <> Voct NOTEXIST [p_ref ps=p2] ]
+    [gap [p_ref typ = Voct] ]
+    [clause_atom [p_ref ps = p2] ]
+]
+GO
+
+
+
+
+//#Voct_to_Voct
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom syntactic_labels HAS has_Voct]
+    ..
+    [clause_atom syntactic_labels HAS has_Voct]
+]
+GO
+
+
+//#same_verb_png
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom
+	[p_ref AS p_ref1 typ = verb_Pred]
+    ]
+    ..
+    [clause_atom
+	[p_ref typ = verb_Pred  AND
+	    ps = p_ref1.ps AND
+	    nu = p_ref1.nu AND
+	    gn = p_ref1.gn
+	]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom
+	[p_ref AS p_ref1 typ = verb_Pred AND // qatal plural forms
+	    ps <> unknown AND
+	    nu <> unknown AND
+	    gn = unknown
+	]
+    ]
+    ..
+    [clause_atom
+	[p_ref typ = verb_Pred AND 
+	    ps = p_ref1.ps AND
+	    nu = p_ref1.nu 
+	]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom
+	[p_ref AS p_ref1 typ = verb_Pred AND // participles
+	    ps = unknown AND
+	    nu <> unknown AND
+	    gn <> unknown
+	]
+    ]
+    ..
+    [clause_atom
+	[p_ref typ = verb_Pred AND
+	    nu = p_ref1.nu AND
+	    gn = p_ref1.gn 
+	]
+    ]
+]
+GO
+
+
+//#diff_verb_png
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair NOT participants_labels HAS same_verb_png
+    [clause_atom [p_ref typ=verb_Pred] ] 
+    ..
+    [clause_atom [p_ref typ=verb_Pred] ]
+]
+GO
+
+
+//#new_secondary_part
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    participants_labels HAS sfx_to_Pred OR
+    participants_labels HAS sfx_to_prps OR
+    participants_labels HAS sfx_to_nmpr OR
+    participants_labels HAS sfx_to_Subj
+
+    [clause_atom NOT participants_labels HAS has_secondary_participant]
+    ..
+    [clause_atom 
+	participants_labels HAS has_secondary_participant
+	AND participants_labels HAS expl_Subj
+	AND NOT participants_labels HAS indep_Subj 
+    ]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    (participants_labels HAS sfx_to_Pred OR
+    participants_labels HAS sfx_to_prps OR
+    participants_labels HAS sfx_to_nmpr OR
+    participants_labels HAS sfx_to_Subj)
+    AND NOT participants_labels HAS sfx_to_sfx
+
+    [clause_atom participants_labels HAS has_secondary_participant]
+    ..
+    [clause_atom 
+	participants_labels HAS has_secondary_participant
+	AND participants_labels HAS expl_Subj
+	AND NOT participants_labels HAS indep_Subj 
+    ]
+]
+GO
+
+
+//#next_secondary_part
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair participants_labels HAS sfx_to_sfx 
+    [clause_atom participants_labels HAS has_secondary_participant]
+    ..
+    [clause_atom 
+	participants_labels HAS has_secondary_participant
+	AND participants_labels HAS expl_Subj
+	AND NOT participants_labels HAS indep_Subj
+    ]
+]
+GO
+
+//#secondary_part
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair 
+    participants_labels HAS new_secondary_part OR
+    participants_labels HAS next_secondary_part 
+]
+GO
+
+
+//#new_indep_Subj
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair 
+    [clause_atom ]
+    ..
+    [clause_atom participants_labels HAS indep_Subj]
+]
+GO
+
+//#cont_Subj
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair participants_labels HAS same_verb_png
+    [clause_atom]
+    ..
+    [clause_atom NOT participants_labels HAS expl_Subj]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair participants_labels HAS verb_to_prps
+    [clause_atom]
+    ..
+    [clause_atom NOT participants_labels HAS expl_Subj]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom
+	[p_ref typ = Subj
+	    [word lexical_labels HAS collective]
+	]
+    ]
+    ..
+    [clause_atom NOT participants_labels HAS expl_Subj
+	[p_ref typ in (verb_Pred, nom_Pred) AND nu = pl]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom
+	[p_ref as p_ref1 typ = verb_Pred]
+    ]
+    ..
+    [clause_atom
+	[p_ref obj = sfx  AND typ = Subj
+	    AND ps = p_ref1.ps
+	    AND nu = p_ref1.nu
+	    AND gn = p_ref1.gn
+	]
+    ]
+]
+GO
+
+//#verb_to_Subj
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom first participants_labels HAS expl_Subj
+	[p_ref AS p_ref1 typ = Subj]
+    ]
+    ..
+    [clause_atom NOT participants_labels HAS expl_Subj
+        [p_ref typ = verb_Pred AND ps in (p3, unknown, NA) 
+	       AND nu = p_ref1.nu
+	       AND gn = p_ref1.gn
+	]
+    ]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom first participants_labels HAS expl_Subj
+	[phrase function = Subj
+	    [p_ref ]
+	    [word lex = "W"]
+	    [p_ref]
+	]
+    ]
+    ..
+    [clause_atom NOT participants_labels HAS expl_Subj
+        [p_ref typ = verb_Pred 
+	    AND ps = p3 
+	    AND nu = pl
+	]
+    ]
+]
+GO
+
+//#nom_Pred_to_Subj
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom participants_labels HAS expl_Subj
+	[p_ref as p_ref1
+	    typ = Subj
+	    AND nu <> NA
+	    AND gn <> NA
+	]
+    ]
+    ..
+    [clause_atom 
+	NOT participants_labels HAS expl_Subj
+	[p_ref
+	    typ = nom_Pred
+	    AND gn = p_ref1.gn 
+	    AND nu = p_ref1.nu
+	]
+    ]
+]
+GO
+
+//#verb_to_other
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair NOT participants_labels HAS cont_Subj
+    [clause_atom first
+	[phrase 
+	    participants_labels HAS PRef_other OR
+	    participants_labels HAS PRef_Objc
+	    [p_ref AS p_ref1 typ in (Objc, other) AND NOT ps in (unknown, NA)]
+	]
+    ]
+    ..
+    [clause_atom NOT participants_labels HAS expl_Subj
+        [p_ref typ = verb_Pred 
+	    AND (
+	      (ps = p_ref1.ps AND nu = p_ref1.nu AND gn = p_ref1.gn)
+              OR (ps = p_ref1.ps AND nu = p_ref1.nu AND gn = unknown)
+              OR (ps in (NA, unknown) AND nu = p_ref1.nu AND gn = p_ref1.gn)
+	      )
+	]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair NOT participants_labels HAS cont_Subj
+    [clause_atom first
+        [phrase
+	    participants_labels HAS PRef_other OR
+	    participants_labels HAS PRef_Objc
+            [p_ref AS p_ref1 typ in (Objc, other) AND ps in (unknown, NA)]
+        ]
+    ]
+    ..
+    [clause_atom NOT participants_labels HAS expl_Subj
+        [p_ref typ = verb_Pred AND ps = p3 AND nu = p_ref1.nu AND gn = p_ref1.gn
+        ]
+    ]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair NOT participants_labels HAS cont_Subj
+    [clause_atom first
+        [phrase
+	    participants_labels HAS PRef_other OR
+	    participants_labels HAS PRef_Objc
+            [p_ref AS p_ref1 typ in (Objc, other) AND nu = pl]
+        ]
+    ]
+    ..
+    [clause_atom NOT participants_labels HAS expl_Subj
+        [p_ref typ = verb_Pred AND ps = p3 AND nu = pl AND gn = unknown
+        ]
+    ]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom first NOT participants_labels HAS expl_Subj
+	[p_ref obj=phrase and typ in (Objc, other)
+	    [p_ref obj = subphrase]
+	    [word lex = "W"]
+	    [p_ref obj = subphrase]
+	]
+    ]
+    ..
+    [clause_atom NOT participants_labels HAS expl_Subj
+        [p_ref typ = verb_Pred 
+	    AND ps = p3 
+	    AND nu = pl
+	]
+    ]
+]
+GO
+
+//#prps_to_nmpr
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair NOT participants_labels HAS secondary_part
+    [clause_atom
+	[p_ref AS p_ref1 participants_labels HAS nmpr]
+    ]
+    ..
+    [clause_atom 
+	[p_ref participants_labels HAS prps AND
+	    ps in (p2, p3) AND 
+	    gn=p_ref1.gn AND
+	    nu=p_ref1.nu
+	]
+    ]
+]
+GO
+
+
+//#ps_shift_first_sec
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom 
+	participants_labels HAS has_first_ps AND
+	NOT participants_labels HAS has_sec_ps 
+    ]
+    ..
+    [clause_atom
+	participants_labels HAS has_sec_ps AND 
+	NOT participants_labels HAS has_first_ps
+
+    ]
+]
+GO
+
+//#ps_shift_sec_first
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom
+	participants_labels HAS has_sec_ps AND 
+	NOT participants_labels HAS has_first_ps
+    ]
+    ..
+    [clause_atom
+	participants_labels HAS has_first_ps AND
+	NOT participants_labels HAS has_sec_ps 
+    ]
+]
+GO
+
+//#changing_speech_sit
+
+//// explicit quotation verb /////
+
+SELECT ALL OBJECTS WHERE 
+[clause_atom_pair
+    [clause_atom 
+	[word 
+	    lexical_labels HAS quotation_verb OR
+	    lexical_labels HAS poss_quotation_verb
+	]
+    ]
+    [clause_atom 
+        syntactic_labels has discursive
+    ]
+]
+GO
+
+///////  3rd person <=> 1st/2nd person //////
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom 
+	participants_labels HAS has_third_ps
+	AND NOT participants_labels HAS has_first_ps
+	AND NOT participants_labels HAS has_sec_ps
+    ]
+    [clause_atom syntactic_labels HAS asyn
+	[p_ref ps in (p1, p2)]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom
+	[p_ref ps in (p1, p2)]
+    ]
+    [clause_atom syntactic_labels HAS asyn
+	AND participants_labels HAS has_third_ps
+	AND NOT participants_labels HAS has_first_ps
+	AND NOT participants_labels HAS has_sec_ps
+    ]
+]
+GO
+
+///////  2nd sg <=> 2nd plural //////
+
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom 
+	[p_ref AS p_ref1 ps = p2]
+    ]
+    ..
+    [clause_atom 
+	[p_ref ps = p2 AND nu <> NA AND nu <> p_ref1.nu]
+    ]
+]
+GO

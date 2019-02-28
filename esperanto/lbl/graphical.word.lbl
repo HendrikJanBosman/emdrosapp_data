@@ -1,0 +1,4 @@
+//#capitalized
+SELECT ALL OBJECTS WHERE
+[word surface ~ "^[A-ZĈĜĤĴŜŬ]" get surface]
+GO

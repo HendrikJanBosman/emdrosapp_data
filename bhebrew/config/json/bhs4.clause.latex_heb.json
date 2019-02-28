@@ -1,0 +1,38 @@
+{
+   "fetchinfo" : {
+      "base" : {
+	 "prepend_XML_declaration" : false,
+         "object_types" : {
+	    "verse"  : {
+	       "get" : ["label"],
+	       "start" : "{{ setvar 'label' }}{{ featurenomangle 0 }}{{ setvarend }}"
+	    },
+	    "half_verse" : {
+	       "get" : ["label"],
+	       "start" : "{{ setvar 'half_verse' }}{{ featurenomangle 0 }}{{ setvarend }}"
+	    }, 
+            "clause" : {
+	       "start" : "{\heb ",
+	       "end"   : "}"
+            },
+            "word" : {
+                  "get" : ["g_word", "g_suffix"],
+                  "start" : "{{ featurenomangle 0 }}",
+		  "end"   : "{{ featurenomangle 1 }}",
+               },
+            "phrase" : {
+                  "get" : [ "typ", "function"],
+                  "start" : "[ ",
+		  "end"   : " ] ",
+               },
+         },
+         "priority_list" : [
+	       "half_verse",
+               "clause",
+               "phrase",
+               "word",
+	       "verse",
+            ]
+      }
+   }
+}

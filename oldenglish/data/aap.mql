@@ -1,0 +1,3 @@
+use database oldenglish go
+
+select all objects where [document get name] go

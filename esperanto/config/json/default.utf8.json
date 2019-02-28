@@ -1,0 +1,21 @@
+{
+   "fetchinfo" : {
+      "base" : {
+	 "prepend_XML_declaration" : false,
+         "object_types" : {
+	    "verse" : {
+		"end" : "\n"
+	    },
+            "word" : {
+                  "get" : ["surface"],
+                  "start" : "{{ featurenomangle 0 }}",
+		  "end"   : " "
+               },
+         },
+         "priority_list" : [
+	       "verse",
+               "word",
+            ]
+      }
+   }
+}

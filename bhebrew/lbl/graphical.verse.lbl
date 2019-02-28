@@ -1,0 +1,14 @@
+//#setuma
+SELECT ALL OBJECTS WHERE
+[verse 
+    [word last graphical_labels HAS setuma]
+]
+GO
+
+
+//#petucha
+SELECT ALL OBJECTS WHERE
+[verse 
+    [word last graphical_labels HAS petucha]
+]
+GO

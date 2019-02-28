@@ -1,0 +1,87 @@
+EMDROS_SRC= ../../../emdrosapp_src
+SRC       = ../src
+
+
+DB = oldenglish
+SCHEMA   = $(DB).schema
+LS_TXT    = ls texts/*.src
+TXT_FILES = $(LS_TXT:sh)
+
+IMPORT = $(SRC)/OldEnglishImporter.py
+DELIMIT= $(SRC)/delimit.py 
+LABELMAN = $(EMDROS_SRC)/labelman.py
+ARGS = -k oldenglish -d $(DB)
+
+TODAYS_BACKUP=$(DB).`date +%y_%m_%d`.mql
+
+LS_TXT    = ls texts/*.txt
+TXT_FILES = $(LS_TXT:sh)
+
+
+### MAIN TARGETS ####
+
+all: data delimit wordgrammar labels backup
+
+texts: .texts
+
+data: $(DB).mql
+
+wordgrammar: .wordgrammar
+
+delimit: .delimit
+
+labels: .labels
+
+backup: .backup
+
+### HELPER TARGETS #####
+.texts:
+	cd originals; make
+	cd ..;
+	touch .texts
+	touch .data; rm .data
+
+.data:
+	make $(DATABASES)
+	touch .data
+
+.delimit: .data
+	$(DELIMIT) $(ARGS) | mql -d $(DB);
+	touch .delimit
+
+.wordgrammar: .delimit
+	$(LABELMAN) $(ARGS) -m graphical word;
+	$(LABELMAN) $(ARGS) -m lexical word;
+	$(LABELMAN) $(ARGS) -m morphological word;
+	touch .wordgrammar
+
+.labels: .wordgrammar
+	$(LABELMAN) $(ARGS) -m syntactic -a;
+	$(LABELMAN) $(ARGS) -m prosodic -a;
+	touch .labels
+
+.backup: .labels
+	mqldump -u hjb --batch-create-objects $(DB) > $(TODAYS_BACKUP)
+	cp $(TODAYS_BACKUP) $(DB).mql
+	touch .backup
+
+### INDIVIDUAL TARGETS ####
+
+$(DB): $(DB).mql
+	touch $(DB); rm $(DB)
+	mql -b s3 $(DB).mql;
+
+$(DB).mql: $(TXT_FILES) $(SCHEMA)
+	python $(IMPORT) $(ARGS) -c $(DB).corpus.cfg > $(DB).mql
+
+
+### GENERAL TARGETS ####
+
+clean:
+	touch *.txt $(DB).mql $(DB) labelman.log;
+	rm *.txt $(DB).mql $(DB) labelman.log;
+	touch .texts .data .wordgrammar .delimit .labels .backup;
+	rm .texts .data .wordgrammar .delimit .labels .backup
+
+new:
+	make clean all

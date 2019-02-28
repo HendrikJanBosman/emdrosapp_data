@@ -1,0 +1,41 @@
+//#single_subcanto
+SELECT ALL OBJECTS WHERE
+[canto
+    [subcanto first AND last]
+]
+GO
+
+//#couplet
+SELECT ALL OBJECTS WHERE
+[canto
+    [subcanto first]
+    [subcanto last]
+]
+GO
+
+//#triplet
+SELECT ALL OBJECTS WHERE
+[canto
+    [subcanto first]
+    [subcanto]
+    [subcanto last]
+]
+GO
+
+//#quartet
+SELECT ALL OBJECTS WHERE
+[canto
+    [subcanto first]
+    [subcanto] * {2}
+    [subcanto last]
+]
+GO
+
+//#quintet_or_larger
+SELECT ALL OBJECTS WHERE
+[canto
+    [subcanto first]
+    [subcanto] * {3-}
+    [subcanto last]
+]
+GO

@@ -1,0 +1,78 @@
+// a collection of Biblical Hebrew prose
+
+SELECT ALL OBJECTS WHERE
+
+// ENTIRE BOOKS IN PROSE
+[book book in (
+    Ruth,
+    Reges_I,
+    Chronica_II,
+    Esther
+)]
+
+OR 
+
+// MOSTLY NON-PROSE, PROSE SECTIONS SPECIFIED
+
+[chapter book = Iob and (chapter <= 3 or chapter = 41)]
+
+OR 
+
+[chapter book = Numeri and chapter in (11,12,13,14,15,16,17,20,25,27,31,32)]
+
+OR
+
+// MOSTLY PROSE, OTHER SECTIONS EXCLUDED
+
+[chapter book = Genesis AND chapter <> 49]
+
+OR
+
+[chapter book = Exodus AND chapter <> 15]
+
+OR 
+
+[chapter book = Deuteronomium AND chapter <> 32]
+
+OR 
+
+[chapter book = Josua AND NOT chapter in (15, 16, 17, 18, 19, 20, 21)]
+
+OR 
+
+[chapter book = Judices AND chapter <> 5]
+
+OR
+
+[chapter book = Samuel_I AND chapter <> 2]
+
+OR
+
+[chapter book = Samuel_II AND NOT chapter in (1, 22, 23)]
+
+OR
+
+[chapter book = Reges_II AND chapter <> 19]
+
+OR
+
+[chapter book = Ecclesiastes AND chapter <> 12]
+
+OR
+
+[chapter book = Daniel AND chapter < 2 OR chapter > 10]
+
+OR
+
+[chapter book = Esra AND NOT chapter in (2, 4, 5, 6, 8, 10)]
+
+OR
+
+[chapter book = Nehemia AND NOT chapter in (7, 10, 11, 12)]
+
+OR
+
+[chapter book = Chronica_I AND NOT chapter in (16, 25)]
+
+
+GO

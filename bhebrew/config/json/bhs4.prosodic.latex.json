@@ -1,0 +1,32 @@
+
+{
+   "fetchinfo" : {
+      "base" : {
+	 "prepend_XML_declaration" : false,
+         "object_types" : {
+	    "strophe"   : {
+		"start" : "",
+		"end"   : "[1.3em]\n{\\\\strut}",
+	    },
+	    "verseline" : {
+		"start" : "{{ setvar 'firstcolon' }}1{{ setvarend }}{",
+		"end" : "}\\\\\\\\\n",
+	    },
+	    "colon" : {
+		"start" : "{{ if varequal 'firstcolon' '0' }}* {{ endif }}",
+		"end"   : "{{ setvar 'firstcolon' }}0{{ setvarend }}",
+	    },
+            "wordcluster" : {
+                  "get" : ["latex_txt", "latex_sfx"],
+                  "start" : "{{ featurenomangle 0 }}{{ featurenomangle 1 }}",
+               },
+         },
+         "priority_list" : [
+	       "strophe",
+	       "verseline",
+	       "colon",
+               "word",
+            ]
+      }
+   }
+}

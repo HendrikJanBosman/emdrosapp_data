@@ -1,0 +1,2142 @@
+
+
+//////////////////////////////////////////////////// 
+// 
+// Create enumerations
+// 
+//////////////////////////////////////////////////// 
+
+// Enumeration word_psp_t
+CREATE ENUMERATION word_psp_t = {
+  DEFAULT NA = 1,
+  adject = 14,
+  advb = 10,
+  adverb = 15,
+  conj = 7,
+  def_art = 5,
+  inrg = 8,
+  intj = 11,
+  nega = 9,
+  noun = 13,
+  prep = 6,
+  pron_pers = 3,
+  pron_poss = 4,
+  pron_rel = 2,
+  verb = 12
+}
+GO
+
+// Enumeration word_ps_t
+CREATE ENUMERATION word_ps_t = {
+  DEFAULT NA = 1,
+  p1 = 2,
+  p2 = 3,
+  p3 = 4
+}
+GO
+
+// Enumeration word_nu_t
+CREATE ENUMERATION word_nu_t = {
+  DEFAULT NA = 1,
+  pl = 3,
+  sg = 2,
+  unknown = 4
+}
+GO
+
+// Enumeration word_gn_t
+CREATE ENUMERATION word_gn_t = {
+  DEFAULT NA = 1,
+  f = 3,
+  m = 2,
+  n = 4,
+  undef = 5
+}
+GO
+
+// Enumeration word_vt_t
+CREATE ENUMERATION word_vt_t = {
+  DEFAULT NA = 1,
+  future = 4,
+  past = 3,
+  present = 2
+}
+GO
+
+// Enumeration word_vm_t
+CREATE ENUMERATION word_vm_t = {
+  DEFAULT NA = 1,
+  cond = 4,
+  indic = 2,
+  infin = 5,
+  juss = 3,
+  ptc = 6
+}
+GO
+
+// Enumeration word_mode_t
+CREATE ENUMERATION word_mode_t = {
+  DEFAULT NA = 1,
+  act = 2,
+  pass = 3
+}
+GO
+
+// Enumeration word_case_t
+CREATE ENUMERATION word_case_t = {
+  DEFAULT NA = 1,
+  acc = 4,
+  gen = 3,
+  nom = 2
+}
+GO
+
+// Enumeration graphical_word_label_t
+CREATE ENUMERATION graphical_word_label_t = {
+  DEFAULT capitalized = 1
+}
+GO
+
+// Enumeration lexical_word_label_t
+CREATE ENUMERATION lexical_word_label_t = {
+  mal_ = 3,
+  no_morphology = 2,
+  DEFAULT pronoun = 1
+}
+GO
+
+// Enumeration morphological_word_label_t
+CREATE ENUMERATION morphological_word_label_t = {
+  _a = 10,
+  _aj = 12,
+  _ajn = 13,
+  _al = 15,
+  _am = 16,
+  _an = 11,
+  _ant_ = 29,
+  _as = 20,
+  _at_ = 30,
+  _e = 14,
+  _el = 17,
+  _es = 9,
+  _i = 19,
+  _ig_ = 32,
+  _igx_ = 31,
+  _in_ = 33,
+  _int_ = 25,
+  _is = 21,
+  _it_ = 26,
+  DEFAULT _o = 1,
+  _oj = 3,
+  _ojn = 4,
+  _om = 18,
+  _on = 2,
+  _ont_ = 27,
+  _os = 22,
+  _ot_ = 28,
+  _u = 23,
+  _u_nominal = 5,
+  _uj = 7,
+  _ujn = 8,
+  _un = 6,
+  _us = 24
+}
+GO
+
+// Enumeration prosodic_word_label_t
+CREATE ENUMERATION prosodic_word_label_t = {
+  DEFAULT dummy_label = 1
+}
+GO
+
+// Enumeration prosodic_verseline_label_t
+CREATE ENUMERATION prosodic_verseline_label_t = {
+  DEFAULT bicolon = 1,
+  tricolon = 2
+}
+GO
+
+// Enumeration prosodic_strophe_label_t
+CREATE ENUMERATION prosodic_strophe_label_t = {
+  DEFAULT couplet = 1,
+  quatrain = 3,
+  triplet = 2
+}
+GO
+
+
+
+//////////////////////////////////////////////////// 
+// 
+// Create object types
+// 
+//////////////////////////////////////////////////// 
+
+// Object type colon
+CREATE OBJECT TYPE
+[colon
+  note : string DEFAULT "";
+]
+GO
+
+// Object type verse
+CREATE OBJECT TYPE
+[verse
+  chapter : integer DEFAULT 0;
+  verse : integer DEFAULT 0;
+  abbr : string DEFAULT "";
+  book : string DEFAULT "";
+  label : string DEFAULT "";
+  note : string DEFAULT "";
+]
+GO
+
+// Object type strophe
+CREATE OBJECT TYPE
+[strophe
+  note : string DEFAULT "";
+  prosodic_labels : list of prosodic_strophe_label_t;
+]
+GO
+
+
+
+//////////////////////////////////////////////////// 
+// 
+// Create arbitrary monad sets
+// 
+//////////////////////////////////////////////////// 
+
+CREATE MONAD SET
+lam_1
+WITH MONADS =  { 1-648 } 
+GO
+
+CREATE MONAD SET
+lam_2
+WITH MONADS =  { 649-1373 } 
+GO
+
+CREATE MONAD SET
+lam_3
+WITH MONADS =  { 1374-2120 } 
+GO
+
+CREATE MONAD SET
+lam_4
+WITH MONADS =  { 2121-2611 } 
+GO
+
+CREATE MONAD SET
+lam_5
+WITH MONADS =  { 2612-2882 } 
+GO
+
+
+
+//////////////////////////////////////////////////// 
+// 
+// Create object data
+// 
+//////////////////////////////////////////////////// 
+
+
+
+//////////////////////////////////////////////////// 
+// 
+// Create object data for object type colon
+// 
+//////////////////////////////////////////////////// 
+
+// Drop indexes 
+DROP INDEXES ON OBJECT TYPE[colon] GO
+
+// Create indexes 
+CREATE INDEXES ON OBJECT TYPE[colon] GO
+
+
+
+//////////////////////////////////////////////////// 
+// 
+// Create object data for object type verse
+// 
+//////////////////////////////////////////////////// 
+
+// Drop indexes 
+DROP INDEXES ON OBJECT TYPE[verse] GO
+
+CREATE OBJECT
+FROM MONADS= { 1-23 } 
+WITH ID_D=3501 [verse
+chapter:=1;
+verse:=1;
+abbr:="Lam";
+book:="lamentoj";
+label:="1:1";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 24-52 } 
+WITH ID_D=3502 [verse
+chapter:=1;
+verse:=2;
+abbr:="Lam";
+book:="lamentoj";
+label:="1:2";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 53-77 } 
+WITH ID_D=3503 [verse
+chapter:=1;
+verse:=3;
+abbr:="Lam";
+book:="lamentoj";
+label:="1:3";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 78-105 } 
+WITH ID_D=3504 [verse
+chapter:=1;
+verse:=4;
+abbr:="Lam";
+book:="lamentoj";
+label:="1:4";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 106-135 } 
+WITH ID_D=3505 [verse
+chapter:=1;
+verse:=5;
+abbr:="Lam";
+book:="lamentoj";
+label:="1:5";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 136-160 } 
+WITH ID_D=3506 [verse
+chapter:=1;
+verse:=6;
+abbr:="Lam";
+book:="lamentoj";
+label:="1:6";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 161-202 } 
+WITH ID_D=3507 [verse
+chapter:=1;
+verse:=7;
+abbr:="Lam";
+book:="lamentoj";
+label:="1:7";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 203-230 } 
+WITH ID_D=3508 [verse
+chapter:=1;
+verse:=8;
+abbr:="Lam";
+book:="lamentoj";
+label:="1:8";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 231-264 } 
+WITH ID_D=3509 [verse
+chapter:=1;
+verse:=9;
+abbr:="Lam";
+book:="lamentoj";
+label:="1:9";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 265-292 } 
+WITH ID_D=3510 [verse
+chapter:=1;
+verse:=10;
+abbr:="Lam";
+book:="lamentoj";
+label:="1:10";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 293-318 } 
+WITH ID_D=3511 [verse
+chapter:=1;
+verse:=11;
+abbr:="Lam";
+book:="lamentoj";
+label:="1:11";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 319-352 } 
+WITH ID_D=3512 [verse
+chapter:=1;
+verse:=12;
+abbr:="Lam";
+book:="lamentoj";
+label:="1:12";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 353-384 } 
+WITH ID_D=3513 [verse
+chapter:=1;
+verse:=13;
+abbr:="Lam";
+book:="lamentoj";
+label:="1:13";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 385-416 } 
+WITH ID_D=3514 [verse
+chapter:=1;
+verse:=14;
+abbr:="Lam";
+book:="lamentoj";
+label:="1:14";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 417-448 } 
+WITH ID_D=3515 [verse
+chapter:=1;
+verse:=15;
+abbr:="Lam";
+book:="lamentoj";
+label:="1:15";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 449-477 } 
+WITH ID_D=3516 [verse
+chapter:=1;
+verse:=16;
+abbr:="Lam";
+book:="lamentoj";
+label:="1:16";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 478-502 } 
+WITH ID_D=3517 [verse
+chapter:=1;
+verse:=17;
+abbr:="Lam";
+book:="lamentoj";
+label:="1:17";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 503-527 } 
+WITH ID_D=3518 [verse
+chapter:=1;
+verse:=18;
+abbr:="Lam";
+book:="lamentoj";
+label:="1:18";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 528-554 } 
+WITH ID_D=3519 [verse
+chapter:=1;
+verse:=19;
+abbr:="Lam";
+book:="lamentoj";
+label:="1:19";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 555-585 } 
+WITH ID_D=3520 [verse
+chapter:=1;
+verse:=20;
+abbr:="Lam";
+book:="lamentoj";
+label:="1:20";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 586-619 } 
+WITH ID_D=3521 [verse
+chapter:=1;
+verse:=21;
+abbr:="Lam";
+book:="lamentoj";
+label:="1:21";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 620-648 } 
+WITH ID_D=3522 [verse
+chapter:=1;
+verse:=22;
+abbr:="Lam";
+book:="lamentoj";
+label:="1:22";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 649-684 } 
+WITH ID_D=3523 [verse
+chapter:=2;
+verse:=1;
+abbr:="Lam";
+book:="lamentoj";
+label:="2:1";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 685-716 } 
+WITH ID_D=3524 [verse
+chapter:=2;
+verse:=2;
+abbr:="Lam";
+book:="lamentoj";
+label:="2:2";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 717-747 } 
+WITH ID_D=3525 [verse
+chapter:=2;
+verse:=3;
+abbr:="Lam";
+book:="lamentoj";
+label:="2:3";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 748-782 } 
+WITH ID_D=3526 [verse
+chapter:=2;
+verse:=4;
+abbr:="Lam";
+book:="lamentoj";
+label:="2:4";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 783-810 } 
+WITH ID_D=3527 [verse
+chapter:=2;
+verse:=5;
+abbr:="Lam";
+book:="lamentoj";
+label:="2:5";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 811-838 } 
+WITH ID_D=3528 [verse
+chapter:=2;
+verse:=6;
+abbr:="Lam";
+book:="lamentoj";
+label:="2:6";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 839-871 } 
+WITH ID_D=3529 [verse
+chapter:=2;
+verse:=7;
+abbr:="Lam";
+book:="lamentoj";
+label:="2:7";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 872-903 } 
+WITH ID_D=3530 [verse
+chapter:=2;
+verse:=8;
+abbr:="Lam";
+book:="lamentoj";
+label:="2:8";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 904-939 } 
+WITH ID_D=3531 [verse
+chapter:=2;
+verse:=9;
+abbr:="Lam";
+book:="lamentoj";
+label:="2:9";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 940-971 } 
+WITH ID_D=3532 [verse
+chapter:=2;
+verse:=10;
+abbr:="Lam";
+book:="lamentoj";
+label:="2:10";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 972-1007 } 
+WITH ID_D=3533 [verse
+chapter:=2;
+verse:=11;
+abbr:="Lam";
+book:="lamentoj";
+label:="2:11";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1008-1037 } 
+WITH ID_D=3534 [verse
+chapter:=2;
+verse:=12;
+abbr:="Lam";
+book:="lamentoj";
+label:="2:12";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1038-1078 } 
+WITH ID_D=3535 [verse
+chapter:=2;
+verse:=13;
+abbr:="Lam";
+book:="lamentoj";
+label:="2:13";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1079-1109 } 
+WITH ID_D=3536 [verse
+chapter:=2;
+verse:=14;
+abbr:="Lam";
+book:="lamentoj";
+label:="2:14";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1110-1144 } 
+WITH ID_D=3537 [verse
+chapter:=2;
+verse:=15;
+abbr:="Lam";
+book:="lamentoj";
+label:="2:15";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1145-1173 } 
+WITH ID_D=3538 [verse
+chapter:=2;
+verse:=16;
+abbr:="Lam";
+book:="lamentoj";
+label:="2:16";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1174-1206 } 
+WITH ID_D=3539 [verse
+chapter:=2;
+verse:=17;
+abbr:="Lam";
+book:="lamentoj";
+label:="2:17";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1207-1235 } 
+WITH ID_D=3540 [verse
+chapter:=2;
+verse:=18;
+abbr:="Lam";
+book:="lamentoj";
+label:="2:18";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1236-1278 } 
+WITH ID_D=3541 [verse
+chapter:=2;
+verse:=19;
+abbr:="Lam";
+book:="lamentoj";
+label:="2:19";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1279-1311 } 
+WITH ID_D=3542 [verse
+chapter:=2;
+verse:=20;
+abbr:="Lam";
+book:="lamentoj";
+label:="2:20";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1312-1338 } 
+WITH ID_D=3543 [verse
+chapter:=2;
+verse:=21;
+abbr:="Lam";
+book:="lamentoj";
+label:="2:21";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1339-1373 } 
+WITH ID_D=3544 [verse
+chapter:=2;
+verse:=22;
+abbr:="Lam";
+book:="lamentoj";
+label:="2:22";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1374-1386 } 
+WITH ID_D=3545 [verse
+chapter:=3;
+verse:=1;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:1";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1387-1396 } 
+WITH ID_D=3546 [verse
+chapter:=3;
+verse:=2;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:2";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1397-1405 } 
+WITH ID_D=3547 [verse
+chapter:=3;
+verse:=3;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:3";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1406-1414 } 
+WITH ID_D=3548 [verse
+chapter:=3;
+verse:=4;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:4";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1415-1424 } 
+WITH ID_D=3549 [verse
+chapter:=3;
+verse:=5;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:5";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1425-1432 } 
+WITH ID_D=3550 [verse
+chapter:=3;
+verse:=6;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:6";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1433-1446 } 
+WITH ID_D=3551 [verse
+chapter:=3;
+verse:=7;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:7";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1447-1458 } 
+WITH ID_D=3552 [verse
+chapter:=3;
+verse:=8;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:8";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1459-1469 } 
+WITH ID_D=3553 [verse
+chapter:=3;
+verse:=9;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:9";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1470-1482 } 
+WITH ID_D=3554 [verse
+chapter:=3;
+verse:=10;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:10";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1483-1497 } 
+WITH ID_D=3555 [verse
+chapter:=3;
+verse:=11;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:11";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1498-1509 } 
+WITH ID_D=3556 [verse
+chapter:=3;
+verse:=12;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:12";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1510-1519 } 
+WITH ID_D=3557 [verse
+chapter:=3;
+verse:=13;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:13";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1520-1529 } 
+WITH ID_D=3558 [verse
+chapter:=3;
+verse:=14;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:14";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1530-1538 } 
+WITH ID_D=3559 [verse
+chapter:=3;
+verse:=15;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:15";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1539-1550 } 
+WITH ID_D=3560 [verse
+chapter:=3;
+verse:=16;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:16";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1551-1560 } 
+WITH ID_D=3561 [verse
+chapter:=3;
+verse:=17;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:17";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1561-1572 } 
+WITH ID_D=3562 [verse
+chapter:=3;
+verse:=18;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:18";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1573-1584 } 
+WITH ID_D=3563 [verse
+chapter:=3;
+verse:=19;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:19";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1585-1592 } 
+WITH ID_D=3564 [verse
+chapter:=3;
+verse:=20;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:20";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1593-1603 } 
+WITH ID_D=3565 [verse
+chapter:=3;
+verse:=21;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:21";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1604-1619 } 
+WITH ID_D=3566 [verse
+chapter:=3;
+verse:=22;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:22";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1620-1627 } 
+WITH ID_D=3567 [verse
+chapter:=3;
+verse:=23;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:23";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1628-1640 } 
+WITH ID_D=3568 [verse
+chapter:=3;
+verse:=24;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:24";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1641-1656 } 
+WITH ID_D=3569 [verse
+chapter:=3;
+verse:=25;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:25";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1657-1664 } 
+WITH ID_D=3570 [verse
+chapter:=3;
+verse:=26;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:26";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1665-1675 } 
+WITH ID_D=3571 [verse
+chapter:=3;
+verse:=27;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:27";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1676-1684 } 
+WITH ID_D=3572 [verse
+chapter:=3;
+verse:=28;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:28";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1685-1694 } 
+WITH ID_D=3573 [verse
+chapter:=3;
+verse:=29;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:29";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1695-1708 } 
+WITH ID_D=3574 [verse
+chapter:=3;
+verse:=30;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:30";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1709-1715 } 
+WITH ID_D=3575 [verse
+chapter:=3;
+verse:=31;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:31";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1716-1726 } 
+WITH ID_D=3576 [verse
+chapter:=3;
+verse:=32;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:32";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1727-1739 } 
+WITH ID_D=3577 [verse
+chapter:=3;
+verse:=33;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:33";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1740-1750 } 
+WITH ID_D=3578 [verse
+chapter:=3;
+verse:=34;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:34";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1751-1763 } 
+WITH ID_D=3579 [verse
+chapter:=3;
+verse:=35;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:35";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1764-1778 } 
+WITH ID_D=3580 [verse
+chapter:=3;
+verse:=36;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:36";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1779-1793 } 
+WITH ID_D=3581 [verse
+chapter:=3;
+verse:=37;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:37";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1794-1809 } 
+WITH ID_D=3582 [verse
+chapter:=3;
+verse:=38;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:38";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1810-1818 } 
+WITH ID_D=3583 [verse
+chapter:=3;
+verse:=39;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:39";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1819-1830 } 
+WITH ID_D=3584 [verse
+chapter:=3;
+verse:=40;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:40";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1831-1842 } 
+WITH ID_D=3585 [verse
+chapter:=3;
+verse:=41;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:41";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1843-1850 } 
+WITH ID_D=3586 [verse
+chapter:=3;
+verse:=42;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:42";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1851-1863 } 
+WITH ID_D=3587 [verse
+chapter:=3;
+verse:=43;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:43";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1864-1875 } 
+WITH ID_D=3588 [verse
+chapter:=3;
+verse:=44;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:44";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1876-1884 } 
+WITH ID_D=3589 [verse
+chapter:=3;
+verse:=45;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:45";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1885-1892 } 
+WITH ID_D=3590 [verse
+chapter:=3;
+verse:=46;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:46";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1893-1900 } 
+WITH ID_D=3591 [verse
+chapter:=3;
+verse:=47;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:47";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1901-1915 } 
+WITH ID_D=3592 [verse
+chapter:=3;
+verse:=48;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:48";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1916-1926 } 
+WITH ID_D=3593 [verse
+chapter:=3;
+verse:=49;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:49";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1927-1935 } 
+WITH ID_D=3594 [verse
+chapter:=3;
+verse:=50;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:50";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1936-1946 } 
+WITH ID_D=3595 [verse
+chapter:=3;
+verse:=51;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:51";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1947-1953 } 
+WITH ID_D=3596 [verse
+chapter:=3;
+verse:=52;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:52";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1954-1964 } 
+WITH ID_D=3597 [verse
+chapter:=3;
+verse:=53;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:53";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1965-1975 } 
+WITH ID_D=3598 [verse
+chapter:=3;
+verse:=54;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:54";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1976-1985 } 
+WITH ID_D=3599 [verse
+chapter:=3;
+verse:=55;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:55";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1986-1998 } 
+WITH ID_D=3600 [verse
+chapter:=3;
+verse:=56;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:56";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 1999-2009 } 
+WITH ID_D=3601 [verse
+chapter:=3;
+verse:=57;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:57";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2010-2019 } 
+WITH ID_D=3602 [verse
+chapter:=3;
+verse:=58;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:58";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2020-2031 } 
+WITH ID_D=3603 [verse
+chapter:=3;
+verse:=59;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:59";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2032-2041 } 
+WITH ID_D=3604 [verse
+chapter:=3;
+verse:=60;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:60";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2042-2052 } 
+WITH ID_D=3605 [verse
+chapter:=3;
+verse:=61;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:61";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2053-2069 } 
+WITH ID_D=3606 [verse
+chapter:=3;
+verse:=62;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:62";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2070-2082 } 
+WITH ID_D=3607 [verse
+chapter:=3;
+verse:=63;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:63";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2083-2094 } 
+WITH ID_D=3608 [verse
+chapter:=3;
+verse:=64;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:64";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2095-2106 } 
+WITH ID_D=3609 [verse
+chapter:=3;
+verse:=65;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:65";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2107-2120 } 
+WITH ID_D=3610 [verse
+chapter:=3;
+verse:=66;
+abbr:="Lam";
+book:="lamentoj";
+label:="3:66";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2121-2141 } 
+WITH ID_D=3611 [verse
+chapter:=4;
+verse:=1;
+abbr:="Lam";
+book:="lamentoj";
+label:="4:1";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2142-2162 } 
+WITH ID_D=3612 [verse
+chapter:=4;
+verse:=2;
+abbr:="Lam";
+book:="lamentoj";
+label:="4:2";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2163-2184 } 
+WITH ID_D=3613 [verse
+chapter:=4;
+verse:=3;
+abbr:="Lam";
+book:="lamentoj";
+label:="4:3";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2185-2202 } 
+WITH ID_D=3614 [verse
+chapter:=4;
+verse:=4;
+abbr:="Lam";
+book:="lamentoj";
+label:="4:4";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2203-2224 } 
+WITH ID_D=3615 [verse
+chapter:=4;
+verse:=5;
+abbr:="Lam";
+book:="lamentoj";
+label:="4:5";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2225-2249 } 
+WITH ID_D=3616 [verse
+chapter:=4;
+verse:=6;
+abbr:="Lam";
+book:="lamentoj";
+label:="4:6";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2250-2271 } 
+WITH ID_D=3617 [verse
+chapter:=4;
+verse:=7;
+abbr:="Lam";
+book:="lamentoj";
+label:="4:7";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2272-2295 } 
+WITH ID_D=3618 [verse
+chapter:=4;
+verse:=8;
+abbr:="Lam";
+book:="lamentoj";
+label:="4:8";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2296-2321 } 
+WITH ID_D=3619 [verse
+chapter:=4;
+verse:=9;
+abbr:="Lam";
+book:="lamentoj";
+label:="4:9";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2322-2344 } 
+WITH ID_D=3620 [verse
+chapter:=4;
+verse:=10;
+abbr:="Lam";
+book:="lamentoj";
+label:="4:10";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2345-2366 } 
+WITH ID_D=3621 [verse
+chapter:=4;
+verse:=11;
+abbr:="Lam";
+book:="lamentoj";
+label:="4:11";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2367-2389 } 
+WITH ID_D=3622 [verse
+chapter:=4;
+verse:=12;
+abbr:="Lam";
+book:="lamentoj";
+label:="4:12";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2390-2410 } 
+WITH ID_D=3623 [verse
+chapter:=4;
+verse:=13;
+abbr:="Lam";
+book:="lamentoj";
+label:="4:13";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2411-2429 } 
+WITH ID_D=3624 [verse
+chapter:=4;
+verse:=14;
+abbr:="Lam";
+book:="lamentoj";
+label:="4:14";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2430-2454 } 
+WITH ID_D=3625 [verse
+chapter:=4;
+verse:=15;
+abbr:="Lam";
+book:="lamentoj";
+label:="4:15";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2455-2475 } 
+WITH ID_D=3626 [verse
+chapter:=4;
+verse:=16;
+abbr:="Lam";
+book:="lamentoj";
+label:="4:16";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2476-2490 } 
+WITH ID_D=3627 [verse
+chapter:=4;
+verse:=17;
+abbr:="Lam";
+book:="lamentoj";
+label:="4:17";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2491-2512 } 
+WITH ID_D=3628 [verse
+chapter:=4;
+verse:=18;
+abbr:="Lam";
+book:="lamentoj";
+label:="4:18";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2513-2536 } 
+WITH ID_D=3629 [verse
+chapter:=4;
+verse:=19;
+abbr:="Lam";
+book:="lamentoj";
+label:="4:19";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2537-2562 } 
+WITH ID_D=3630 [verse
+chapter:=4;
+verse:=20;
+abbr:="Lam";
+book:="lamentoj";
+label:="4:20";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2563-2586 } 
+WITH ID_D=3631 [verse
+chapter:=4;
+verse:=21;
+abbr:="Lam";
+book:="lamentoj";
+label:="4:21";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2587-2611 } 
+WITH ID_D=3632 [verse
+chapter:=4;
+verse:=22;
+abbr:="Lam";
+book:="lamentoj";
+label:="4:22";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2612-2623 } 
+WITH ID_D=3633 [verse
+chapter:=5;
+verse:=1;
+abbr:="Lam";
+book:="lamentoj";
+label:="5:1";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2624-2632 } 
+WITH ID_D=3634 [verse
+chapter:=5;
+verse:=2;
+abbr:="Lam";
+book:="lamentoj";
+label:="5:2";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2633-2641 } 
+WITH ID_D=3635 [verse
+chapter:=5;
+verse:=3;
+abbr:="Lam";
+book:="lamentoj";
+label:="5:3";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2642-2654 } 
+WITH ID_D=3636 [verse
+chapter:=5;
+verse:=4;
+abbr:="Lam";
+book:="lamentoj";
+label:="5:4";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2655-2669 } 
+WITH ID_D=3637 [verse
+chapter:=5;
+verse:=5;
+abbr:="Lam";
+book:="lamentoj";
+label:="5:5";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2670-2681 } 
+WITH ID_D=3638 [verse
+chapter:=5;
+verse:=6;
+abbr:="Lam";
+book:="lamentoj";
+label:="5:6";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2682-2696 } 
+WITH ID_D=3639 [verse
+chapter:=5;
+verse:=7;
+abbr:="Lam";
+book:="lamentoj";
+label:="5:7";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2697-2707 } 
+WITH ID_D=3640 [verse
+chapter:=5;
+verse:=8;
+abbr:="Lam";
+book:="lamentoj";
+label:="5:8";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2708-2722 } 
+WITH ID_D=3641 [verse
+chapter:=5;
+verse:=9;
+abbr:="Lam";
+book:="lamentoj";
+label:="5:9";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2723-2731 } 
+WITH ID_D=3642 [verse
+chapter:=5;
+verse:=10;
+abbr:="Lam";
+book:="lamentoj";
+label:="5:10";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2732-2744 } 
+WITH ID_D=3643 [verse
+chapter:=5;
+verse:=11;
+abbr:="Lam";
+book:="lamentoj";
+label:="5:11";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2745-2756 } 
+WITH ID_D=3644 [verse
+chapter:=5;
+verse:=12;
+abbr:="Lam";
+book:="lamentoj";
+label:="5:12";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2757-2767 } 
+WITH ID_D=3645 [verse
+chapter:=5;
+verse:=13;
+abbr:="Lam";
+book:="lamentoj";
+label:="5:13";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2768-2780 } 
+WITH ID_D=3646 [verse
+chapter:=5;
+verse:=14;
+abbr:="Lam";
+book:="lamentoj";
+label:="5:14";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2781-2791 } 
+WITH ID_D=3647 [verse
+chapter:=5;
+verse:=15;
+abbr:="Lam";
+book:="lamentoj";
+label:="5:15";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2792-2804 } 
+WITH ID_D=3648 [verse
+chapter:=5;
+verse:=16;
+abbr:="Lam";
+book:="lamentoj";
+label:="5:16";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2805-2814 } 
+WITH ID_D=3649 [verse
+chapter:=5;
+verse:=17;
+abbr:="Lam";
+book:="lamentoj";
+label:="5:17";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2815-2827 } 
+WITH ID_D=3650 [verse
+chapter:=5;
+verse:=18;
+abbr:="Lam";
+book:="lamentoj";
+label:="5:18";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2828-2842 } 
+WITH ID_D=3651 [verse
+chapter:=5;
+verse:=19;
+abbr:="Lam";
+book:="lamentoj";
+label:="5:19";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2843-2854 } 
+WITH ID_D=3652 [verse
+chapter:=5;
+verse:=20;
+abbr:="Lam";
+book:="lamentoj";
+label:="5:20";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2855-2871 } 
+WITH ID_D=3653 [verse
+chapter:=5;
+verse:=21;
+abbr:="Lam";
+book:="lamentoj";
+label:="5:21";
+note:="";
+]
+GO
+
+CREATE OBJECT
+FROM MONADS= { 2872-2882 } 
+WITH ID_D=3654 [verse
+chapter:=5;
+verse:=22;
+abbr:="Lam";
+book:="lamentoj";
+label:="5:22";
+note:="";
+]
+GO
+
+// Create indexes 
+CREATE INDEXES ON OBJECT TYPE[verse] GO
+
+
+
+//////////////////////////////////////////////////// 
+// 
+// Create object data for object type strophe
+// 
+//////////////////////////////////////////////////// 
+
+// Drop indexes 
+DROP INDEXES ON OBJECT TYPE[strophe] GO
+
+// Create indexes 
+CREATE INDEXES ON OBJECT TYPE[strophe] GO
+
+
+
+//////////////////////////////////////////////////// 
+// 
+// VACUUM database
+// 
+//////////////////////////////////////////////////// 
+
+VACUUM DATABASE ANALYZE GO
+

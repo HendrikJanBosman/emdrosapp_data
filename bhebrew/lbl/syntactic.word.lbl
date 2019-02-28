@@ -1,0 +1,48 @@
+//#inherently_determined
+
+SELECT ALL OBJECTS WHERE [word pdp=prps] GO
+
+SELECT ALL OBJECTS WHERE [word pdp=nmpr] GO
+
+
+
+//#verb
+
+SELECT ALL OBJECTS WHERE [word pdp=verb] GO
+
+//#suffixed
+SELECT ALL OBJECTS WHERE
+[word prs <> "absent" AND prs <> "n/a"]
+GO
+
+
+//#discursive_marker
+SELECT ALL OBJECTS WHERE
+[word lexical_labels HAS discursive_marker]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[word pdp IN (inrg, intj)]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[word 
+    ps IN (p1, p2) OR
+    suffix_person in (p1, p2)
+]
+GO
+
+
+///// LABELS FOR CLOETE'S THEORY
+
+//#cloete_semword
+
+SELECT ALL OBJECTS WHERE 
+[word pdp in (adjv, advb, nmpr, prde, prin, prps, subs, verb, inrg)]
+GO
+
+SELECT ALL OBJECTS WHERE
+[word pdp=prep AND syntactic_labels HAS suffixed]
+GO

@@ -1,0 +1,26 @@
+{
+   "fetchinfo" : {
+      "base" : {
+	 "prepend_XML_declaration" : false,
+         "object_types" : {
+	    "clause_atom" : {
+		"end" : "\n"
+	    },
+	    "phrase" : {
+		"get"   : ["function"],
+		"start" : " [",
+		"end"   : " <{{ featurenomangle 0 }}>]",
+	    },
+            "wordcluster" : {
+                  "get" : ["ascii_txt","ascii_sfx"],
+                  "start" : "{{ featurenomangle 0 }}{{ featurenomangle 1 }}",
+               },
+         },
+         "priority_list" : [
+	       "clause_atom",
+	       "phrase",
+               "wordcluster",
+            ]
+      }
+   }
+}

@@ -1,0 +1,635 @@
+//#root
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom first and last is_root = true]
+]
+GO
+
+//#asyn_asyn
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom first syntactic_labels HAS asyn]
+    ..
+    [clause_atom last syntactic_labels HAS asyn]
+]
+GO
+
+//#asyn_conj
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom first syntactic_labels HAS asyn]
+    ..
+    [clause_atom last syntactic_labels HAS conj]
+]
+GO
+
+
+//#conj_asyn
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom first syntactic_labels HAS conj]
+    ..
+    [clause_atom last syntactic_labels HAS asyn]
+]
+GO
+
+//#asyn_conj_asyn
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom first syntactic_labels HAS asyn]
+    [gap 
+	[clause_atom first and last syntactic_labels HAS conj] * {1-}
+    ]
+    [clause_atom last syntactic_labels HAS asyn]
+]
+GO
+
+//#conj_conj
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom first syntactic_labels HAS conj]
+    ..
+    [clause_atom last syntactic_labels HAS conj]
+]
+GO
+
+
+//#same_conj
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom first syntactic_labels HAS conj
+        [phrase first typ = CP
+            [word as w1 pdp=conj]
+        ]
+    ]
+    ..
+    [clause_atom syntactic_labels HAS conj
+        [phrase first typ = CP
+            [word pdp = conj AND lex = w1.lex]
+        ]
+    ]
+]
+GO
+
+
+//#neg_neg
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom
+	[phrase typ = NegP]
+    ]
+    ..
+    [clause_atom
+	[phrase typ = NegP]
+    ]
+]
+GO
+
+
+//#protasis_apodosis
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom 
+	[word lex = "GM"]
+	[word lex = "KJ"]
+    ]
+    [gap NOTEXIST [clause_atom syntactic_labels HAS asyn] ]
+    [clause_atom syntactic_labels HAS asyn]
+]
+GO
+
+
+//#coordination
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom]
+    ..
+    [clause_atom syntactic_labels HAS coord]
+]
+GO
+
+
+//#Subj_clause
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom ]
+    ..
+    [clause_atom syntactic_labels HAS Subj_clause]
+]
+GO
+
+//#Objc_clause
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause as c1 OVERLAP (SUBSTRATE)]
+    ..
+    [clause OVERLAP (SUBSTRATE) mother = c1.self AND rela = Objc]
+]
+GO
+
+SELECT ALL OBJECTS WHERE 
+[clause_atom_pair
+    [clause_atom syntactic_labels HAS Objc_missing ]
+    [gap NOTEXIST[phrase function in (Objc, Cmpl)]] *
+    [clause_atom [phrase first and last function = Objc] ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom syntactic_labels HAS Objc_missing ]
+    [gap NOTEXIST[phrase function in (Objc, Cmpl)]] *
+    [clause_atom
+        [word
+            lex = "KJ"
+            OR lex = ">M"
+            OR lex = ">CR"
+        ]
+    ]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom first
+        syntactic_labels HAS sensory_verb
+        AND syntactic_labels HAS no_Objc
+    ]
+    [gap [clause_atom first AND last typ = Voct] ]*
+    [clause_atom typ <> Voct AND syntactic_labels HAS asyn]
+]
+GO
+
+
+//#Attr_clause
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom as ca1]
+    ..
+    [clause_atom as ca2 mother = ca1.self
+	[clause overlap (substrate) 
+	    first_monad = ca2.first_monad
+	    AND rela = Attr
+	]
+    ]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom
+	[p_ref as p_ref1 typ = Subj]
+    ]
+    !
+    [clause_atom syntactic_labels HAS no_Subj
+	NOTEXIST [phrase syntactic_labels HAS copula]
+	[p_ref 
+	    typ = nom_Pred
+	    AND nu = p_ref1.nu
+	    AND gn = p_ref1.gn
+	]
+    ]
+]
+GO
+
+//#cas_pend_to_main
+
+SELECT ALL OBJECTS WHERE
+[sentence
+    [clause_atom_pair focus
+	[clause_atom as ca1 typ=CPen
+	    [word as w1 pdp = prps]
+	]
+	[clause_atom] * {0-1}
+	[clause_atom mother=ca1.self 
+	    [word 
+		prs_ps = w1.ps 
+		AND prs_nu = w1.nu 
+		AND prs_gn = w1.gn
+	    ]
+	]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom typ = CPen
+        [phrase function = Frnt]
+    ]
+    [gap [clause_atom syntactic_labels HAS dep]* ]
+    [clause_atom
+        syntactic_labels HAS has_Pred AND
+        (syntactic_labels HAS no_Subj OR syntactic_labels HAS no_Objc)
+    ]
+]
+GO
+
+//#main_defect
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom syntactic_labels HAS has_Pred]
+    ..
+    [clause_atom 
+	syntactic_labels HAS defective 
+	//OR typ = Voct
+    ]
+]
+GO
+
+
+//#defect_main
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair NOT syntactic_labels HAS cas_pend_to_main
+    [clause_atom 
+	syntactic_labels HAS defective
+	//OR typ = Voct
+    ]
+    ..
+    [clause_atom syntactic_labels HAS has_Pred]
+]
+GO
+
+//#embedding
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom syntactic_labels HAS has_Pred]
+    ![gap [clause_atom typ = Voct] ]
+    ![clause_atom syntactic_labels HAS defective]
+]
+GO
+
+
+//#ellipsis
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom
+        syntactic_labels HAS NC AND syntactic_labels HAS has_Subj
+    ]
+    ..
+    [clause_atom
+        syntactic_labels HAS NC AND syntactic_labels HAS no_Subj
+    ]
+]
+GO
+
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom 
+	[phrase syntactic_labels HAS copula]
+	..
+	[phrase syntactic_labels HAS copula_cmpl]
+    ]
+    ..
+    [clause_atom 
+	NOTEXIST [phrase syntactic_labels HAS copula]
+        [phrase function = PreC]
+	NOTEXIST [phrase syntactic_labels HAS copula]
+    ]
+]
+GO
+
+
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom syntactic_labels HAS has_Pred 
+	[phrase function = Subj]
+    ]
+    ..
+    [clause_atom NOT syntactic_labels HAS has_Pred 
+	NOTEXIST [phrase function in (NCop, NCoS,  ExsS, Exst)]
+	[phrase function = Subj]
+    ]
+]
+GO
+
+
+
+//#indep_indep
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair NOT syntactic_labels HAS ellipsis
+    [clause_atom syntactic_labels HAS indep]
+    ..
+    [clause_atom syntactic_labels HAS indep]
+]
+GO
+
+//#indep_dep
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom syntactic_labels HAS indep]
+    ..
+    [clause_atom syntactic_labels HAS dep]
+]
+GO
+
+
+//#dep_indep
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom syntactic_labels HAS dep]
+    ..
+    [clause_atom syntactic_labels HAS indep]
+]
+GO
+
+
+//#dep_dep
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom syntactic_labels HAS dep]
+    ..
+    [clause_atom syntactic_labels HAS dep]
+]
+GO
+
+
+//#indep_dep_indep
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom syntactic_labels HAS indep]
+    ![gap 
+	[clause_atom first and last syntactic_labels HAS dep]
+    ]
+    ![clause_atom syntactic_labels HAS indep]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom syntactic_labels HAS indep]
+    ![gap 
+	[clause_atom first syntactic_labels HAS dep]
+	![clause_atom syntactic_labels HAS dep] *
+	![clause_atom last syntactic_labels HAS dep]
+    ]
+    ![clause_atom syntactic_labels HAS indep]
+]
+GO
+
+//#main_ellipsis
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom syntactic_labels HAS indep]
+    ..
+    [clause_atom typ = Ellp]
+]
+GO
+
+//#same_sentence
+SELECT ALL OBJECTS WHERE
+[sentence
+    [clause_atom_pair focus]
+]
+GO
+
+
+//#diff_sentence
+SELECT ALL OBJECTS WHERE
+[sentence as s1
+    [clause_atom_pair focus OVERLAP (SUBSTRATE)
+	first_monad < s1.first_monad 
+    ]
+]
+GO
+
+
+//#compound_predicate
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom 
+	[word as w1 
+	    lex = "CWB["
+	    and vs=qal
+	    and vt in (impf, impv, perf, wayq, weyq)
+	]
+	NOTEXIST [phrase function in (Loca, Cmpl)]
+
+    ]
+    [clause_atom 
+	[word pdp = verb 
+	    and vt=w1.vt 
+	    and ps=w1.ps 
+	    and nu=w1.nu 
+	    and gn = w1.gn
+	]
+    ]
+]
+GO
+
+//#preceding_daughter
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom as ca1]
+    ..
+    [clause_atom self = ca1.mother]
+]
+GO
+
+//#same_clause_type
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom as c1 first]
+    ..
+    [clause_atom typ = c1.typ]
+]
+GO
+
+
+//#same_vt
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair NOT syntactic_labels HAS same_clause_type
+    [clause_atom [word as w1 pdp = verb and vt <> NA]]
+    ..
+    [clause_atom [word vt = w1.vt]]
+]
+GO
+
+
+//#diff_vt
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom [word AS w1 pdp = verb AND vt <> NA]]
+    ..
+    [clause_atom [word pdp = verb AND vt <> NA AND vt <> w1.vt]]
+]
+GO
+
+
+//#disc_non_disc
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom syntactic_labels HAS discursive]
+    ..
+    [clause_atom syntactic_labels HAS non_discursive]
+]
+GO
+
+//#non_disc_disc
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom syntactic_labels HAS non_discursive]
+    ..
+    [clause_atom syntactic_labels HAS discursive]
+]
+GO
+
+//#disc_disc
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom syntactic_labels HAS discursive]
+    ..
+    [clause_atom syntactic_labels HAS discursive]
+]
+GO
+
+//#non_disc_non_disc
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom syntactic_labels HAS non_discursive]
+    ..
+    [clause_atom syntactic_labels HAS non_discursive]
+]
+GO
+
+//#same_salience
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    syntactic_labels HAS disc_disc OR
+    syntactic_labels HAS non_disc_non_disc
+]
+GO
+
+
+//#diff_salience
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    syntactic_labels HAS disc_non_disc OR
+    syntactic_labels HAS non_disc_disc
+]
+GO
+
+//#direct_speech
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom [word lexical_labels HAS quotation_verb]]
+    [clause_atom 
+	syntactic_labels HAS asyn 
+	AND syntactic_labels HAS discursive
+    ]
+]
+GO
+
+
+//#idiomatic
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom first
+	[word first lex = "<L"]
+	![word lex = "KN" OR lex = ">LH"]
+    ]
+    ..
+    [clause_atom 
+	[word first lex = "KJ"]
+    ]
+]
+GO
+
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom first
+	[phrase typ = NegP]
+    ]
+    ..
+    [clause_atom 
+	[word first lex = "KJ"]
+	[word lex = ">M"]
+    ]
+]
+GO
+
+
+
+//#no_fronting_fronting
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom syntactic_labels HAS no_fronting]
+    ..
+    [clause_atom syntactic_labels HAS fronting]
+]
+GO
+
+
+//#fronting_no_fronting
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom syntactic_labels HAS fronting]
+    ..
+    [clause_atom syntactic_labels HAS no_fronting]
+]
+GO
+
+
+//#fronting_fronting
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom syntactic_labels HAS fronting]
+    ..
+    [clause_atom syntactic_labels HAS fronting]
+]
+GO
+
+//#no_fronting_no_fronting
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom syntactic_labels HAS no_fronting]
+    ..
+    [clause_atom syntactic_labels HAS no_fronting]
+]
+GO
+
+
+//#interr_interr
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom syntactic_labels HAS interrogative]
+    ..
+    [clause_atom syntactic_labels has interrogative]
+]
+GO
+
+//#new_interr
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom NOT syntactic_labels HAS interrogative]
+    ..
+    [clause_atom syntactic_labels has interrogative]
+]
+GO
+
+
+//#deictic_deictic
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom syntactic_labels HAS deictic]
+    ..
+    [clause_atom syntactic_labels has deictic]
+]
+GO
+
+//#new_deictic
+SELECT ALL OBJECTS WHERE
+[clause_atom_pair
+    [clause_atom NOT syntactic_labels HAS deictic]
+    ..
+    [clause_atom syntactic_labels has deictic]
+]
+GO
+
